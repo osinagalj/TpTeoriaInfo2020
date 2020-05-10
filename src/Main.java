@@ -3,7 +3,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.DecimalFormat;
+import java.util.*;
 
 public class Main {
     public static void main (String [ ] args) {
@@ -52,13 +53,13 @@ public class Main {
             float covarianza = ejercicio1.calcularCovarianzaAB(imgOriginal,will_1,mediaOriginal,mediaWill1);
             System.out.println("Cov(A,B) : " + covarianza);
             float covarianza2 = ejercicio1.calcularCovarianzaAB(imgOriginal,will_2,mediaOriginal,mediaWill2);
-            System.out.println("Cov(A,B) : " + covarianza);
+            System.out.println("Cov(A,C) : " + covarianza2);
             float covarianza3 = ejercicio1.calcularCovarianzaAB(imgOriginal,will_3,mediaOriginal,mediaWill3);
-            System.out.println("Cov(A,B) : " + covarianza);
+            System.out.println("Cov(A,D) : " + covarianza3);
             float covarianza4 = ejercicio1.calcularCovarianzaAB(imgOriginal,will_4,mediaOriginal,mediaWill4);
-            System.out.println("Cov(A,B) : " + covarianza);
+            System.out.println("Cov(A,E) : " + covarianza4);
             float covarianza5 = ejercicio1.calcularCovarianzaAB(imgOriginal,will_5,mediaOriginal,mediaWill5);
-            System.out.println("Cov(A,B) : " + covarianza);
+            System.out.println("Cov(A,F) : " + covarianza5);
 
             //correlacion entre original y will1
             double r = ejercicio1.calcularFactorCorrelacionPearson(covarianza,DesvioOriginal,DesvioWill1);
@@ -85,19 +86,35 @@ public class Main {
             int[] distribucionWill_ej2 = new int[256];
             ejercicio1.obtenerDistribuciones(will_ej2,distribucionWill_ej2);
 
+
+            int total = imgOriginal.getWidth()*imgOriginal.getHeight();
+            System.out.print("total: " +total);
             System.out.println("frecuencia will original ");
+
+            float suma = 0;
             for(int i= 0; i< 256 ; i++){
-                System.out.print(distribucionImagenOrignal[i]+ " ");
+                if(distribucionWill_ej2[i] != 0) {
+                    System.out.println("x : "+ i +" fi: "+distribucionImagenOrignal[i]+ " P("+ i +") = "+ (float)  distribucionImagenOrignal[i]/total );
+                    suma = suma + (float)  distribucionImagenOrignal[i]/total;
+                }
             }
+            System.out.println("suma: "+ suma);
+
+
+
             System.out.println();
             System.out.println("frecuencia will 5 ");
             for(int i= 0; i< 256 ; i++){
-                System.out.print(distribucionWill5[i]+ " ");
+                if(distribucionWill_ej2[i] != 0) {
+                    System.out.println("x : "+ i +" fi: "+distribucionWill5[i]+ " P("+ i +") = "+ (float)  distribucionWill5[i]/total );
+                }
             }
             System.out.println();
             System.out.println("frecuencia will ej 2 ");
             for(int i= 0; i< 256 ; i++){
-                System.out.print(distribucionWill_ej2[i]+ " ");
+                if(distribucionWill_ej2[i] != 0){
+                    System.out.println("x : "+ i +" fi: "+distribucionWill_ej2[i]+ " P("+ i +") = "+ (float)  distribucionWill_ej2[i]/total );
+                }
             }
             System.out.println();
             System.out.println();
@@ -120,6 +137,60 @@ public class Main {
             double Ej2_DesvioWill_ej2 = ejercicio1.calcularDesvioEstandar(will_ej2,Ej2_mediaWill_ej2);
             System.out.println("media will ej2: "+ Ej2_mediaWill_ej2);
             System.out.println("desvio will ej2: "+ Ej2_DesvioWill_ej2);
+
+
+            //ejercicio 3
+            //HashMap h = ejercicio1.ordenarFI(distribucionImagenOrignal);
+
+           /* Map resultados2 = new HashMap<Integer,String>();
+            resultados2.put(1,"kaka");
+            resultados2.put(2,"pepe");
+
+
+            Iterator it = resultados2.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry)it.next();
+                System.out.println(pair.getKey() + " = " + pair.getValue());
+                it.remove(); // avoids a ConcurrentModificationException
+            }
+            */
+
+
+            Vector<Arbol> hojas = new Vector<Arbol>();
+            for(int i=0; i<255;i++){ //distribucionImagenOrignal.length
+                if(distribucionImagenOrignal[i] != 0) {
+                    Arbol hoja = new Arbol(i,(float) distribucionImagenOrignal[i]/total);
+                    System.out.println("color:  "+hoja.getColor());
+                        ejercicio1.inserTarOrdenado(hojas,hoja);
+                    System.out.println("size:  "+hojas.size());
+                }
+            }
+            //Arbol de huffman armado
+            System.out.println("Las secuencias: ");
+            for(int i =0; i< hojas.size();i++){
+                System.out.println("color: "+hojas.get(i).getColor() + "   prob: " + (float) hojas.get(i).getProbabilidad());
+            }
+            Arbol a = ejercicio1.getPadre(hojas);
+
+            System.out.println("prob padre: "+ a.getProbabilidad());
+            System.out.println("prob hijo izq: "+ a.getHijoIzquierdo().getProbabilidad());
+            System.out.println("prob hijo der: "+ a.getHijoDerecho().getProbabilidad());
+
+
+            HashMap<Integer,String> resultados = new HashMap<Integer,String>();
+            ejercicio1.obtenerSecuencias(resultados,a,"");
+
+
+            System.out.println("Las secuencias de huffman: ");
+            Iterator it = resultados.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry)it.next();
+                System.out.println(pair.getKey() + " = " + pair.getValue());
+                it.remove(); // avoids a ConcurrentModificationException
+            }
+
+
+
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
