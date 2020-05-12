@@ -5,21 +5,21 @@ public class Arbol {
     private boolean visitado = false;
 
 
-    private float probabilidad;
-    private int color;
+    private double probabilidad;
+    private int color = -1;
 
     public Arbol(){}
-    public Arbol( int color, float probabilidad){
+    public Arbol( int color, double probabilidad){
         this.color = color;
         this.probabilidad = probabilidad;
     }
-    public Arbol( Arbol hijoIzquierdo,Arbol hijoDerecho, int color, float probabilidad){
+    public Arbol( Arbol hijoIzquierdo,Arbol hijoDerecho, int color, double probabilidad){
         this.hijoDerecho = hijoDerecho;
         this.hijoIzquierdo = hijoIzquierdo;
         this.color = color;
         this.probabilidad = probabilidad;
     }
-    public Arbol( Arbol hijoIzquierdo,Arbol hijoDerecho, float probabilidad){
+    public Arbol( Arbol hijoIzquierdo,Arbol hijoDerecho, double probabilidad){
         this.hijoDerecho = hijoDerecho;
         this.hijoIzquierdo = hijoIzquierdo;
 
@@ -28,7 +28,7 @@ public class Arbol {
 
 
 
-    public float getProbabilidad(){
+    public double getProbabilidad(){
         return this.probabilidad;
     }
 

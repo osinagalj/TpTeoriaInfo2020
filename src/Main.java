@@ -1,185 +1,134 @@
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Vector;
 
 public class Main {
     public static void main (String [ ] args) {
 
         try {
-
-
-            BufferedImage imgOriginal = ImageIO.read(new File("src\\img\\Will_5.bmp"));//media 189  "src\\img\\Will(Original).bmp"
+            //Cargando las Imagenes
+            BufferedImage imgOriginal = ImageIO.read(new File("src\\img\\Will(Original).bmp"));//media 189  "src\\img\\Will(Original).bmp"
             BufferedImage will_1 = ImageIO.read(new File("src\\img\\Will_1.bmp")); //media 192
             BufferedImage will_2 = ImageIO.read(new File("src\\img\\Will_2.bmp")); //media 189
             BufferedImage will_3 = ImageIO.read(new File("src\\img\\Will_3.bmp")); //media 185
             BufferedImage will_4 = ImageIO.read(new File("src\\img\\Will_4.bmp")); //media 191
             BufferedImage will_5 = ImageIO.read(new File("src\\img\\Will_5.bmp")); //media 187
             BufferedImage will_ej2 = ImageIO.read(new File("src\\img\\Will_ej2.bmp"));
-            // todas tienen un desvio de mierda igual a 1
+            //Creando la calculadora
+            Calculator calculator = new Calculator();
 
-            Ejercicio1 ejercicio1 = new Ejercicio1();
-            float mediaOriginal = ejercicio1.calcularMedia(imgOriginal);
-            float mediaWill1 = ejercicio1.calcularMedia(will_1);
-            float mediaWill2 = ejercicio1.calcularMedia(will_2);
-            float mediaWill3 = ejercicio1.calcularMedia(will_3);
-            float mediaWill4 = ejercicio1.calcularMedia(will_4);
-            float mediaWill5 = ejercicio1.calcularMedia(will_5);
+            int h =  imgOriginal.getHeight();
+            int w =  imgOriginal.getWidth();
+            int n = h*w;
 
-            double DesvioOriginal = ejercicio1.calcularDesvioEstandar(imgOriginal,mediaOriginal);
-            double DesvioWill1 = ejercicio1.calcularDesvioEstandar(will_1,mediaWill1);
-            double DesvioWill2 = ejercicio1.calcularDesvioEstandar(will_2,mediaWill2);
-            double DesvioWill3 = ejercicio1.calcularDesvioEstandar(will_3,mediaWill3);
-            double DesvioWill4 = ejercicio1.calcularDesvioEstandar(will_4,mediaWill4);
-            double DesvioWill5 = ejercicio1.calcularDesvioEstandar(will_5,mediaWill5);
+//--------------------------------------------------------------------------------------------------------//
+//----------------------------          EJERCICIO 1             ------------------------------------------//
+//--------------------------------------------------------------------------------------------------------//
 
-            System.out.println("Media origi : " + mediaOriginal);
-            System.out.println("Media Will1 : " + mediaWill1);
-            System.out.println("Media Will2 : " + mediaWill2);
-            System.out.println("Media Will3 : " + mediaWill3);
-            System.out.println("Media Will4 : " + mediaWill4);
-            System.out.println("Media Will5 : " + mediaWill5);
-
-            System.out.println("Desvio original : " + DesvioOriginal);
-            System.out.println("Desvio Will1 : " + DesvioWill1);
-            System.out.println("Desvio Will2 : " + DesvioWill2);
-            System.out.println("Desvio Will3 : " + DesvioWill3);
-            System.out.println("Desvio Will4 : " + DesvioWill4);
-            System.out.println("Desvio Will5 : " + DesvioWill5);
-
-            float covarianza = ejercicio1.calcularCovarianzaAB(imgOriginal,will_1,mediaOriginal,mediaWill1);
-            System.out.println("Cov(A,B) : " + covarianza);
-            float covarianza2 = ejercicio1.calcularCovarianzaAB(imgOriginal,will_2,mediaOriginal,mediaWill2);
-            System.out.println("Cov(A,C) : " + covarianza2);
-            float covarianza3 = ejercicio1.calcularCovarianzaAB(imgOriginal,will_3,mediaOriginal,mediaWill3);
-            System.out.println("Cov(A,D) : " + covarianza3);
-            float covarianza4 = ejercicio1.calcularCovarianzaAB(imgOriginal,will_4,mediaOriginal,mediaWill4);
-            System.out.println("Cov(A,E) : " + covarianza4);
-            float covarianza5 = ejercicio1.calcularCovarianzaAB(imgOriginal,will_5,mediaOriginal,mediaWill5);
-            System.out.println("Cov(A,F) : " + covarianza5);
-
-            //correlacion entre original y will1
-            double r = ejercicio1.calcularFactorCorrelacionPearson(covarianza,DesvioOriginal,DesvioWill1);
-            System.out.println("indice de correlacion : " + r);
-            //correlacion entre original y will2
-            double r2 = ejercicio1.calcularFactorCorrelacionPearson(covarianza2,DesvioOriginal,DesvioWill2);
-            System.out.println("indice de correlacion2 : " + r2);
-            //correlacion entre original y will3
-            double r3 = ejercicio1.calcularFactorCorrelacionPearson(covarianza3,DesvioOriginal,DesvioWill3);
-            System.out.println("indice de correlacion3 : " + r3);
-            //correlacion entre original y will2
-            double r4 = ejercicio1.calcularFactorCorrelacionPearson(covarianza4,DesvioOriginal,DesvioWill4);
-            System.out.println("indice de correlacion4 : " + r4);
-            //correlacion entre original y will2
-            double r5 = ejercicio1.calcularFactorCorrelacionPearson(covarianza5,DesvioOriginal,DesvioWill5);
-            System.out.println("indice de correlacion5 : " + r5);
+            System.out.println("indices de correlacion ");
+            double r = calculator.ejercicio1(imgOriginal,will_1,h,w,n);
+            System.out.println("Original y Will_1 : " + r);
+            double r2 = calculator.ejercicio1(imgOriginal,will_2,h,w,n);
+            System.out.println("Original y Will_2  : " + r2);
+            double r3 = calculator.ejercicio1(imgOriginal,will_3,h,w,n);
+            System.out.println("Original y Will_3  " + r3);
+            double r4 = calculator.ejercicio1(imgOriginal,will_4,h,w,n);
+            System.out.println("Original y Will_4 : " + r4);
+            double r5 = calculator.ejercicio1(imgOriginal,will_5,h,w,n);
+            System.out.println("Original y Will_5  : " + r5);
 
 
-        //Ejercicio 2
+
+//--------------------------------------------------------------------------------------------------------//
+//----------------------------          EJERCICIO 2             ------------------------------------------//
+//--------------------------------------------------------------------------------------------------------//
+
+            //Distribuciones
             int[] distribucionImagenOrignal = new int[256];
-            ejercicio1.obtenerDistribuciones(imgOriginal,distribucionImagenOrignal);
-            int[] distribucionWill5 = new int[256];
-            ejercicio1.obtenerDistribuciones(will_5,distribucionWill5);
+            int[] distribucionWill_1 = new int[256];
             int[] distribucionWill_ej2 = new int[256];
-            ejercicio1.obtenerDistribuciones(will_ej2,distribucionWill_ej2);
+            //Medias y Desvios
+            double[] mediaYDesvioOriginal = new double[2];
+            double[] mediaYDesvioWill_1 = new double[2];
+            double[] mediaYDesvioWill_ej2 = new double[2];
+            //Obteniendo
+            calculator.ejercicio2(imgOriginal,distribucionImagenOrignal,n,mediaYDesvioOriginal);
+            calculator.ejercicio2(will_1,distribucionWill_1,n,mediaYDesvioWill_1);
+            calculator.ejercicio2(will_ej2,distribucionWill_ej2,n,mediaYDesvioWill_ej2);
 
+            //medias
+            System.out.println("media Original: " +mediaYDesvioOriginal[0]);
+            System.out.println("mediaWill_1: " +mediaYDesvioWill_1[0]);
+            System.out.println("media will ej 2: " +mediaYDesvioWill_ej2[0]);
+            //desvios
+            System.out.println("desvio Original: " +mediaYDesvioOriginal[1]);
+            System.out.println("desvioWill_1: " +mediaYDesvioWill_1[1]);
+            System.out.println("desvioWill_ej2: " +mediaYDesvioWill_ej2[1]);
 
-            int total = imgOriginal.getWidth()*imgOriginal.getHeight();
-            System.out.print("total: " +total);
-            System.out.println("frecuencia will original ");
-
-            float suma = 0;
-            for(int i= 0; i< 256 ; i++){
-                if(distribucionWill_ej2[i] != 0) {
-                    System.out.println("x : "+ i +" fi: "+distribucionImagenOrignal[i]+ " P("+ i +") = "+ (float)  distribucionImagenOrignal[i]/total );
-                    suma = suma + (float)  distribucionImagenOrignal[i]/total;
+            System.out.println("distribucion del original /n");
+            for(int i = 0; i<256; i++ ){
+                if(distribucionImagenOrignal[i] != 0){
+                    System.out.println("x : "+ i +" fi: "+distribucionImagenOrignal[i]+ " P("+ i +") = "+  (double)distribucionImagenOrignal[i]/n) ;
                 }
             }
-            System.out.println("suma: "+ suma);
-
-
-
-            System.out.println();
-            System.out.println("frecuencia will 5 ");
-            for(int i= 0; i< 256 ; i++){
-                if(distribucionWill_ej2[i] != 0) {
-                    System.out.println("x : "+ i +" fi: "+distribucionWill5[i]+ " P("+ i +") = "+ (float)  distribucionWill5[i]/total );
+            System.out.println(" distribucionWill_1  /n");
+            for(int i = 0; i<256; i++ ){
+                if(distribucionWill_1[i] != 0){
+                    System.out.println("x : "+ i +" fi: "+distribucionWill_1[i]+ " P("+ i +") = "+  (double)distribucionWill_1[i]/n) ;
                 }
             }
-            System.out.println();
-            System.out.println("frecuencia will ej 2 ");
-            for(int i= 0; i< 256 ; i++){
+            System.out.println(" distribucionWill_ej2  /n");
+            for(int i = 0; i<256; i++ ){
                 if(distribucionWill_ej2[i] != 0){
-                    System.out.println("x : "+ i +" fi: "+distribucionWill_ej2[i]+ " P("+ i +") = "+ (float)  distribucionWill_ej2[i]/total );
+                    System.out.println("x : "+ i +" fi: "+distribucionWill_ej2[i]+ " P("+ i +") = "+  (double)distribucionWill_ej2[i]/n) ;
                 }
             }
-            System.out.println();
-            System.out.println();
-
-            //MEDIAS Y DESVIOS
-           // la original y will 5 tienen el mismo desvio y media y misma distribucion
-            float Ej2_mediaWill_5 = ejercicio1.calcularMedia(will_5);
-            double Ej2_DesvioWill5 = ejercicio1.calcularDesvioEstandar(will_5,Ej2_mediaWill_5);
-            System.out.println("media will 5: "+ Ej2_mediaWill_5);
-            System.out.println("desvio will 5: "+ Ej2_DesvioWill5);
-
-            System.out.println();
-            float Ej2_mediaWill_original = ejercicio1.calcularMedia(imgOriginal);
-            double Ej2_DesvioWill_original = ejercicio1.calcularDesvioEstandar(imgOriginal,Ej2_mediaWill_original);
-            System.out.println("media will original: "+ Ej2_mediaWill_original);
-            System.out.println("desvio will original: "+ Ej2_DesvioWill_original);
-
-            System.out.println();
-            float Ej2_mediaWill_ej2 = ejercicio1.calcularMedia(will_ej2);
-            double Ej2_DesvioWill_ej2 = ejercicio1.calcularDesvioEstandar(will_ej2,Ej2_mediaWill_ej2);
-            System.out.println("media will ej2: "+ Ej2_mediaWill_ej2);
-            System.out.println("desvio will ej2: "+ Ej2_DesvioWill_ej2);
 
 
-            //ejercicio 3
-            //HashMap h = ejercicio1.ordenarFI(distribucionImagenOrignal);
+//--------------------------------------------------------------------------------------------------------//
+//----------------------------          EJERCICIO 3             ------------------------------------------//
+//--------------------------------------------------------------------------------------------------------//
 
-           /* Map resultados2 = new HashMap<Integer,String>();
-            resultados2.put(1,"kaka");
-            resultados2.put(2,"pepe");
-
-
-            Iterator it = resultados2.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry pair = (Map.Entry)it.next();
-                System.out.println(pair.getKey() + " = " + pair.getValue());
-                it.remove(); // avoids a ConcurrentModificationException
-            }
-            */
-
-
+            HashMap distribucionesOrdenadas = calculator.ordenarFI(distribucionImagenOrignal);
             Vector<Arbol> hojas = new Vector<Arbol>();
-            for(int i=0; i<255;i++){ //distribucionImagenOrignal.length
+            //Cargando hojas
+            /*
+            for(int i=0; i<distribucionImagenOrignal.length;i++){
                 if(distribucionImagenOrignal[i] != 0) {
-                    Arbol hoja = new Arbol(i,(float) distribucionImagenOrignal[i]/total);
-                    System.out.println("color:  "+hoja.getColor());
-                        ejercicio1.inserTarOrdenado(hojas,hoja);
-                    System.out.println("size:  "+hojas.size());
+                    Arbol hoja = new Arbol(i,(float) distribucionImagenOrignal[i]/n);
+                    calculator.inserTarOrdenado(hojas,hoja);
                 }
             }
-            //Arbol de huffman armado
-            System.out.println("Las secuencias: ");
-            for(int i =0; i< hojas.size();i++){
-                System.out.println("color: "+hojas.get(i).getColor() + "   prob: " + (float) hojas.get(i).getProbabilidad());
-            }
-            Arbol a = ejercicio1.getPadre(hojas);
+*/
+            hojas.add(0,new Arbol(0,(double)1/41));
+            hojas.add(1,new Arbol(1,(double)1/41));
+            hojas.add(2,new Arbol(2,(double)1/41));
+            hojas.add(3,new Arbol(3,(double)1/41));
+            hojas.add(4,new Arbol(4,(double)1/41));
+            hojas.add(5,new Arbol(5,(double)1/41));
+            hojas.add(6,new Arbol(6,(double)2/41));
+            hojas.add(7,new Arbol(7,(double)2/41));
+            hojas.add(8,new Arbol(8,(double)2/41));
+            hojas.add(9,new Arbol(9,(double)2/41));//0,048
+            hojas.add(10,new Arbol(10,(double)2/41));
+            hojas.add(11,new Arbol(11,(double)2/41));
+            hojas.add(12,new Arbol(12,(double)3/41));
+            hojas.add(13,new Arbol(13,(double)3/41));
+            hojas.add(14,new Arbol(14,(double)3/41));
+            hojas.add(15,new Arbol(15,(double)6/41));//0,14
+            hojas.add(16,new Arbol(16,(double)8/41)); //0,19
 
-            System.out.println("prob padre: "+ a.getProbabilidad());
-            System.out.println("prob hijo izq: "+ a.getHijoIzquierdo().getProbabilidad());
-            System.out.println("prob hijo der: "+ a.getHijoDerecho().getProbabilidad());
+           // 0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15
+           //41 es la suma de fi
 
-
+            Arbol a = calculator.getPadre(hojas);
             HashMap<Integer,String> resultados = new HashMap<Integer,String>();
-            ejercicio1.obtenerSecuencias(resultados,a,"");
-
+            calculator.obtenerSecuencias(resultados,a,"");
 
             System.out.println("Las secuencias de huffman: ");
             Iterator it = resultados.entrySet().iterator();
@@ -190,8 +139,34 @@ public class Main {
             }
 
 
+/*
+            Espacio	8	00
+                E	6	100
+                N	3	1100
+                O	3	1110
+                U	3	0100
+                A	2	0101
+                D	2	1010
+                F	2	1011
+                L	2	0110
+                M	2	0111
+                S	2	11010
+                B	1	110110
+                H	1	110111
+                J	1	111100
+                P	1	111101
+                R	1	111110
+                T	1	111111
 
 
+            // Recorrer el mapa
+            Iterator it = resultados2.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry)it.next();
+                System.out.println(pair.getKey() + " = " + pair.getValue());
+                it.remove(); // avoids a ConcurrentModificationException
+            }
+*/
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
