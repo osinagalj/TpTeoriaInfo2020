@@ -104,7 +104,9 @@ public class Main {
                     calculator.inserTarOrdenado(hojas,hoja);
                 }
             }
+
 */
+
             hojas.add(0,new Arbol(0,(double)1/41));
             hojas.add(1,new Arbol(1,(double)1/41));
             hojas.add(2,new Arbol(2,(double)1/41));
@@ -123,6 +125,23 @@ public class Main {
             hojas.add(15,new Arbol(15,(double)6/41));//0,14
             hojas.add(16,new Arbol(16,(double)8/41)); //0,19
 
+
+/*
+            calculator.inserTarOrdenado(hojas,new Arbol(1,(double)8/41,0));
+            calculator.inserTarOrdenado(hojas,new Arbol(2,(double)8/41,2));
+            calculator.inserTarOrdenado(hojas,new Arbol(3,(double)8/41,3));
+            System.out.println("Arbolito xd");
+            for(int i = 0; i <hojas.size();i++){
+                System.out.println("color: "+ hojas.get(i).getColor()+ " nivel: "+hojas.get(i).getNivel() );
+            }
+            calculator.inserTarOrdenado(hojas,new Arbol(8,(double)8/41,2));
+            calculator.inserTarOrdenado(hojas,new Arbol(9,(double)8/41,2));
+            System.out.println("Arbolito xd");
+            for(int i = 0; i <hojas.size();i++){
+                System.out.println("color: "+ hojas.get(i).getColor()+ " nivel: "+hojas.get(i).getNivel() );
+            }
+
+*/
            // 0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15
            //41 es la suma de fi
 
@@ -138,28 +157,34 @@ public class Main {
                 it.remove(); // avoids a ConcurrentModificationException
             }
 
+            System.out.println("IMPRIMIENDO ARBOL izq");
+            calculator.imprimirArbolIzq(a,0);
+            System.out.println("IMPRIMIENDO ARBOL der");
+            calculator.imprimirArbolDer(a,0);
+            System.out.println("hijo derecho: "+ a.getHijoDerecho().getProbabilidad());
+/*
+                    00
+                    110
+                    1000
+                    1001
+                    1010
+                    1011
+                    0100
+
+                    0101
+                    0110
+                    0111
+                    11100
+                    111010
+                    111011
+                    111100
+                    111101
+                    111110
+                    111111
+*/
 
 /*
-            Espacio	8	00
-                E	6	100
-                N	3	1100
-                O	3	1110
-                U	3	0100
-                A	2	0101
-                D	2	1010
-                F	2	1011
-                L	2	0110
-                M	2	0111
-                S	2	11010
-                B	1	110110
-                H	1	110111
-                J	1	111100
-                P	1	111101
-                R	1	111110
-                T	1	111111
-
-
-            // Recorrer el mapa
+            //Recorrer el mapa
             Iterator it = resultados2.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry pair = (Map.Entry)it.next();

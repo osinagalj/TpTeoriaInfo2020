@@ -66,68 +66,79 @@ public class Calculator {
        return frecuenciasOrdenadas;
    }
    //testeado el insertar
-   public Vector<Arbol> inserTarOrdenado(Vector<Arbol> hojas, Arbol hoja) {
-
-       for (int i = 0; i < hojas.size(); i++) {
+   public void inserTarOrdenado(Vector<Arbol> hojas, Arbol hoja) {
+        int i = 0;
+       // for(int j = 0; )
+       //el nivel mas alto tiene que ir primero, si tengo un 8(lvl 2) , 8(lvl 0)  entonces el 8 (lvl 3) va primero
+       while ( i < hojas.size()) {
            if ( hoja.getProbabilidad() <= hojas.elementAt(i).getProbabilidad()) {
-               hojas.add(i, hoja);
-               return hojas;
+                   if(hoja.getProbabilidad() == hojas.elementAt(i).getProbabilidad()){
+                       while((i<hojas.size()) && (hoja.getNivel() <= hojas.elementAt(i).getNivel())  ){
+                           i++;
+                       }
+
+                   }
+
+                   hojas.add(i, hoja);
+                   return ;
            }
+           i++;
        }
+
        hojas.add(hoja);
-       return hojas;
+       return;
    }
    public Arbol getPadre(Vector<Arbol> hojas){
 
         while (hojas.size() > 1){
-            System.out.println("Arreglo");
-            for(int i = 0; i< hojas.size();i++){
-                System.out.print(hojas.get(i).getProbabilidad() +  "  ");
+            for(int i = 0; i <hojas.size();i++){
+                System.out.println("prob : "+ hojas.get(i).getProbabilidad()*41+ "nivel: "+hojas.get(i).getNivel() );
             }
-            double nuevoProb = hojas.get(0).getProbabilidad() + hojas.get(1).getProbabilidad();
-            Arbol huffman = new Arbol(hojas.get(0),hojas.get(1),-1,nuevoProb);
+            System.out.println("nodo 0 :" + hojas.get(0).getProbabilidad()*41);
+            Arbol huffman = null ;
+            //el que menos nivel tenga va primero, osdea a la derecha
+            if(hojas.get(1).getProbabilidad() == hojas.get(0).getProbabilidad()){
+                if(hojas.get(1).getNivel() <= hojas.get(0).getNivel()){
+                    huffman = new Arbol(hojas.get(0),hojas.get(1));
+                }else{
+                    huffman = new Arbol(hojas.get(1),hojas.get(0));
+                }
+            }else{
+                huffman = new Arbol(hojas.get(1),hojas.get(0));
+            }
             hojas.remove(0);
             hojas.remove(0);
+            huffman.setNivel(huffman.getNivel()+1);
             this.inserTarOrdenado(hojas, huffman);
-
         }
        System.out.println("Termino el padre");
        return hojas.get(0);
    }
     public void obtenerSecuencias(HashMap<Integer,String> h, Arbol arbolito, String secuencia){
         if((arbolito.getHijoDerecho() == null) && (arbolito.getHijoIzquierdo() == null)){
-            System.out.println("ENCONTRO UN COLOR DE MIERDA color: " + arbolito.getColor());
-            System.out.println("secuencia: " + secuencia);
+
             h.put(arbolito.getColor(),secuencia);
         }else{
-            System.out.println("secuencia actual: " + secuencia);
-            System.out.println("prob actual: " + arbolito.getProbabilidad());
+
             if(arbolito.getHijoDerecho() != null){
-                if(arbolito.getHijoDerecho().getProbabilidad()>arbolito.getHijoIzquierdo().getProbabilidad()){
-                    obtenerSecuencias(h,arbolito.getHijoDerecho(),secuencia+"1");
-                }else {
-                    //el derecho es menor o igual
-                        obtenerSecuencias(h, arbolito.getHijoDerecho(), secuencia + "0");
-                }
+                    obtenerSecuencias(h,arbolito.getHijoDerecho(),secuencia+"0");
             }
             if(arbolito.getHijoIzquierdo() != null){
-                if(arbolito.getHijoDerecho().getProbabilidad()<arbolito.getHijoIzquierdo().getProbabilidad()){
-                    obtenerSecuencias(h,arbolito.getHijoIzquierdo(),secuencia+"1");
-                }else{
-                    //el izquierdo es menor o igual
-                    obtenerSecuencias(h,arbolito.getHijoIzquierdo(),secuencia+"1");
+                obtenerSecuencias(h,arbolito.getHijoIzquierdo(),secuencia+"1");
+            }
 
-            }}
         }
     }
-    public void imprimirArbol(Arbol a,int nivel){
+    public void imprimirArbolDer(Arbol a,int nivel){
         if(a!= null){
-            if((a.getHijoDerecho() == null) && (a.getHijoIzquierdo() == null)) {
-                System.out.print("Hoja Color: "+a.getColor() +"     ");
-            }
-            System.out.println(a.getProbabilidad() + "   nivel: " + nivel);
-            imprimirArbol(a.getHijoIzquierdo(),nivel+1);
-            imprimirArbol(a.getHijoDerecho(),nivel+1);
+            System.out.println(a.getProbabilidad()*41+ " color : " +a.getColor() + " nivel: "+ a.getNivel());
+            imprimirArbolDer(a.getHijoDerecho(),nivel+1);
+        }
+    }
+    public void imprimirArbolIzq(Arbol a,int nivel){
+        if(a!= null){
+            System.out.println(a.getProbabilidad()*41+ " color : " +a.getColor()+ " nivel: "+ a.getNivel());
+            imprimirArbolIzq(a.getHijoIzquierdo(),nivel+1);
         }
     }
 

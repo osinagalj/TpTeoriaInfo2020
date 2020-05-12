@@ -8,22 +8,56 @@ public class Arbol {
     private double probabilidad;
     private int color = -1;
 
+
+
+    private int nivel = 0;
+
     public Arbol(){}
     public Arbol( int color, double probabilidad){
         this.color = color;
         this.probabilidad = probabilidad;
+    }
+    public Arbol( int color, double probabilidad,int nivel){
+        this.color = color;
+        this.probabilidad = probabilidad;
+        this.nivel = nivel;
+
     }
     public Arbol( Arbol hijoIzquierdo,Arbol hijoDerecho, int color, double probabilidad){
         this.hijoDerecho = hijoDerecho;
         this.hijoIzquierdo = hijoIzquierdo;
         this.color = color;
         this.probabilidad = probabilidad;
+
+        if(hijoDerecho.getNivel()> hijoIzquierdo.getNivel()){
+            this.setNivel(hijoDerecho.getNivel());
+        }else{
+            this.setNivel(hijoIzquierdo.getNivel());
+        }
     }
     public Arbol( Arbol hijoIzquierdo,Arbol hijoDerecho, double probabilidad){
         this.hijoDerecho = hijoDerecho;
         this.hijoIzquierdo = hijoIzquierdo;
 
         this.probabilidad = probabilidad;
+        if(hijoDerecho.getNivel()> hijoIzquierdo.getNivel()){
+            this.setNivel(hijoDerecho.getNivel());
+        }else{
+            this.setNivel(hijoIzquierdo.getNivel());
+        }
+
+    }
+    public Arbol( Arbol hijoIzquierdo,Arbol hijoDerecho){
+        this.hijoDerecho = hijoDerecho;
+        this.hijoIzquierdo = hijoIzquierdo;
+
+        this.probabilidad = hijoIzquierdo.getProbabilidad() + hijoDerecho.getProbabilidad();
+        if(hijoDerecho.getNivel()> hijoIzquierdo.getNivel()){
+            this.setNivel(hijoDerecho.getNivel());
+        }else{
+            this.setNivel(hijoIzquierdo.getNivel());
+        }
+
     }
 
 
@@ -68,5 +102,11 @@ public class Arbol {
         this.probabilidad = probabilidad;
     }
 
+    public int getNivel() {
+        return nivel;
+    }
 
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
 }
