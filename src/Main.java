@@ -104,7 +104,6 @@ public class Main {
                     calculator.inserTarOrdenado(hojas,hoja);
                 }
             }
-
 */
 
 
@@ -125,21 +124,6 @@ public class Main {
             hojas.add(14,new Arbol(14,(double)3/41));
             hojas.add(15,new Arbol(15,(double)6/41));//0,14
             hojas.add(16,new Arbol(16,(double)8/41)); //0,19
-
-/*
-
-            hojas.add(0,new Arbol(1,(double)4/41,2));
-            hojas.add(1,new Arbol(2,(double)4/41,2));
-            hojas.add(2,new Arbol(3,(double)4/41,1));
-            hojas.add(3,new Arbol(4,(double)2/41,0));
-
-            calculator.inserTarOrdenado2(hojas,new Arbol(5,(double)4/41,1));
-            System.out.println("Arbolito xd");
-            for(int i = 0; i <hojas.size();i++){
-                System.out.println("color: "+ hojas.get(i).getColor()+ " nivel: "+hojas.get(i).getNivel() );
-            }
-*/
-
            // 0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15
            //41 es la suma de fi
 
@@ -154,22 +138,14 @@ public class Main {
                 System.out.println(pair.getKey() + " = " + pair.getValue());
                 it.remove(); // avoids a ConcurrentModificationException
             }
-
-            System.out.println("IMPRIMIENDO ARBOL izq");
-            calculator.imprimirArbolIzq(a,0);
-            System.out.println("IMPRIMIENDO ARBOL der");
-            calculator.imprimirArbolDer(a,0);
-            System.out.println("hijo derecho: "+ a.getHijoDerecho().getProbabilidad());
 /*
                     111111
                     111110
                     111101
                     111100
-
                     111011
                     111010
                     11100
-
                     0111
                     0110
                     0101

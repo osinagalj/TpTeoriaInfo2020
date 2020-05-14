@@ -11,11 +11,8 @@ public class Calculator {
     public double getGris(BufferedImage imgOriginal,int x,int y){
         int rgb = imgOriginal.getRGB(x, y);
         Color color = new Color(rgb, true);
-        int r = color.getRed();
-        int g = color.getGreen();
-        int b = color.getBlue();
-        double gris = (double)(r+g+b)/3; // con este se saca la escala de grises
-        return gris;
+        return color.getRed(); // usamos el red
+        //double gris = (double)(r+g+b)/3; // con este se saca la escala de grises, pero como las imagenenes vienen en escala de grises, para que sea mas eficiente podemos tomar uno de los 3, ya uqe los 3 son iguales siempre. Esto lo podemos hacer porque sabemos de antemano que no nos van a venir imagenes de color
     }
 
    public double ejercicio1(BufferedImage imgA,BufferedImage imgB, int h, int w,int n){
@@ -90,7 +87,7 @@ public class Calculator {
    }
    public Arbol getIndexMenorProb(Vector<Arbol> hojas){
         int menor = hojas.size()+1;
-        double probMenor = 1;
+        double probMenor = 1.0;
         for(int i = 0;i<hojas.size();i++){
             if(probMenor > hojas.get(i).getProbabilidad()){
                 probMenor = hojas.get(i).getProbabilidad();
@@ -98,46 +95,28 @@ public class Calculator {
             }
         }
         Arbol a = hojas.remove(menor);
-
         return a;
    }
     public void inserTarOrdenado2(Vector<Arbol> hojas, Arbol hoja) {
         int i = 0;
-
-            while((i<hojas.size()) && (hoja.getNivel() < hojas.elementAt(i).getNivel()) ){ // tiene que ir <=
+        while((i<hojas.size()) && (hoja.getNivel() <= hojas.elementAt(i).getNivel()) ){ // tiene que ir <=
                 i++;
-                if((hoja.getNivel() == hojas.elementAt(i).getNivel())){
-                    while ((i<hojas.size()) && (hoja.getNivel() == hojas.elementAt(i).getNivel()) && (hojas.elementAt(i).getProbabilidad() <= hoja.getProbabilidad())){
-                        i++;
-                    }
-
-                    hojas.add(i, hoja);
-                    return;
+            if((hoja.getNivel() == hojas.elementAt(i).getNivel())) {
+                while ((i < hojas.size()) && (hoja.getNivel() == hojas.elementAt(i).getNivel()) && (hojas.elementAt(i).getProbabilidad() <= hoja.getProbabilidad())) {
+                    i++;
                 }
-
+                hojas.add(i, hoja);
+                return;
             }
-            hojas.add(i, hoja);
-             return ;
-
-            //mientras sea de nivel menor
-
         }
-
+        hojas.add(i, hoja);
+        return ;
+    }
 
     public Arbol getPadre2(Vector<Arbol> hojas){
-
         //Hijo derecho   = Hijo Arriba (mas prob, si tienen igual prob entonces el que MENOS nivel tenga)
         //Hijo Izquierdo = Hijo abajo (menos prob o si son iguales el q tenga mas nivel)
-        System.out.println("Mostrando la h");
         while (hojas.size() > 1){
-
-            for(int j = 0;j<hojas.size();j++){
-                System.out.print((int) (hojas.get(j).getProbabilidad()*41) + "(" + hojas.get(j).getNivel() +") ");
-            }
-            System.out.println();
-
-
-
             Arbol izq = getIndexMenorProb(hojas);
             Arbol der = getIndexMenorProb(hojas);
             if(izq.getNivel() != der.getNivel()){
@@ -147,22 +126,15 @@ public class Calculator {
                     izq = aux;
                 }
             }
-
-
             Arbol huffman = new Arbol(izq,der);
-
-
-            System.out.println("hijo izquierdo actual :" +  (int)(huffman.getHijoIzquierdo().getProbabilidad()*41)+ "("+ huffman.getHijoIzquierdo().getNivel() + ")" );
-            System.out.println("hijo derecho actual:" +  (int)(huffman.getHijoDerecho().getProbabilidad()*41) + "("+ huffman.getHijoDerecho().getNivel()+ ")" );
-
-            System.out.println();
-            huffman.setColor(huffman.getHijoDerecho().getColor()+huffman.getHijoIzquierdo().getColor());
             huffman.setNivel(huffman.getNivel()+1);
             this.inserTarOrdenado2(hojas, huffman);
         }
-        System.out.println("Termino el padre");
         return hojas.get(0);
     }
+
+
+
    public Arbol getPadre(Vector<Arbol> hojas){
 
         //Hijo derecho   = Hijo Arriba (mas prob, si tienen igual prob entonces el que MENOS nivel tenga)
