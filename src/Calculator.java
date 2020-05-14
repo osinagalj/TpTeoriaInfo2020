@@ -88,24 +88,101 @@ public class Calculator {
        hojas.add(hoja);
        return;
    }
+   public Arbol getIndexMenorProb(Vector<Arbol> hojas){
+        int menor = hojas.size()+1;
+        double probMenor = 1;
+        for(int i = 0;i<hojas.size();i++){
+            if(probMenor > hojas.get(i).getProbabilidad()){
+                probMenor = hojas.get(i).getProbabilidad();
+                menor = i;
+            }
+        }
+        Arbol a = hojas.remove(menor);
+
+        return a;
+   }
+    public void inserTarOrdenado2(Vector<Arbol> hojas, Arbol hoja) {
+        int i = 0;
+
+            while((i<hojas.size()) && (hoja.getNivel() < hojas.elementAt(i).getNivel()) ){ // tiene que ir <=
+                i++;
+                if((hoja.getNivel() == hojas.elementAt(i).getNivel())){
+                    while ((i<hojas.size()) && (hoja.getNivel() == hojas.elementAt(i).getNivel()) && (hojas.elementAt(i).getProbabilidad() <= hoja.getProbabilidad())){
+                        i++;
+                    }
+
+                    hojas.add(i, hoja);
+                    return;
+                }
+
+            }
+            hojas.add(i, hoja);
+             return ;
+
+            //mientras sea de nivel menor
+
+        }
+
+
+    public Arbol getPadre2(Vector<Arbol> hojas){
+
+        //Hijo derecho   = Hijo Arriba (mas prob, si tienen igual prob entonces el que MENOS nivel tenga)
+        //Hijo Izquierdo = Hijo abajo (menos prob o si son iguales el q tenga mas nivel)
+        System.out.println("Mostrando la h");
+        while (hojas.size() > 1){
+
+            for(int j = 0;j<hojas.size();j++){
+                System.out.print((int) (hojas.get(j).getProbabilidad()*41) + "(" + hojas.get(j).getNivel() +") ");
+            }
+            System.out.println();
+
+
+
+            Arbol izq = getIndexMenorProb(hojas);
+            Arbol der = getIndexMenorProb(hojas);
+            if(izq.getNivel() != der.getNivel()){
+                if (izq.getProbabilidad() < der.getProbabilidad()){
+                    Arbol aux = der;
+                    der = izq;
+                    izq = aux;
+                }
+            }
+
+
+            Arbol huffman = new Arbol(izq,der);
+
+
+            System.out.println("hijo izquierdo actual :" +  (int)(huffman.getHijoIzquierdo().getProbabilidad()*41)+ "("+ huffman.getHijoIzquierdo().getNivel() + ")" );
+            System.out.println("hijo derecho actual:" +  (int)(huffman.getHijoDerecho().getProbabilidad()*41) + "("+ huffman.getHijoDerecho().getNivel()+ ")" );
+
+            System.out.println();
+            huffman.setColor(huffman.getHijoDerecho().getColor()+huffman.getHijoIzquierdo().getColor());
+            huffman.setNivel(huffman.getNivel()+1);
+            this.inserTarOrdenado2(hojas, huffman);
+        }
+        System.out.println("Termino el padre");
+        return hojas.get(0);
+    }
    public Arbol getPadre(Vector<Arbol> hojas){
 
+        //Hijo derecho   = Hijo Arriba (mas prob, si tienen igual prob entonces el que MENOS nivel tenga)
+        //Hijo Izquierdo = Hijo abajo (menos prob o si son iguales el q tenga mas nivel)
         while (hojas.size() > 1){
             for(int i = 0; i <hojas.size();i++){
-                System.out.println("prob : "+ hojas.get(i).getProbabilidad()*41+ "nivel: "+hojas.get(i).getNivel() );
+                System.out.println(" prob : "+ hojas.get(i).getProbabilidad()*41+ "  nivel: "+hojas.get(i).getNivel() );
             }
+
             System.out.println("nodo 0 :" + hojas.get(0).getProbabilidad()*41);
-            Arbol huffman = null ;
-            //el que menos nivel tenga va primero, osdea a la derecha
-            if(hojas.get(1).getProbabilidad() == hojas.get(0).getProbabilidad()){
-                if(hojas.get(1).getNivel() <= hojas.get(0).getNivel()){
-                    huffman = new Arbol(hojas.get(0),hojas.get(1));
-                }else{
-                    huffman = new Arbol(hojas.get(1),hojas.get(0));
-                }
-            }else{
-                huffman = new Arbol(hojas.get(1),hojas.get(0));
-            }
+
+            Arbol huffman = new Arbol();
+            huffman.setHijoDerecho(hojas.get(1));
+            huffman.setHijoIzquierdo(hojas.get(0));
+            huffman.setProbabilidad(hojas.get(1).getProbabilidad() + hojas.get(0).getProbabilidad());
+            huffman.setColor(hojas.get(1).getColor() + hojas.get(0).getColor());
+            huffman.addCadena(" (" + hojas.get(0).getColor() + "-" + hojas.get(1).getColor() + ")" );
+            System.out.println("hijo izquierdo actual :" +  huffman.getHijoIzquierdo().getProbabilidad()*41+ " nivel :"+ huffman.getHijoIzquierdo().getNivel() + " color: " + huffman.getHijoIzquierdo().getColor());
+            System.out.println("hijo derecho actual:" +  huffman.getHijoDerecho().getProbabilidad()*41 + " nivel :"+ huffman.getHijoDerecho().getNivel()+ " color: " + huffman.getHijoDerecho().getColor() );
+            System.out.println(" Cadena actual: " + huffman.getCadena());
             hojas.remove(0);
             hojas.remove(0);
             huffman.setNivel(huffman.getNivel()+1);

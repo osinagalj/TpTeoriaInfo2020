@@ -107,6 +107,7 @@ public class Main {
 
 */
 
+
             hojas.add(0,new Arbol(0,(double)1/41));
             hojas.add(1,new Arbol(1,(double)1/41));
             hojas.add(2,new Arbol(2,(double)1/41));
@@ -125,27 +126,24 @@ public class Main {
             hojas.add(15,new Arbol(15,(double)6/41));//0,14
             hojas.add(16,new Arbol(16,(double)8/41)); //0,19
 
-
 /*
-            calculator.inserTarOrdenado(hojas,new Arbol(1,(double)8/41,0));
-            calculator.inserTarOrdenado(hojas,new Arbol(2,(double)8/41,2));
-            calculator.inserTarOrdenado(hojas,new Arbol(3,(double)8/41,3));
-            System.out.println("Arbolito xd");
-            for(int i = 0; i <hojas.size();i++){
-                System.out.println("color: "+ hojas.get(i).getColor()+ " nivel: "+hojas.get(i).getNivel() );
-            }
-            calculator.inserTarOrdenado(hojas,new Arbol(8,(double)8/41,2));
-            calculator.inserTarOrdenado(hojas,new Arbol(9,(double)8/41,2));
-            System.out.println("Arbolito xd");
-            for(int i = 0; i <hojas.size();i++){
-                System.out.println("color: "+ hojas.get(i).getColor()+ " nivel: "+hojas.get(i).getNivel() );
-            }
 
+            hojas.add(0,new Arbol(1,(double)4/41,2));
+            hojas.add(1,new Arbol(2,(double)4/41,2));
+            hojas.add(2,new Arbol(3,(double)4/41,1));
+            hojas.add(3,new Arbol(4,(double)2/41,0));
+
+            calculator.inserTarOrdenado2(hojas,new Arbol(5,(double)4/41,1));
+            System.out.println("Arbolito xd");
+            for(int i = 0; i <hojas.size();i++){
+                System.out.println("color: "+ hojas.get(i).getColor()+ " nivel: "+hojas.get(i).getNivel() );
+            }
 */
+
            // 0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15
            //41 es la suma de fi
 
-            Arbol a = calculator.getPadre(hojas);
+            Arbol a = calculator.getPadre2(hojas);
             HashMap<Integer,String> resultados = new HashMap<Integer,String>();
             calculator.obtenerSecuencias(resultados,a,"");
 
@@ -163,24 +161,25 @@ public class Main {
             calculator.imprimirArbolDer(a,0);
             System.out.println("hijo derecho: "+ a.getHijoDerecho().getProbabilidad());
 /*
-                    00
-                    110
-                    1000
-                    1001
-                    1010
-                    1011
-                    0100
-
-                    0101
-                    0110
-                    0111
-                    11100
-                    111010
-                    111011
-                    111100
-                    111101
-                    111110
                     111111
+                    111110
+                    111101
+                    111100
+
+                    111011
+                    111010
+                    11100
+
+                    0111
+                    0110
+                    0101
+                    0100
+                    1011
+                    1010
+                    1001
+                    1000
+                    110
+                    00
 */
 
 /*

@@ -3,16 +3,23 @@ public class Arbol {
     private Arbol hijoIzquierdo = null;
     private Arbol hijoDerecho = null;
     private boolean visitado = false;
-
+    private String cadena = "";
 
     private double probabilidad;
     private int color = -1;
 
-
+    public void addCadena(String s){
+        cadena = cadena + " " + s;
+    }
+    public String getCadena(){
+        return cadena;
+    }
 
     private int nivel = 0;
 
-    public Arbol(){}
+    public Arbol(){
+
+    }
     public Arbol( int color, double probabilidad){
         this.color = color;
         this.probabilidad = probabilidad;
@@ -61,7 +68,6 @@ public class Arbol {
     }
 
 
-
     public double getProbabilidad(){
         return this.probabilidad;
     }
@@ -98,7 +104,7 @@ public class Arbol {
         this.visitado = visitado;
     }
 
-    public void setProbabilidad(float probabilidad) {
+    public void setProbabilidad(double probabilidad) {
         this.probabilidad = probabilidad;
     }
 
