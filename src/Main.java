@@ -2,10 +2,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 public class Main {
     public static void main (String [ ] args) {
@@ -94,79 +91,51 @@ public class Main {
 //----------------------------          EJERCICIO 3             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
 
-            HashMap distribucionesOrdenadas = calculator.ordenarFI(distribucionImagenOrignal);
-            Vector<Arbol> hojas = new Vector<Arbol>();
-            //Cargando hojas
-            /*
-            for(int i=0; i<distribucionImagenOrignal.length;i++){
-                if(distribucionImagenOrignal[i] != 0) {
-                    Arbol hoja = new Arbol(i,(float) distribucionImagenOrignal[i]/n);
-                    calculator.inserTarOrdenado(hojas,hoja);
-                }
-            }
-*/
+
+            Vector<Arbol> hojas_WillOriginal = new Vector<Arbol>();
+
+            //Obtengo las hojas ordenadas para armar el arbol
+            calculator.ordenarHojas(distribucionImagenOrignal,hojas_WillOriginal,n);
+            //Armo el arbol
+            Arbol arbol_WillOriginal = calculator.getArbolHuffman(hojas_WillOriginal);
+            //Obtengo las secuencias
+            HashMap<Integer,String> secuencias = new HashMap<Integer,String>();
+            calculator.obtenerSecuencias(secuencias,arbol_WillOriginal,"");
 
 
-            hojas.add(0,new Arbol(0,(double)1/41));
-            hojas.add(1,new Arbol(1,(double)1/41));
-            hojas.add(2,new Arbol(2,(double)1/41));
-            hojas.add(3,new Arbol(3,(double)1/41));
-            hojas.add(4,new Arbol(4,(double)1/41));
-            hojas.add(5,new Arbol(5,(double)1/41));
-            hojas.add(6,new Arbol(6,(double)2/41));
-            hojas.add(7,new Arbol(7,(double)2/41));
-            hojas.add(8,new Arbol(8,(double)2/41));
-            hojas.add(9,new Arbol(9,(double)2/41));//0,048
-            hojas.add(10,new Arbol(10,(double)2/41));
-            hojas.add(11,new Arbol(11,(double)2/41));
-            hojas.add(12,new Arbol(12,(double)3/41));
-            hojas.add(13,new Arbol(13,(double)3/41));
-            hojas.add(14,new Arbol(14,(double)3/41));
-            hojas.add(15,new Arbol(15,(double)6/41));//0,14
-            hojas.add(16,new Arbol(16,(double)8/41)); //0,19
-           // 0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15
-           //41 es la suma de fi
+            Vector<Arbol> hojas_Willej2 = new Vector<Arbol>();
+            calculator.ordenarHojas(distribucionWill_ej2,hojas_Willej2,n);
+            Arbol arbol_Willej2 = calculator.getArbolHuffman(hojas_WillOriginal);
+            HashMap<Integer,String> secuencias_will_ej2 = new HashMap<Integer,String>();
+            calculator.obtenerSecuencias(secuencias_will_ej2,arbol_Willej2,"");
 
-            Arbol a = calculator.getPadre2(hojas);
-            HashMap<Integer,String> resultados = new HashMap<Integer,String>();
-            calculator.obtenerSecuencias(resultados,a,"");
+            //a
+            calculator.comprimirImagen(imgOriginal,secuencias,"");
+            //b
+            calculator.comprimirImagen(will_1,secuencias,"");
+            //c
+            calculator.comprimirImagen(will_ej2,secuencias,"");
+            //d
+            calculator.comprimirImagen(will_ej2,secuencias_will_ej2,"");
+            //e
+            //calculator.obtenerTasas();
 
+
+            //Imprimo las secuencias de willOriginal
             System.out.println("Las secuencias de huffman: ");
-            Iterator it = resultados.entrySet().iterator();
+            Iterator it = secuencias.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry pair = (Map.Entry)it.next();
                 System.out.println(pair.getKey() + " = " + pair.getValue());
                 it.remove(); // avoids a ConcurrentModificationException
             }
-/*
-                    111111
-                    111110
-                    111101
-                    111100
-                    111011
-                    111010
-                    11100
-                    0111
-                    0110
-                    0101
-                    0100
-                    1011
-                    1010
-                    1001
-                    1000
-                    110
-                    00
-*/
 
-/*
-            //Recorrer el mapa
-            Iterator it = resultados2.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry pair = (Map.Entry)it.next();
-                System.out.println(pair.getKey() + " = " + pair.getValue());
-                it.remove(); // avoids a ConcurrentModificationException
-            }
-*/
+
+
+
+
+
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

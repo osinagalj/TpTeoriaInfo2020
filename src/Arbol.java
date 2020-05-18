@@ -1,19 +1,12 @@
-public class Arbol {
+public class Arbol implements Comparable<Arbol>{
 
     private Arbol hijoIzquierdo = null;
     private Arbol hijoDerecho = null;
-    private boolean visitado = false;
-    private String cadena = "";
 
     private double probabilidad;
     private int color = -1;
 
-    public void addCadena(String s){
-        cadena = cadena + " " + s;
-    }
-    public String getCadena(){
-        return cadena;
-    }
+
 
     private int nivel = 0;
 
@@ -67,7 +60,21 @@ public class Arbol {
 
     }
 
-
+    @Override
+    public int compareTo(Arbol a){
+        // compareTo should return < 0 if this is supposed to be
+        // less than other, > 0 if this is supposed to be greater than
+        // other and 0 if they are supposed to be equal
+        if(this.getProbabilidad() < a.getProbabilidad()){
+            return -1;
+        }else{
+            if(this.getProbabilidad() > a.getProbabilidad()){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+    }
     public double getProbabilidad(){
         return this.probabilidad;
     }
@@ -94,14 +101,6 @@ public class Arbol {
 
     public void setHijoDerecho(Arbol hijoDerecho) {
         this.hijoDerecho = hijoDerecho;
-    }
-
-    public boolean isVisitado() {
-        return visitado;
-    }
-
-    public void setVisitado(boolean visitado) {
-        this.visitado = visitado;
     }
 
     public void setProbabilidad(double probabilidad) {

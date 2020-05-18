@@ -57,7 +57,19 @@ public class Calculator {
        HashMap<Integer,Integer> frecuenciasOrdenadas = new HashMap<Integer, Integer>();
        for(int i=0; i<myIntArray.length;i++){
            if(myIntArray[i] != 0) {
-               frecuenciasOrdenadas.put(myIntArray[i],i);
+
+
+               Iterator it2 = frecuenciasOrdenadas.entrySet().iterator();
+               while (it2.hasNext()) {
+                   Map.Entry pair = (Map.Entry)it2.next();
+                   double x = (double) pair.getKey();
+                   if(x >= myIntArray[i]){
+                       frecuenciasOrdenadas.put(myIntArray[i],i);
+                   }
+
+                   it2.remove();
+               }
+
            }
        }
        return frecuenciasOrdenadas;
@@ -69,13 +81,6 @@ public class Calculator {
        //el nivel mas alto tiene que ir primero, si tengo un 8(lvl 2) , 8(lvl 0)  entonces el 8 (lvl 3) va primero
        while ( i < hojas.size()) {
            if ( hoja.getProbabilidad() <= hojas.elementAt(i).getProbabilidad()) {
-                   if(hoja.getProbabilidad() == hojas.elementAt(i).getProbabilidad()){
-                       while((i<hojas.size()) && (hoja.getNivel() <= hojas.elementAt(i).getNivel())  ){
-                           i++;
-                       }
-
-                   }
-
                    hojas.add(i, hoja);
                    return ;
            }
@@ -113,7 +118,7 @@ public class Calculator {
         return ;
     }
 
-    public Arbol getPadre2(Vector<Arbol> hojas){
+    public Arbol getArbolHuffman(Vector<Arbol> hojas){
         //Hijo derecho   = Hijo Arriba (mas prob, si tienen igual prob entonces el que MENOS nivel tenga)
         //Hijo Izquierdo = Hijo abajo (menos prob o si son iguales el q tenga mas nivel)
         while (hojas.size() > 1){
@@ -151,10 +156,10 @@ public class Calculator {
             huffman.setHijoIzquierdo(hojas.get(0));
             huffman.setProbabilidad(hojas.get(1).getProbabilidad() + hojas.get(0).getProbabilidad());
             huffman.setColor(hojas.get(1).getColor() + hojas.get(0).getColor());
-            huffman.addCadena(" (" + hojas.get(0).getColor() + "-" + hojas.get(1).getColor() + ")" );
+
             System.out.println("hijo izquierdo actual :" +  huffman.getHijoIzquierdo().getProbabilidad()*41+ " nivel :"+ huffman.getHijoIzquierdo().getNivel() + " color: " + huffman.getHijoIzquierdo().getColor());
             System.out.println("hijo derecho actual:" +  huffman.getHijoDerecho().getProbabilidad()*41 + " nivel :"+ huffman.getHijoDerecho().getNivel()+ " color: " + huffman.getHijoDerecho().getColor() );
-            System.out.println(" Cadena actual: " + huffman.getCadena());
+
             hojas.remove(0);
             hojas.remove(0);
             huffman.setNivel(huffman.getNivel()+1);
@@ -165,7 +170,6 @@ public class Calculator {
    }
     public void obtenerSecuencias(HashMap<Integer,String> h, Arbol arbolito, String secuencia){
         if((arbolito.getHijoDerecho() == null) && (arbolito.getHijoIzquierdo() == null)){
-
             h.put(arbolito.getColor(),secuencia);
         }else{
 
@@ -178,18 +182,29 @@ public class Calculator {
 
         }
     }
-    public void imprimirArbolDer(Arbol a,int nivel){
-        if(a!= null){
-            System.out.println(a.getProbabilidad()*41+ " color : " +a.getColor() + " nivel: "+ a.getNivel());
-            imprimirArbolDer(a.getHijoDerecho(),nivel+1);
-        }
-    }
-    public void imprimirArbolIzq(Arbol a,int nivel){
-        if(a!= null){
-            System.out.println(a.getProbabilidad()*41+ " color : " +a.getColor()+ " nivel: "+ a.getNivel());
-            imprimirArbolIzq(a.getHijoIzquierdo(),nivel+1);
-        }
-    }
+
+   public void ordenarHojas(int[] distribucion, Vector<Arbol> hojas, int n){
+       for(int i=0; i<distribucion.length;i++){
+           if(distribucion[i] != 0) {
+               Arbol hoja = new Arbol(i, (double)distribucion[i]/n);
+               hojas.add(hoja);
+           }
+       }
+       Collections.sort(hojas);
+   }
+
+   public void comprimirImagen(BufferedImage img,HashMap<Integer,String> codigos,String secuenciaComprimida){
+       int simbolo;
+        for (int x = 0; x < img.getWidth(); x++) {
+           for (int y = 0; y < img.getHeight(); y++) {
+               simbolo = (int)getGris(img,x,y);
+               //hay hay que ver como insertar en un archivo .bin
+               //secuenciaComprimida+= codigos.get(simbolo);
+
+           }
+       }
+   }
+
 
 
 }
