@@ -1,10 +1,16 @@
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.io.FileOutputStream;
+import java.util.List;
 
 public class Main {
+
+
     public static void main (String [ ] args) {
 
         try {
@@ -86,6 +92,15 @@ public class Main {
                 }
             }
 
+            /*
+            //CREANDO LOS HISTOGRAMAS
+            calculator.generarHistograma(distribucionWill_ej2,"Will ej 2");
+            calculator.generarHistograma(distribucionWill_1,"Will 1");
+            calculator.generarHistograma(distribucionImagenOrignal,"Will Original");
+*/
+
+
+
 
 //--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 3             ------------------------------------------//
@@ -109,30 +124,62 @@ public class Main {
             HashMap<Integer,String> secuencias_will_ej2 = new HashMap<Integer,String>();
             calculator.obtenerSecuencias(secuencias_will_ej2,arbol_Willej2,"");
 
-            //a
-            calculator.comprimirImagen(imgOriginal,secuencias,"");
-            //b
-            calculator.comprimirImagen(will_1,secuencias,"");
-            //c
-            calculator.comprimirImagen(will_ej2,secuencias,"");
-            //d
-            calculator.comprimirImagen(will_ej2,secuencias_will_ej2,"");
-            //e
-            //calculator.obtenerTasas();
 
-
-            //Imprimo las secuencias de willOriginal
             System.out.println("Las secuencias de huffman: ");
             Iterator it = secuencias.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry pair = (Map.Entry)it.next();
                 System.out.println(pair.getKey() + " = " + pair.getValue());
-                it.remove(); // avoids a ConcurrentModificationException
+
             }
 
 
+            //Paths
+            String pathWill_Original_comprimido = "src\\bin\\willOriginalComprimido.bin";
+            String pathWill_Original_descomprimido = "src\\bin\\willOriginalDescomprimido.bmp";
+
+            String pathWill_1_comprimido = "src\\bin\\will1_comprimido.bin";
+            String pathWill_1_descomprimido = "src\\bin\\will1_descomprimido.bmp";
+
+            String pathWill_ej2_comprimido = "src\\bin\\will_ej2_comprimido.bin";
+            String pathWill_ej2_descomprimido = "src\\bin\\will_ej2_descomprimido.bmp";
+
+            String pathWill_ej2_comprimido_Original = "src\\bin\\will_ej2_comprimido_Original.bin";
+            String pathWill_ej2_descomprimido_Original = "src\\bin\\will_ej2_descomprimido_Original.bmp";
+
+            //COMPRIMIR IMAGEN ORIGINAL
+
+            //a
+            //Comprimo la imagen
+            calculator.comprimirImagen(pathWill_Original_comprimido,imgOriginal,secuencias,distribucionImagenOrignal);
+            //Descomprimo la imagen
+            BufferedImage img = calculator.map(w, h,ByteEncodingHelper.DecodeSequence(pathWill_Original_comprimido,6894398),arbol_WillOriginal,2);
+            calculator.savePNG( img, pathWill_Original_descomprimido );
+
+            //b
+            calculator.comprimirImagen(pathWill_1_comprimido,will_1,secuencias,distribucionImagenOrignal);
+            //Descomprimo la imagen
+            BufferedImage img_descomprimida_will_1 = calculator.map(w, h,ByteEncodingHelper.DecodeSequence(pathWill_1_comprimido,6652042),arbol_WillOriginal,6);
+            calculator.savePNG( img_descomprimida_will_1, pathWill_1_descomprimido );
+
+            //c
+            calculator.comprimirImagen(pathWill_ej2_comprimido_Original,will_ej2,secuencias,distribucionImagenOrignal);
+            //Descomprimo la imagen
+            BufferedImage img_descomprimida_will_ej2_Orignal = calculator.map(w, h,ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido_Original,12386671),arbol_WillOriginal,1);
+            calculator.savePNG( img_descomprimida_will_ej2_Orignal, pathWill_ej2_descomprimido_Original );
+
+            //d
+            calculator.comprimirImagen(pathWill_ej2_comprimido,will_ej2,secuencias_will_ej2,distribucionWill_ej2);
+            //Descomprimo la imagen
+            BufferedImage img_descomprimida_will_ej2 = calculator.map(w, h,ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido,12386671),arbol_Willej2,1);
+            calculator.savePNG( img_descomprimida_will_ej2, pathWill_ej2_descomprimido );
+
+            //e
+            //calculator.obtenerTasas();
 
 
+            //----------------------------------------------------------------------------------
+            //Falta hacer que al lee el archivo omita las primeras lineas en donde estan los ceros extra,las distribuciones y la longitud
 
 
 

@@ -1,8 +1,26 @@
 
+
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.StackedBarRenderer;
+import org.jfree.chart.renderer.category.StandardBarPainter;
+import org.jfree.data.category.DefaultCategoryDataset;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.util.*;
-
+import java.util.List;
 
 public class Calculator {
 
@@ -193,19 +211,253 @@ public class Calculator {
        Collections.sort(hojas);
    }
 
-   public void comprimirImagen(BufferedImage img,HashMap<Integer,String> codigos,String secuenciaComprimida){
-       int simbolo;
-        for (int x = 0; x < img.getWidth(); x++) {
-           for (int y = 0; y < img.getHeight(); y++) {
+
+   public char[] pasarAArreglo(ArrayList<Character> secuencia,char[] arr){
+        //preguntar si podemos meter toda la secuencia de huffman en un string y despues pasarlo a un arreglo de char, porque en el peor de los casos ocupa la mitad del total de un string, ocupa 2227000 * 6 y un string tiene el doble
+       for(int i = 0;i<secuencia.size();i++){
+            arr[i] = secuencia.get(i);
+        }
+       return arr;
+   }
+   public ArrayList<Character> comprimirImagen(BufferedImage img,HashMap<Integer,String> codigos){
+       ArrayList<Character> secuencia = new ArrayList<Character>();
+        int simbolo;
+       Iterator it2;
+       String s = "";
+        for (int x = 0; x < img.getWidth(); x++) { //
+           for (int y = 0; y < img.getHeight(); y++) { //
                simbolo = (int)getGris(img,x,y);
-               //hay hay que ver como insertar en un archivo .bin
-               //secuenciaComprimida+= codigos.get(simbolo);
+
+               it2 = codigos.entrySet().iterator();
+               while (it2.hasNext()) {
+                   Map.Entry pair = (Map.Entry)it2.next();
+                   if((int)pair.getKey() == simbolo){
+                       s = (String)pair.getValue();
+                       //System.out.println(s);
+                   }
+               }
+               for(int z=0;z<s.length();z++){
+                   secuencia.add(s.charAt(z));
+               }
 
            }
        }
+   return secuencia;
+   }
+
+   public int getSimbolo(Arbol huffman,String secuencia,int pos){
+       //pos=0
+       if((huffman.getHijoDerecho() == null) && (huffman.getHijoIzquierdo() == null)){
+           return huffman.getColor();
+       }else{
+           if(secuencia.length()> pos){
+               String s = "1";
+               if(secuencia.charAt(pos) == s.charAt(0)){
+                   return getSimbolo(huffman.getHijoIzquierdo(),secuencia,pos+1);
+               }else{
+                   return getSimbolo(huffman.getHijoDerecho(),secuencia,pos+1);
+               }
+           }else{
+               return -1;
+           }
+       }
+   }
+    public ArrayList<Character> descomprimirImagen(char[] entrada,Arbol huffman){
+        ArrayList<Character> secuencia = new ArrayList<Character>();
+
+        return secuencia;
+    }
+
+
+   public void generarHistograma(int[]distribuciones,String titulo) throws IOException {
+
+       DefaultCategoryDataset ds = new DefaultCategoryDataset();
+       CategoryAxis categoryAxis = new CategoryAxis("Tonalidades");
+       categoryAxis.setCategoryMargin(.1);
+       ValueAxis valueAxis = new NumberAxis("Frecuencias");
+       StackedBarRenderer renderer = new StackedBarRenderer();
+       renderer.setBarPainter(new StandardBarPainter());
+       renderer.setDrawBarOutline(false);
+       renderer.setShadowVisible(false);
+       renderer.setBaseItemLabelsVisible(true);
+       renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+       CategoryPlot plot = new CategoryPlot( ds,
+               categoryAxis,
+               valueAxis,
+               renderer);
+       plot.setOrientation(PlotOrientation.VERTICAL);
+
+       JFreeChart jf = new JFreeChart( titulo,
+               JFreeChart.DEFAULT_TITLE_FONT,
+               plot,
+               true);
+
+       int j = 0;
+       for(int i = 0; i<256; i++ ){
+           if(distribuciones[i] != 0){
+               ds.addValue(distribuciones[i],String.valueOf(i),String.valueOf(i));
+               plot.getRenderer().setSeriesPaint(j, new Color(i, i, i));
+               j++;
+           }
+       }
+       jf.setBackgroundPaint(new Color(182, 235, 176));
+       jf.getPlot().setBackgroundPaint( new Color(73, 144, 66));
+
+       ChartFrame f = new ChartFrame("Histograma",jf);
+       f.setSize(1200,600);
+       f.setLocationRelativeTo(null);
+       ChartUtilities.saveChartAsPNG(new File("src\\Histogramas\\"+titulo+".png"), jf, 600, 300 );
    }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void printSequence(char[] sequence) {
+        for (int i = 0; i < sequence.length; i++) {
+            System.out.print(sequence[i]);
+        }
+        System.out.println();
+    }
+
+    public byte[] ConvertByteListToPrimitives(List<Byte> input) {
+        byte[] ret = new byte[input.size()];
+        for (int i = 0; i < ret.length; i++) {
+            ret[i] = input.get(i);
+        }
+
+        return ret;
+    }
+
+   public int getColor(char[] in,Arbol huffman,Vector<Integer> v_pos){
+       // System.out.println("pos: "+v_pos.get(0));
+       //System.out.println("IN: "+in.length);
+        if(v_pos.get(0)<in.length){
+            int pos = v_pos.get(0);
+            char c = in[pos];
+            pos++;
+            v_pos.remove(0);
+            String s ="";
+            s=s+c;
+            //System.out.println("SECUENCIA :" + s);
+            int x = getSimbolo(huffman,s,0);
+            while(pos<in.length && x == -1){
+                char c2 = in[pos];
+                pos++;
+                s=s+c2;
+                x=getSimbolo(huffman,s,0);
+                //System.out.println("SECUENCIA :" + s);
+            }
+            v_pos.add(0,pos);
+            if(pos>in.length){
+                return -1;
+            }
+            return x;
+        }else{
+            //System.out.println("SE ROMPE ACA");
+            return -1;
+
+        }
+
+    }
+    public  BufferedImage map(int sizeX, int sizeY , char[]in, Arbol huffman,int ceros){
+        final BufferedImage res = new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_INT_RGB );
+        Vector<Integer> v_pos = new Vector<Integer>();
+        v_pos.add(0,0);
+        int x = 0;
+        int y = 0;
+        while(v_pos.get(0) <= (in.length-ceros)){
+            int color = this.getColor(in,huffman,v_pos);
+            if(color != -1){
+                Color c = new Color(color,color,color);
+                res.setRGB(x, y, c.getRGB() );
+            }
+            y++;
+            if(y >= sizeY){
+                //System.out.println("width:" + sizeX);
+                //System.out.println("valor de x:" + x);
+                x++;
+                y=0;
+            }
+        }
+        return res;
+    }
+
+    public  void savePNG( final BufferedImage bi, final String path ){
+        try {
+            RenderedImage rendImage = bi;
+            ImageIO.write(rendImage, "bmp", new File(path));
+            //ImageIO.write(rendImage, "PNG", new File(path));
+            //ImageIO.write(rendImage, "jpeg", new File(path));
+        } catch ( IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void insertarFrecuencias(FileOutputStream fos, int[] distribuciones){
+        try{
+            for(int i = 0;i<distribuciones.length;i++){
+                if(distribuciones[i] != 0){
+                    String s = i+"["+distribuciones[i]+"]"+"\n";
+                    fos.write(s.getBytes(Charset.forName("UTF-8")));
+                }
+            }
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+
+    }
+    public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String> secuencias,int[]distribuciones){
+
+        ArrayList<Character> secuencia = new ArrayList<Character>();
+        secuencia = this.comprimirImagen(img,secuencias);
+        System.out.println(" tamaño secuencia:" + secuencia.size());
+        char[] originalSequence = new char[secuencia.size()];
+        this.pasarAArreglo(secuencia,originalSequence);
+        // Secuencia de 0s y 1s a codificar a nivel bit
+        //calculator.printSequence(originalSequence);
+        List<Byte> result = new ArrayList<Byte>();
+        int ceros = ByteEncodingHelper.EncodeSequence(originalSequence,result);
+        byte[] byteArray = this.ConvertByteListToPrimitives(result);
+        // Guardar la codificación en un archivo binario
+        try{
+            String cerosExtra = "ceros extra: "+ ceros +"\n";
+            String longitud = "Longitud: " + originalSequence.length + "\n";
+            FileOutputStream fos = new FileOutputStream(path);
+
+            //Para escribir esto primero hay que hacer que el decodificador las pueda saltear
+            ///fos.write(longitud.getBytes(Charset.forName("UTF-8")));
+          // fos.write(cerosExtra.getBytes(Charset.forName("UTF-8")));
+           // this.insertarFrecuencias(fos,distribuciones);
+
+            fos.write(byteArray);
+            fos.close();
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+
+
+    //en la cabecera hay que poner la cantidad de simbolos
+    //vamos a tener que completar con 0 , pero el problema es al decodificarlo saber que 0
+    //hay que poner un dato que indique cuantos bits hay que utlizar del ultimo byte, porque el resto son 0s
+    //todas las cabeceras van a ser distintas para los alumnos, osea otro no puede decodificar mis imagenes con su algoritmo
 
 }
 
