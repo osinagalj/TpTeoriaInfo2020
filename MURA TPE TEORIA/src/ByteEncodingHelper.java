@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -12,8 +13,8 @@ import java.util.Vector;
 public class ByteEncodingHelper {
     private static int bufferLength = 8;
 
-    public static int EncodeSequence(char[] sequence,List<Byte> result) {
-        //List<Byte> result = new ArrayList<Byte>();
+    public static List<Byte> EncodeSequence(char[] sequence) {
+        List<Byte> result = new ArrayList<Byte>();
         int cerosExtra = 0;
         byte buffer = 0;
         int bufferPos = 0;
@@ -42,7 +43,7 @@ public class ByteEncodingHelper {
             }
             result.add(buffer);
         }
-        return cerosExtra;
+        return result;
     }
 
     public static Par<char[],Arbol> DecodeSequence(String inputFilepath) {
@@ -51,7 +52,7 @@ public class ByteEncodingHelper {
 
             //Leo tod0 en:
 
-            //CAMBIAR A LA MODALIDAD CON BUFFERS, ESTO SE ROMPE
+            //Pasar el header como bytes, ESTO SE ROMPE
             String[] secuencias = Files.readAllLines(new File(inputFilepath).toPath()).toArray(new String[0]);
 
 

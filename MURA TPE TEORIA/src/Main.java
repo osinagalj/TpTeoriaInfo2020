@@ -92,12 +92,12 @@ public class Main {
                 }
             }
 
-            /*
+
             //CREANDO LOS HISTOGRAMAS
             calculator.generarHistograma(distribucionWill_ej2,"Will ej 2");
             calculator.generarHistograma(distribucionWill_1,"Will 1");
             calculator.generarHistograma(distribucionImagenOrignal,"Will Original");
-*/
+
 
 
 
@@ -106,7 +106,7 @@ public class Main {
 //----------------------------          EJERCICIO 3             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
 
-
+/*
             Vector<Arbol> hojas_WillOriginal = new Vector<Arbol>();
             Vector<Arbol> hojas_Willej2 = new Vector<Arbol>();
 
@@ -125,12 +125,12 @@ public class Main {
             HashMap<Integer,String> secuencias_will_ej2 = new HashMap<Integer,String>();
             calculator.obtenerSecuencias(secuencias_will_ej2,arbol_Willej2,"");
 
-            /*System.out.println("Las secuencias de huffman: ");
-            Iterator it = secuencias_original.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry pair = (Map.Entry)it.next();
-                System.out.println(pair.getKey() + " = " + pair.getValue());
-            }*/
+            //System.out.println("Las secuencias de huffman: ");
+            //Iterator it = secuencias_original.entrySet().iterator();
+            //while (it.hasNext()) {
+            //    Map.Entry pair = (Map.Entry)it.next();
+            //    System.out.println(pair.getKey() + " = " + pair.getValue());
+            //}
 
 
             //Paths
@@ -179,9 +179,9 @@ public class Main {
 
 
             //----------------------------------------------------------------------------------
-            //Falta hacer que al lee el archivo omita las primeras lineas en donde estan los ceros extra,las distribuciones y la longitud
 
 
+*/
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

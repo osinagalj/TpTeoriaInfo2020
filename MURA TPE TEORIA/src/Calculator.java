@@ -1,16 +1,17 @@
 
-//import org.jfree.chart.ChartFrame;
-//import org.jfree.chart.ChartUtilities;
-//import org.jfree.chart.JFreeChart;
-//import org.jfree.chart.axis.CategoryAxis;
-//import org.jfree.chart.axis.NumberAxis;
-//import org.jfree.chart.axis.ValueAxis;
-//import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
-//import org.jfree.chart.plot.CategoryPlot;
-//import org.jfree.chart.plot.PlotOrientation;
-//import org.jfree.chart.renderer.category.StackedBarRenderer;
-//import org.jfree.chart.renderer.category.StandardBarPainter;
-//import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.StackedBarRenderer;
+import org.jfree.chart.renderer.category.StandardBarPainter;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -187,7 +188,7 @@ public class Calculator {
     }
 
 
-   /*public void generarHistograma(int[]distribuciones,String titulo) throws IOException {
+   public void generarHistograma(int[]distribuciones,String titulo) throws IOException {
 
        DefaultCategoryDataset ds = new DefaultCategoryDataset();
        CategoryAxis categoryAxis = new CategoryAxis("Tonalidades");
@@ -225,7 +226,7 @@ public class Calculator {
        f.setSize(1200,600);
        f.setLocationRelativeTo(null);
        ChartUtilities.saveChartAsPNG(new File("src\\Histogramas\\"+titulo+".png"), jf, 600, 300 );
-   }*/
+   }
 
 
 
@@ -348,18 +349,18 @@ public class Calculator {
         // Secuencia de 0s y 1s a codificar a nivel bit
         //calculator.printSequence(originalSequence);
         List<Byte> result = new ArrayList<Byte>();
-        int ceros = ByteEncodingHelper.EncodeSequence(originalSequence,result);
+        result = ByteEncodingHelper.EncodeSequence(originalSequence);
 
         byte[] byteArray = this.ConvertByteListToPrimitives(result);
         // Guardar la codificación en un archivo binario
         try{
-            String cerosExtra = ceros + "\n";
+            //String cerosExtra = ceros + "\n";
             String longitud = originalSequence.length + "\n";
             String flag = "corta";
             FileOutputStream fos = new FileOutputStream(path);
 
             //Para escribir esto primero hay que hacer que el decodificador las pueda saltear
-            fos.write(cerosExtra.getBytes(Charset.forName("UTF-8")));
+            //fos.write(cerosExtra.getBytes(Charset.forName("UTF-8")));
             fos.write(longitud.getBytes(Charset.forName("UTF-8")));
             //this.insertarFrecuencias(fos,distribuciones);
             fos.write(flag.getBytes(Charset.forName("UTF-8")));

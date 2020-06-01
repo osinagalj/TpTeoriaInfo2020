@@ -1,4 +1,4 @@
-public class Pseudo {
+/*public class Pseudo {
 
     public double CoeficienteCorrelacion(imagen A, imagen B){
 
@@ -35,36 +35,43 @@ public class Pseudo {
     }
 
     public arbol arbolDeHuffman(probabilidades, imagen){
-        probabilidades[] = ordenar(probabilidades[]);    //Ordenamos las probabilidades de menor a mayor
-        while (probabilidades[].size > 1){              //Mientras tengamos minimos 2 simbolos
-            new arbol(probabilidad[0],probabilidad[1]);
-            retirarProbabilidades;                      //Creamos un nodo con ambas probabilidades sumadas
-            instertarArbol(probabilidades[], arbol)     //lo incertamos en las probabilidades
+
+        Ordenar nodos con probabilidades de menor a mayor
+
+        while (Haya mas de una probabilidad){              
+            Crear arbol(las dos probabilidades mas bajas);
+            retirarProbabilidades;                      
+            añadimos el nuevo nodo     
         }
-        recorrerArbol(Hash(Simbolo,Secuencia));     //Recorremos generando secuencias para las hojas
-        obtenerSecuencia(Imagen);                   //Recorremos cada pixel, codificando una secuencia
+
+        recorrerArbol(arbol);     	//Guardamos pares "entrada" -> "secuencia"
+        obtenerSecuencias(Todos los pixeles de la imagen);            
     }
 
     public archivo comprimir(secuencia){
-        bytes1[] = codificarAByte(secuencia.Longitud);          //Escribo la longitud
-        bytes2[] = codificarAByte(secuencia.cerosAdicionales);  //Escribo la cantidad de 0
-        bytes3[] = codificarAByte(secuencia);                   //Escribo la secuencia
-        archivo = write(bytes1[], bytes2[], bytes3[]);          //Guardo t0do en el archivo
+        Escribir la longitud en bytes;
+        Escribir entradas con frecuencias en bytes;
+	Transformar secuencia de char a secuencia de bytes; //Dado por la catedra
+        Escribir la secuencia;
+
+        Guardar todo en un archivo;
     }
 
     public void descomprimir(archivo){
-        Bytes[] = decodificarSecuencia(archivo);    //Convertimos la lista de bytes en una secuencia de char
-        arbol = armarArbol(header(Bytes[]));        //Replicamos el arbol de Huffman
-        for(secuencia(Bytes[])){        //Recorremos toda la lista restante
+        Convertir la lista de bytes en una secuencia de char
+        armarArbol(simbolos y frecuencias);      
+  
+        for(Secuencia){       
             if(0)                           //Si viene un 0 avanza en el arbol por izq
                 arbol = arbol.izq;
             else                            //Si no, por derecha
                 arbol = arbol.der;
-            if(arbol = hoja) {              //Si una es hoja
-                añadirImagen(arbol);            //Añadimos el color a la imagen
-                arbol = Raiz;                   //Volvemos a la raiz
+            if(arbol = hoja) {              
+                añadir color en la imagen;
+                arbol = Raiz;               //Volvemos a la raiz
             }
         }
     }
 
 }
+*/
