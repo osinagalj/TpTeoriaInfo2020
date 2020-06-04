@@ -106,7 +106,7 @@ public class Main {
 //----------------------------          EJERCICIO 3             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
 
-/*
+
             Vector<Arbol> hojas_WillOriginal = new Vector<Arbol>();
             Vector<Arbol> hojas_Willej2 = new Vector<Arbol>();
 
@@ -150,29 +150,28 @@ public class Main {
             //COMPRIMIR IMAGEN ORIGINAL
             //a
             //Comprimo la imagen
-            calculator.comprimirImagen(pathWill_Original_comprimido,imgOriginal,secuencias_original, distribucionImagenOrignal);
+            calculator.comprimirImagen(pathWill_Original_comprimido,imgOriginal,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
-            BufferedImage img = calculator.map(w, h,ByteEncodingHelper.DecodeSequence(pathWill_Original_comprimido));
-            calculator.savePNG( img, pathWill_Original_descomprimido );
+            //BufferedImage img = calculator.map(w, h,ByteEncodingHelper.DecodeSequence(pathWill_Original_comprimido));
+            //calculator.savePNG( img, pathWill_Original_descomprimido );
 
             //b
-            calculator.comprimirImagen(pathWill_1_comprimido,will_1,secuencias_original, distribucionWill_1);
+            calculator.comprimirImagen(pathWill_1_comprimido,will_1,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
-            BufferedImage img_descomprimida_will_1 = calculator.map(w, h,ByteEncodingHelper.DecodeSequence(pathWill_1_comprimido));
-            calculator.savePNG( img_descomprimida_will_1, pathWill_1_descomprimido );
+            //BufferedImage img_descomprimida_will_1 = calculator.map(w, h,ByteEncodingHelper.DecodeSequence(pathWill_1_comprimido));
+            //calculator.savePNG( img_descomprimida_will_1, pathWill_1_descomprimido );
 
             //c
             calculator.comprimirImagen(pathWill_ej2_comprimido_Original,will_ej2,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
-            BufferedImage img_descomprimida_will_ej2_Orignal = calculator.map(w, h,ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido_Original));
-            System.out.println("sale");
-            calculator.savePNG( img_descomprimida_will_ej2_Orignal, pathWill_ej2_descomprimido_Original );
+            //BufferedImage img_descomprimida_will_ej2_Orignal = calculator.map(w, h,ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido_Original));
+            //calculator.savePNG( img_descomprimida_will_ej2_Orignal, pathWill_ej2_descomprimido_Original );
 
             //d
-            calculator.comprimirImagen(pathWill_ej2_comprimido,will_ej2,secuencias_will_ej2, distribucionWill_ej2);
+            calculator.comprimirImagen(pathWill_ej2_comprimido,will_ej2,secuencias_will_ej2,distribucionWill_ej2);
             //Descomprimo la imagen
-            BufferedImage img_descomprimida_will_ej2 = calculator.map(w, h,ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido));
-            calculator.savePNG( img_descomprimida_will_ej2, pathWill_ej2_descomprimido );
+            //BufferedImage img_descomprimida_will_ej2 = calculator.map(w, h,ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido));
+            //calculator.savePNG( img_descomprimida_will_ej2, pathWill_ej2_descomprimido );
 
             //e
             //calculator.obtenerTasas();
@@ -181,7 +180,7 @@ public class Main {
             //----------------------------------------------------------------------------------
 
 
-*/
+
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

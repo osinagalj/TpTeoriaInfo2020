@@ -18,6 +18,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.util.*;
 import java.util.List;
@@ -135,32 +136,29 @@ public class Calculator {
        return arr;
    }
 
-   public ArrayList<Character> comprimirImagen(BufferedImage img,HashMap<Integer,String> secuencias){ //Chequeado
+   public char[] codificarSecuencia(BufferedImage img,HashMap<Integer,String> secuencias){ //Chequeado
 
-       ArrayList<Character> secuenciaChar = new ArrayList<Character>();
+       ArrayList<Character> secuenciaArray = new ArrayList<Character>();
 
-       int color;
+       Integer color;
        Iterator it2;
-       String s = "";
+       String aux;
+
        for (int x = 0; x < img.getWidth(); x++) {
            for (int y = 0; y < img.getHeight(); y++) {
-
-               color = (int) getGris(img,x,y);
-               //s = s+secuencias.get(color); //Verificar si funca
-
-               it2 = secuencias.entrySet().iterator();
-               while (it2.hasNext()) {
-                   Map.Entry pair = (Map.Entry)it2.next();
-                   if((int)pair.getKey() == color){
-                       s = (String)pair.getValue();
-                       //System.out.println(s);
-                   }
-               }
-               for(int z=0;z<s.length();z++){
-                   secuenciaChar.add(s.charAt(z));
+               color = (int)getGris(img,x,y);
+               aux = secuencias.get(color);
+               for (int k = 0; k < aux.length(); k++){
+               secuenciaArray.add(aux.charAt(k));
                }
            }
        }
+
+   char[] secuenciaChar = new char[secuenciaArray.size()];
+       for (int x = 0; x < secuenciaChar.length; x++){
+           secuenciaChar[x] = secuenciaArray.get(x);
+       }
+
    return secuenciaChar;
    }
 
@@ -324,48 +322,75 @@ public class Calculator {
 
     public void insertarFrecuencias(FileOutputStream fos, int[] distribuciones){
         try{
+            char[] colorChar = new char[1];
+            char[] distribucionChar = new char[24];
+
             for(int i = 0;i<distribuciones.length;i++){
-                if(distribuciones[i] != 0){
-                    String s = i+"["+distribuciones[i]+"]"+"\n";
-                    fos.write(s.getBytes(Charset.forName("UTF-8")));
+                if(distribuciones[i]!=0){
+                    colorChar = convertirNumeroChar(i,1); //1 byte para almacenar el color (0 a 255)
+                    List<Byte> colorByte = ByteEncodingHelper.EncodeSequence(colorChar);  //Codificado a byte
+                    byte[] colorBits = this.ConvertByteListToPrimitives(colorByte); //Binario
+
+                    distribucionChar = convertirNumeroChar(distribuciones[i],3);
+                    List<Byte> distribucionByte = ByteEncodingHelper.EncodeSequence(distribucionChar);
+                    byte[] distribucionBits = this.ConvertByteListToPrimitives(distribucionByte);
+
+                    fos.write(colorBits);    //Escribo 1 bit con el color
+                    fos.write(distribucionBits); //Escribo 3 bits con la distribucion
                 }
             }
         }catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-
-
     }
-    public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String> secuencias, int[] distribuciones){
 
-        ArrayList<Character> secuencia = new ArrayList<Character>(); //Creamos la secuencia de chars
-        secuencia = this.comprimirImagen(img,secuencias);
+    public char[] convertirNumeroChar(int entrada,int cantidadBytes){   //Convierte un numero a 3 bytes
+        int aux = entrada;
+        char[] rta = new char[8*cantidadBytes];
+        for(int x = 0; x < rta.length; x++){
+            if (aux >= Math.pow(2,rta.length-1-x)){
+                rta[x] = '1';
+                aux = (int) (aux - Math.pow(2,23-x));
+            } else{ rta[x] = '0';}
+        }
+        return rta;
+    }
 
-        System.out.println(" tamaño secuencia:" + secuencia.size());
-        char[] originalSequence = new char[secuencia.size()]; //Lo pasamos a un arreglo de char de longitud fija
-        this.pasarAArreglo(secuencia,originalSequence);
+    public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String> secuencias, int[] distribucion){
 
-        // Secuencia de 0s y 1s a codificar a nivel bit
-        //calculator.printSequence(originalSequence);
-        List<Byte> result = new ArrayList<Byte>();
-        result = ByteEncodingHelper.EncodeSequence(originalSequence);
+        //SECUENCIA
+        char[] secuenciaChar = codificarSecuencia(img, secuencias) ; //Secuencia de chars
+        List<Byte> secuenciaByte = ByteEncodingHelper.EncodeSequence(secuenciaChar);  //Codificado a byte
+        byte[] secuenciaBits = this.ConvertByteListToPrimitives(secuenciaByte); //Binario
+        System.out.println(" tamaño secuencia:" + secuenciaChar.length);
 
-        byte[] byteArray = this.ConvertByteListToPrimitives(result);
-        // Guardar la codificación en un archivo binario
+        //LONGITUD SECUENCIA
+        char[] longitudChar = convertirNumeroChar(secuenciaChar.length,3);
+        List<Byte> longitudByte = ByteEncodingHelper.EncodeSequence(longitudChar);
+        byte[] longitudBit = this.ConvertByteListToPrimitives(longitudByte);
+
+        //CANTIDAD FRECUENCIAS
+        int cantidadFrecuencias = 0;
+        for(int x = 0; x < distribucion.length; x++){
+            if (distribucion[x] != 0)
+                cantidadFrecuencias++;
+        }
+        char[] cantidadFrecuenciasChar = convertirNumeroChar(cantidadFrecuencias,1); //1 byte, como mucho 255 frecuencias
+        List<Byte> cantidadFrecuenciasByte = ByteEncodingHelper.EncodeSequence(cantidadFrecuenciasChar);
+        byte[] cantidadFrecuenciasBits = this.ConvertByteListToPrimitives(cantidadFrecuenciasByte);
+
+
         try{
-            //String cerosExtra = ceros + "\n";
-            String longitud = originalSequence.length + "\n";
-            String flag = "corta";
             FileOutputStream fos = new FileOutputStream(path);
 
-            //Para escribir esto primero hay que hacer que el decodificador las pueda saltear
-            //fos.write(cerosExtra.getBytes(Charset.forName("UTF-8")));
-            fos.write(longitud.getBytes(Charset.forName("UTF-8")));
-            //this.insertarFrecuencias(fos,distribuciones);
-            fos.write(flag.getBytes(Charset.forName("UTF-8")));
+            fos.write(longitudBit);                         //Longitud de secuencia         3 Bytes
+            fos.write(cantidadFrecuenciasBits);             //Cantidad de Frecuencias       1 Byte
 
-            fos.write(byteArray);
+            insertarFrecuencias(fos,distribucion);          //Todas las frecuencias   Color 1 Byte
+                                                            //                 Distribucion 3 Bytes
+
+            fos.write(secuenciaBits);                       //Bytes restantes
+
             fos.close();
         }catch (IOException e) {
             System.out.println(e.getMessage());
@@ -373,11 +398,11 @@ public class Calculator {
     }
 
 
-
     //en la cabecera hay que poner la cantidad de simbolos
     //vamos a tener que completar con 0 , pero el problema es al decodificarlo saber que 0
     //hay que poner un dato que indique cuantos bits hay que utlizar del ultimo byte, porque el resto son 0s
     //todas las cabeceras van a ser distintas para los alumnos, osea otro no puede decodificar mis imagenes con su algoritmo
+
 
 }
 

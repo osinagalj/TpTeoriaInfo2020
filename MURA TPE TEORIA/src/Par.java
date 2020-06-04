@@ -18,4 +18,5 @@ public class Par<E,Y> {
     public void setContenido2(Y contenido2) {
         this.contenido2 = contenido2;
     }
+
 }
