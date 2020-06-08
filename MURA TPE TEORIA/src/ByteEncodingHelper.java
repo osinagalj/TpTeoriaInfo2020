@@ -96,7 +96,7 @@ public class ByteEncodingHelper {
                 System.out.println("color: "+color);
                 for (int y = 0; y < 3; y++)                       //Y luego los 3 de su distribucion
                     auxiliar[y] = inputSequence[11+x*4+y];
-                double probabilidad = traducirBytes(auxiliar,3)/(X*Y);
+                double probabilidad = (double) traducirBytes(auxiliar,3)/(X*Y);
                 System.out.println("probabilidad: "+probabilidad);
                 Arbol aux = new Arbol(color,probabilidad);
                 calculator.inserTarOrdenado(frecuencias,aux);
@@ -107,11 +107,13 @@ public class ByteEncodingHelper {
             int globalIndex = 0;
             byte mask = (byte) (1 << (bufferLength - 1)); // mask: 10000000
             int bufferPos = 0;
+            byte buffer;
 
-            while (globalIndex < longitud)
-            {
-                byte buffer = inputSequence[i];
-                while (bufferPos < bufferLength) {
+            System.out.println("La longitud que extraigo: " + longitud);
+            while (globalIndex < longitud) {
+
+                buffer = inputSequence[i];
+                while ((bufferPos < bufferLength)&&(globalIndex < longitud)) { //Si el buffer no termina, pero la longitud si, se rompe
 
                     if ((buffer & mask) == mask) {  // 10000000
                         secuenciaChar[globalIndex] = '1';
@@ -128,7 +130,6 @@ public class ByteEncodingHelper {
                         cosas.setSizeX(X);
                         cosas.setSizeY(Y);
                         cosas.setContenido2(raiz);
-                        return(cosas);
                     }
                 }
 

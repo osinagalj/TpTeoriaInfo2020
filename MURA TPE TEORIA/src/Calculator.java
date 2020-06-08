@@ -141,7 +141,6 @@ public class Calculator {
        ArrayList<Character> secuenciaArray = new ArrayList<Character>();
 
        Integer color;
-       Iterator it2;
        String aux;
 
        for (int x = 0; x < img.getWidth(); x++) {
@@ -159,6 +158,7 @@ public class Calculator {
            secuenciaChar[x] = secuenciaArray.get(x);
        }
 
+       System.out.println("Longitud real: "+secuenciaChar.length);
    return secuenciaChar;
    }
 
@@ -289,7 +289,7 @@ public class Calculator {
         int sizeY = cosas.getSizeY();
 
         final BufferedImage res = new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_INT_RGB );
-        System.out.println("TIENE: " + cosas.contenido1.length);
+        System.out.println("TIENE: " + cosas.contenido1.length);          //Entre esto y la 311 hay que arreglar
         Vector<Integer> v_pos = new Vector<Integer>();
         v_pos.add(0,0);
         int x = 0;
