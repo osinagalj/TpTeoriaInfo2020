@@ -14,9 +14,7 @@ public class Arbol implements Comparable<Arbol>{
     private int color;
     private int nivel;
 
-    public Arbol(){
 
-    }
     public Arbol( int color, double probabilidad){ //Para crear hoja, hijos en null
         this.color = color;
         this.probabilidad = probabilidad;

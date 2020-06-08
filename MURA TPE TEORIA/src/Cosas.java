@@ -1,7 +1,9 @@
-public class Par<E,Y> {
+public class Cosas<E,Y,J,K> {
 
     E contenido1;
     Y contenido2;
+    J sizeX;
+    K sizeY;
 
     public E getContenido1() {
         return contenido1;
@@ -19,4 +21,19 @@ public class Par<E,Y> {
         this.contenido2 = contenido2;
     }
 
+    public J getSizeX() {
+        return sizeX;
+    }
+
+    public void setSizeX(J sizeX) {
+        this.sizeX = sizeX;
+    }
+
+    public K getSizeY() {
+        return sizeY;
+    }
+
+    public void setSizeY(K sizeY) {
+        this.sizeY = sizeY;
+    }
 }

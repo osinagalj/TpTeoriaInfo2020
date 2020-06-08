@@ -73,7 +73,7 @@ public class Calculator {
    }
    //EJERCICIO 3
 
-    public void inserTarOrdenado(Vector<Arbol> hojas, Arbol hoja) { //chequeado
+    public void inserTarOrdenado(Vector<Arbol>  hojas, Arbol hoja) { //chequeado
 
         int i = 0; //Para recorrer el vector
 
@@ -284,7 +284,10 @@ public class Calculator {
         }
 
     }
-    public  BufferedImage map(int sizeX, int sizeY , Par<char[],Arbol> cosas){
+    public  BufferedImage map(Cosas<char[],Arbol,Integer,Integer> cosas){
+        int sizeX = cosas.getSizeX();
+        int sizeY = cosas.getSizeY();
+
         final BufferedImage res = new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_INT_RGB );
         System.out.println("TIENE: " + cosas.contenido1.length);
         Vector<Integer> v_pos = new Vector<Integer>();
@@ -344,9 +347,9 @@ public class Calculator {
         }
     }
 
-    public char[] convertirNumeroChar(int entrada,int cantidadBytes){   //Convierte un numero a 3 bytes
+    public char[] convertirNumeroChar(int entrada,int n){   //Convierte un numero a n bytes
         int aux = entrada;
-        char[] rta = new char[8*cantidadBytes];
+        char[] rta = new char[8*n];
         for(int x = 0; x < rta.length; x++){
             if (aux >= Math.pow(2,rta.length-1-x)){
                 rta[x] = '1';
@@ -367,7 +370,7 @@ public class Calculator {
         //LONGITUD SECUENCIA
         char[] longitudChar = convertirNumeroChar(secuenciaChar.length,3);
         List<Byte> longitudByte = ByteEncodingHelper.EncodeSequence(longitudChar);
-        byte[] longitudBit = this.ConvertByteListToPrimitives(longitudByte);
+        byte[] longitudBit = this.ConvertByteListToPrimitives(longitudByte); //Añade un byte de mas en 0
 
         //CANTIDAD FRECUENCIAS
         int cantidadFrecuencias = 0;
@@ -379,17 +382,29 @@ public class Calculator {
         List<Byte> cantidadFrecuenciasByte = ByteEncodingHelper.EncodeSequence(cantidadFrecuenciasChar);
         byte[] cantidadFrecuenciasBits = this.ConvertByteListToPrimitives(cantidadFrecuenciasByte);
 
+        //tamanio X
+        char[] XChar = convertirNumeroChar(img.getWidth(),3);
+        List<Byte> XByte = ByteEncodingHelper.EncodeSequence(XChar);
+        byte[] XBit = this.ConvertByteListToPrimitives(XByte);
+
+        //tamanio Y
+        char[] YChar = convertirNumeroChar(img.getHeight(),3);
+        List<Byte> YByte = ByteEncodingHelper.EncodeSequence(YChar);
+        byte[] YBit = this.ConvertByteListToPrimitives(YByte);
 
         try{
             FileOutputStream fos = new FileOutputStream(path);
 
-            fos.write(longitudBit);                         //Longitud de secuencia         3 Bytes
-            fos.write(cantidadFrecuenciasBits);             //Cantidad de Frecuencias       1 Byte
+            fos.write(longitudBit);                         //Longitud de secuencia         3 Bytes   0,1,2
+            fos.write(cantidadFrecuenciasBits);             //Cantidad de Frecuencias       1 Byte    3
 
-            insertarFrecuencias(fos,distribucion);          //Todas las frecuencias   Color 1 Byte
-                                                            //                 Distribucion 3 Bytes
+            fos.write(XBit);                                //Anchura                       3 Bytes   4,5,6
+            fos.write(YBit);                                //Altura                        3 Bytes   7,8,9
 
-            fos.write(secuenciaBits);                       //Bytes restantes
+            insertarFrecuencias(fos,distribucion);          //Todas las frecuencias:  Color 1 Byte    10,14
+                                                            //                 Distribucion 3 Bytes   (11,12,13),(15,16,17)
+
+            fos.write(secuenciaBits);                       //Bytes restantes               n Bytes   18...
 
             fos.close();
         }catch (IOException e) {
