@@ -73,7 +73,7 @@ public class Calculator {
    }
    //EJERCICIO 3
 
-    public void inserTarOrdenado(Vector<Arbol>  hojas, Arbol hoja) { //chequeado
+    public void inserTarOrdenado(Vector<Arbol>  hojas, Arbol hoja) {
 
         int i = 0; //Para recorrer el vector
 
@@ -92,7 +92,7 @@ public class Calculator {
         hojas.add(hoja); //Si llego aca es porque nunca se incerto => probabilidad mas grande, va al final
     }
 
-    public Arbol getArbolHuffman(Vector<Arbol> hojas){ //Chequeado
+    public Arbol getArbolHuffman(Vector<Arbol> hojas){
         //Hijo derecho   = mayor probabilidad
         //Hijo Izquierdo = menor probabilidad
         while (hojas.size() > 1){
@@ -107,17 +107,24 @@ public class Calculator {
         return hojas.get(0);
     }
 
+    public static void printMap(Map mp) { //Muestra el contenido del HashMap
+        Iterator it = mp.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            System.out.println(pair.getKey() + " = " + pair.getValue());
+        }
+    }
 
-    public void obtenerSecuencias(HashMap<Integer,String> h, Arbol arbolito, String secuencia){ //Chequeado
+    public void obtenerSecuencias(HashMap<Integer,String> h, Arbol arbolito, String secuencia){
         if(arbolito.getHijoDerecho() == null) { //Con que uno sea null ya sabemos que es hoja
             h.put(arbolito.getColor(),secuencia);
-        }else{ //Si no es hoja, recorremos para ambos lados
+        }else{                                  //Si no es hoja, recorremos para ambos lados
             obtenerSecuencias(h,arbolito.getHijoDerecho(),secuencia+"0");
             obtenerSecuencias(h,arbolito.getHijoIzquierdo(),secuencia+"1");
         }
     }
 
-   public void ordenarHojas(int[] distribucion, Vector<Arbol> hojas, int n){ //Chequeado
+   public void ordenarHojas(int[] distribucion, Vector<Arbol> hojas, int n){
        for(int i=0; i<distribucion.length;i++){
            if(distribucion[i] != 0) {
                Arbol hoja = new Arbol(i, (double)distribucion[i]/n); //Cuando arreglemos extension la posicion no va a representar el color
@@ -125,15 +132,6 @@ public class Calculator {
            }
        }
        Collections.sort(hojas);
-   }
-
-
-   public char[] pasarAArreglo(ArrayList<Character> secuencia,char[] arr){
-        //preguntar si podemos meter toda la secuencia de huffman en un string y despues pasarlo a un arreglo de char, porque en el peor de los casos ocupa la mitad del total de un string, ocupa 2227000 * 6 y un string tiene el doble
-       for(int i = 0;i<secuencia.size();i++){
-            arr[i] = secuencia.get(i);
-        }
-       return arr;
    }
 
    public char[] codificarSecuencia(BufferedImage img,HashMap<Integer,String> secuencias){ //Chequeado
@@ -146,21 +144,22 @@ public class Calculator {
        for (int x = 0; x < img.getWidth(); x++) {
            for (int y = 0; y < img.getHeight(); y++) {
                color = (int)getGris(img,x,y);
+               //System.out.println(color); //Capta bien el color
                aux = secuencias.get(color);
+               //System.out.println(aux);  //Capta bien las secuencias
                for (int k = 0; k < aux.length(); k++){
                secuenciaArray.add(aux.charAt(k));
                }
            }
        }
 
-   char[] secuenciaChar = new char[secuenciaArray.size()];
-       for (int x = 0; x < secuenciaChar.length; x++){
-           secuenciaChar[x] = secuenciaArray.get(x);
-       }
+       char[] secuenciaChar = new char[secuenciaArray.size()];
+           for (int x = 0; x < secuenciaChar.length; x++){
+               secuenciaChar[x] = secuenciaArray.get(x);
+           }
 
-       System.out.println("Longitud real: "+secuenciaChar.length);
-   return secuenciaChar;
-   }
+       return secuenciaChar;
+    }
 
    public int getSimbolo(Arbol huffman,String secuencia,int pos){
        //pos=0
@@ -253,6 +252,24 @@ public class Calculator {
         return ret;
     }
 
+    public int[] getColor(char[] in,Arbol nodo,int index){  //Mura
+        int[] rtrn = new int[2]; //En 0 el index, en 1 el color
+        Arbol aux = nodo;
+
+        while(aux.getHijoDerecho() != null){ //Con uno alcanza, por construccion
+            if((in[index]) == '0'){
+                aux = aux.getHijoDerecho();
+            }else{  // == '1'
+                aux = aux.getHijoIzquierdo();
+            }
+            index++;
+        }
+
+        rtrn[0] = index;
+        rtrn[1] = aux.getColor();
+        return rtrn;
+    }
+
    public int getColor(char[] in,Arbol huffman,Vector<Integer> v_pos){
        // System.out.println("pos: "+v_pos.get(0));
        //System.out.println("IN: "+in.length);
@@ -284,31 +301,20 @@ public class Calculator {
         }
 
     }
+
     public  BufferedImage map(Cosas<char[],Arbol,Integer,Integer> cosas){
         int sizeX = cosas.getSizeX();
         int sizeY = cosas.getSizeY();
 
         final BufferedImage res = new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_INT_RGB );
-        System.out.println("TIENE: " + cosas.contenido1.length);          //Entre esto y la 311 hay que arreglar
-        Vector<Integer> v_pos = new Vector<Integer>();
-        v_pos.add(0,0);
-        int x = 0;
-        int y = 0;
-        while(v_pos.get(0) <= (cosas.contenido1.length)){
-            int color = this.getColor(cosas.contenido1,cosas.contenido2,v_pos);
-            if(color != -1){
-                Color c = new Color(color,color,color);
-                res.setRGB(x, y, c.getRGB() );
+        int index = 0;
+
+        for(int x = 0; x < sizeX; x++)           //Recorremos la imagen
+            for(int y = 0; y < sizeY; y++){
+                int[] color = getColor(cosas.getContenido1(), cosas.getContenido2(), index);   //Obtenemos el color de esa posicion
+                index = color[0];
+                res.setRGB(x, y, (color[1]*256*256 + color[1] * 256 + color[1]));
             }
-            y++;
-            if(y >= sizeY){
-                //System.out.println("width:" + sizeX);
-                //System.out.println("valor de x:" + x);
-                x++;
-                y=0;
-            }
-        }
-        System.out.println("Prueba2");
         return res;
     }
 
@@ -338,8 +344,8 @@ public class Calculator {
                     List<Byte> distribucionByte = ByteEncodingHelper.EncodeSequence(distribucionChar);
                     byte[] distribucionBits = this.ConvertByteListToPrimitives(distribucionByte);
 
-                    fos.write(colorBits);    //Escribo 1 bit con el color
-                    fos.write(distribucionBits); //Escribo 3 bits con la distribucion
+                    fos.write(colorBits);           //Escribo 1 bit con el color
+                    fos.write(distribucionBits);    //Escribo 3 bits con la distribucion
                 }
             }
         }catch (IOException e) {
@@ -365,7 +371,6 @@ public class Calculator {
         char[] secuenciaChar = codificarSecuencia(img, secuencias) ; //Secuencia de chars
         List<Byte> secuenciaByte = ByteEncodingHelper.EncodeSequence(secuenciaChar);  //Codificado a byte
         byte[] secuenciaBits = this.ConvertByteListToPrimitives(secuenciaByte); //Binario
-        System.out.println(" tamaño secuencia:" + secuenciaChar.length);
 
         //LONGITUD SECUENCIA
         char[] longitudChar = convertirNumeroChar(secuenciaChar.length,3);
@@ -412,12 +417,16 @@ public class Calculator {
         }
     }
 
-
-    //en la cabecera hay que poner la cantidad de simbolos
-    //vamos a tener que completar con 0 , pero el problema es al decodificarlo saber que 0
-    //hay que poner un dato que indique cuantos bits hay que utlizar del ultimo byte, porque el resto son 0s
-    //todas las cabeceras van a ser distintas para los alumnos, osea otro no puede decodificar mis imagenes con su algoritmo
-
-
 }
 
+/*
+   public char[] pasarAArreglo(ArrayList<Character> secuencia,char[] arr){
+        //preguntar si podemos meter toda la secuencia de huffman en un string y despues pasarlo a un arreglo de char, porque en el peor de los casos ocupa la mitad del total de un string, ocupa 2227000 * 6 y un string tiene el doble
+       for(int i = 0;i<secuencia.size();i++){
+            arr[i] = secuencia.get(i);
+        }
+       return arr;
+   }
+
+
+*/

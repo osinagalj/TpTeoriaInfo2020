@@ -12,7 +12,6 @@ public class Main {
 
 
     public static void main (String [ ] args) {
-
         try {
             //Cargando las Imagenes
             BufferedImage imgOriginal = ImageIO.read(new File("src\\img\\Will(Original).bmp"));//media 189  "src\\img\\Will(Original).bmp"
@@ -33,19 +32,36 @@ public class Main {
 //----------------------------          EJERCICIO 1             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
 
-            System.out.println("indices de correlacion ");
-            double r = calculator.ejercicio1(imgOriginal,will_1,h,w,n);
-            System.out.println("Original y Will_1 : " + r);
-            double r2 = calculator.ejercicio1(imgOriginal,will_2,h,w,n);
-            System.out.println("Original y Will_2  : " + r2);
-            double r3 = calculator.ejercicio1(imgOriginal,will_3,h,w,n);
-            System.out.println("Original y Will_3  " + r3);
-            double r4 = calculator.ejercicio1(imgOriginal,will_4,h,w,n);
-            System.out.println("Original y Will_4 : " + r4);
-            double r5 = calculator.ejercicio1(imgOriginal,will_5,h,w,n);
-            System.out.println("Original y Will_5  : " + r5);
+
+            Vector<Double> v1 = new Vector<Double>();
+            double[] v = new double[5];
+            System.out.println("indices de correlacion: ");
+            v[0] = calculator.ejercicio1(imgOriginal,will_1,h,w,n);
+            v1.add(calculator.ejercicio1(imgOriginal,will_1,h,w,n));
+
+            v[1] = calculator.ejercicio1(imgOriginal,will_2,h,w,n);
+            v1.add(calculator.ejercicio1(imgOriginal,will_2,h,w,n));
+
+            v[2] = calculator.ejercicio1(imgOriginal,will_3,h,w,n);
+            v1.add(calculator.ejercicio1(imgOriginal,will_3,h,w,n));
+
+            v[3] = calculator.ejercicio1(imgOriginal,will_4,h,w,n);
+            v1.add(calculator.ejercicio1(imgOriginal,will_4,h,w,n));
+
+            v[4] = calculator.ejercicio1(imgOriginal,will_5,h,w,n);
+            v1.add(calculator.ejercicio1(imgOriginal,will_5,h,w,n));
 
 
+            Collections.sort(v1);
+
+            for(int x = 5; x > 0; x--){
+                for (int y = 0; y < 5; y++){
+                    if (v1.get(x-1) == v[y]){ //
+                        System.out.println("Original y Will_" + (y+1) + ": " + v1.get(x-1));
+                    }
+                }
+            }
+            System.out.println("\n");
 
 //--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 2             ------------------------------------------//
@@ -116,14 +132,22 @@ public class Main {
 
             //Armo los arboles
             Arbol arbol_WillOriginal = calculator.getArbolHuffman(hojas_WillOriginal);
-            Arbol arbol_Willej2 = calculator.getArbolHuffman(hojas_WillOriginal);
+            Arbol arbol_Willej2 = calculator.getArbolHuffman(hojas_Willej2);
 
             //Obtengo las secuencias
-            HashMap<Integer,String> secuencias_original = new HashMap<Integer,String>();
+            HashMap<Integer,String> secuencias_original = new HashMap<Integer, String>();
             calculator.obtenerSecuencias(secuencias_original,arbol_WillOriginal,"");
 
             HashMap<Integer,String> secuencias_will_ej2 = new HashMap<Integer,String>();
             calculator.obtenerSecuencias(secuencias_will_ej2,arbol_Willej2,"");
+
+         /*
+            System.out.println("\n" + "Secuencias Original:");
+            calculator.printMap(secuencias_original);
+            System.out.println("\n" + "Secuencias Will_ej2:");
+            calculator.printMap(secuencias_will_ej2);
+            System.out.println();
+         */
 
             //System.out.println("Las secuencias de huffman: ");
             //Iterator it = secuencias_original.entrySet().iterator();

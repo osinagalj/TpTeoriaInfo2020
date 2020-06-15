@@ -93,11 +93,9 @@ public class ByteEncodingHelper {
             for(int x = 0; x<cantFrecuencias; x++ ){
                 auxiliar[0] = inputSequence[10+x*4];              //Primero el color
                 int color = traducirBytes(auxiliar,1);
-                System.out.println("color: "+color);
                 for (int y = 0; y < 3; y++)                       //Y luego los 3 de su distribucion
                     auxiliar[y] = inputSequence[11+x*4+y];
                 double probabilidad = (double) traducirBytes(auxiliar,3)/(X*Y);
-                System.out.println("probabilidad: "+probabilidad);
                 Arbol aux = new Arbol(color,probabilidad);
                 calculator.inserTarOrdenado(frecuencias,aux);
             }
@@ -109,7 +107,6 @@ public class ByteEncodingHelper {
             int bufferPos = 0;
             byte buffer;
 
-            System.out.println("La longitud que extraigo: " + longitud);
             while (globalIndex < longitud) {
 
                 buffer = inputSequence[i];
