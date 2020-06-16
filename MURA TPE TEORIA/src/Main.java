@@ -197,11 +197,23 @@ public class Main {
             BufferedImage img_descomprimida_will_ej2 = calculator.map(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido));
             calculator.savePNG( img_descomprimida_will_ej2, pathWill_ej2_descomprimido );
 
-            //e
-            //calculator.obtenerTasas();
 
 
-            //----------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------//
+//----------------------------          EJERCICIO 4             ------------------------------------------//
+//--------------------------------------------------------------------------------------------------------//
+
+
+            //Siempre usamos "imgOriginal", ya que es la que se pasa por cada canal
+
+            //Cargando las Imagenes de canales
+            BufferedImage imgCanal2 = ImageIO.read(new File("src\\img\\Will_Canal2.bmp"));
+            BufferedImage imgCanal8 = ImageIO.read(new File("src\\img\\Will_Canal8.bmp"));
+            BufferedImage imgCanal10 = ImageIO.read(new File("src\\img\\Will_canal10.bmp"));
+
+            double[][] matrizCanal2 = calculator.calcularMatriz(imgOriginal,imgCanal2);
+            double[][] matrizCanal8 = calculator.calcularMatriz(imgOriginal,imgCanal8);
+            double[][] matrizCanal10 = calculator.calcularMatriz(imgOriginal,imgCanal10);
 
 
 

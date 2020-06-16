@@ -417,6 +417,43 @@ public class Calculator {
         }
     }
 
+
+//EJERCICIO 4
+
+
+    public double[][] calcularMatriz(BufferedImage entrada,BufferedImage salida){
+        double[][] rtrn = new double[16][16];
+
+        //Inicializamos en 0
+        for (int x=0; x < rtrn.length; x++) {
+            for (int y=0; y < rtrn[x].length; y++) {
+                rtrn[x][y] = 0;
+            }
+        }
+
+        //Sabemos que tienen mismas dimensiones
+
+        for(){
+            for(){              //Cada posicion de pixel [x][y]
+                //get color entrada en x,y
+                //get color salida en x,y
+
+                //sumamos uno en la fila colorEntrada/16
+                               //columna colorSalida/16
+            }
+        }
+
+        for (int x=0; x < rtrn.length; x++) {
+            for (int y=0; y < rtrn[x].length; y++) {  //Para cada espacio de la matriz dividimos por el total
+                rtrn[x][y] = (rtrn[x][y])/(rtrn.length*rtrn[x].length); //La de cada una, divido el total de apariciones
+            }                                               //(NO SE SI ESTO ESTA BIEN)
+        }
+        return rtrn;
+    }
+
+
+
+
 }
 
 /*
