@@ -20,6 +20,7 @@ import java.awt.image.RenderedImage;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.nio.charset.Charset;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Calculator {
 
     public Calculator(){}
 
-    public double getGris(BufferedImage imgOriginal,int x,int y){
+    public int getGris(BufferedImage imgOriginal,int x,int y){
         int rgb = imgOriginal.getRGB(x, y);
         Color color = new Color(rgb, true);
         //double gris = (double)(r+g+b)/3; //con este se saca la escala de grises, pero como las imagenenes vienen en escala de grises, para que sea mas eficiente podemos tomar uno de los 3, ya uqe los 3 son iguales siempre. Esto lo podemos hacer porque sabemos de antemano que no nos van a venir imagenes de color
@@ -420,9 +421,19 @@ public class Calculator {
 
 //EJERCICIO 4
 
+    public void mostrarMatriz(double[][] matriz){
+        DecimalFormat formato = new DecimalFormat("#.000");
+        for(int x = 0; x < matriz.length; x++){
+            System.out.print("| ");
+            for(int y = 0; y < matriz[x].length; y++){
+                System.out.print(formato.format(matriz[x][y]) + " ");
+            }
+            System.out.println("|");
+        }
+    }
 
     public double[][] calcularMatriz(BufferedImage entrada,BufferedImage salida){
-        double[][] rtrn = new double[16][16];
+        double[][] rtrn = new double[17][16]; //de 0 a 16 los colores, el 17 es para llevar las cuentas
 
         //Inicializamos en 0
         for (int x=0; x < rtrn.length; x++) {
@@ -432,21 +443,27 @@ public class Calculator {
         }
 
         //Sabemos que tienen mismas dimensiones
+        //System.out.println("Dimensiones entrada w: " + entrada.getWidth() + " h: " + entrada.getHeight());
+        //System.out.println("Dimensiones entrada w: " + salida.getWidth() + " h: " + salida.getHeight());
 
-        for(){
-            for(){              //Cada posicion de pixel [x][y]
-                //get color entrada en x,y
-                //get color salida en x,y
+        for (int x=0; x < entrada.getWidth(); x++) {
+            for (int y=0; y < entrada.getHeight(); y++) {      //Cada posicion de pixel [x][y]
+                int in = getGris(entrada,x,y);   //get color entrada en x,y
+                int out = getGris(salida,x,y);   //get color salida en x,y
 
-                //sumamos uno en la fila colorEntrada/16
-                               //columna colorSalida/16
+                in = in/17;
+                out = out/17;
+
+                rtrn[out][in]++;  //sumamos uno en la fila colorEntrada/17
+                                //columna colorSalida/17
+                rtrn[16][in]++;
             }
         }
 
-        for (int x=0; x < rtrn.length; x++) {
-            for (int y=0; y < rtrn[x].length; y++) {  //Para cada espacio de la matriz dividimos por el total
-                rtrn[x][y] = (rtrn[x][y])/(rtrn.length*rtrn[x].length); //La de cada una, divido el total de apariciones
-            }                                               //(NO SE SI ESTO ESTA BIEN)
+        for (int x=0; x < 16; x++) {
+            for (int y=0; y < 16; y++) {  //Para cada espacio de la matriz
+                rtrn[x][y] = (rtrn[x][y])/(rtrn[16][y]); //divido por el total de esa entrada
+            }
         }
         return rtrn;
     }
@@ -455,15 +472,3 @@ public class Calculator {
 
 
 }
-
-/*
-   public char[] pasarAArreglo(ArrayList<Character> secuencia,char[] arr){
-        //preguntar si podemos meter toda la secuencia de huffman en un string y despues pasarlo a un arreglo de char, porque en el peor de los casos ocupa la mitad del total de un string, ocupa 2227000 * 6 y un string tiene el doble
-       for(int i = 0;i<secuencia.size();i++){
-            arr[i] = secuencia.get(i);
-        }
-       return arr;
-   }
-
-
-*/

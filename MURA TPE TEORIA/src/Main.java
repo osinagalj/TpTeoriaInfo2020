@@ -141,21 +141,13 @@ public class Main {
             HashMap<Integer,String> secuencias_will_ej2 = new HashMap<Integer,String>();
             calculator.obtenerSecuencias(secuencias_will_ej2,arbol_Willej2,"");
 
-         /*
+/*
             System.out.println("\n" + "Secuencias Original:");
             calculator.printMap(secuencias_original);
             System.out.println("\n" + "Secuencias Will_ej2:");
             calculator.printMap(secuencias_will_ej2);
             System.out.println();
-         */
-
-            //System.out.println("Las secuencias de huffman: ");
-            //Iterator it = secuencias_original.entrySet().iterator();
-            //while (it.hasNext()) {
-            //    Map.Entry pair = (Map.Entry)it.next();
-            //    System.out.println(pair.getKey() + " = " + pair.getValue());
-            //}
-
+*/
 
             //Paths
             String pathWill_Original_comprimido = "src\\bin\\willOriginalComprimido.bin";
@@ -170,7 +162,7 @@ public class Main {
             String pathWill_ej2_comprimido_Original = "src\\bin\\will_ej2_comprimido_Original.bin";
             String pathWill_ej2_descomprimido_Original = "src\\bin\\will_ej2_descomprimido_Original.bmp";
 
-
+/*
             //COMPRIMIR IMAGEN ORIGINAL
             //a
             //Comprimo la imagen
@@ -197,7 +189,7 @@ public class Main {
             BufferedImage img_descomprimida_will_ej2 = calculator.map(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido));
             calculator.savePNG( img_descomprimida_will_ej2, pathWill_ej2_descomprimido );
 
-
+*/
 
 //--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 4             ------------------------------------------//
@@ -215,8 +207,9 @@ public class Main {
             double[][] matrizCanal8 = calculator.calcularMatriz(imgOriginal,imgCanal8);
             double[][] matrizCanal10 = calculator.calcularMatriz(imgOriginal,imgCanal10);
 
-
-
+            calculator.mostrarMatriz(calculator.calcularMatriz(imgOriginal,imgCanal2));
+            calculator.mostrarMatriz(calculator.calcularMatriz(imgOriginal,imgCanal8));
+            calculator.mostrarMatriz(calculator.calcularMatriz(imgOriginal,imgCanal10));
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
