@@ -141,17 +141,6 @@ public class Ejercicio_3 {
             }
         }
     }
-    public ArrayList<Character> descomprimirImagen(char[] entrada, Arbol huffman){
-        ArrayList<Character> secuencia = new ArrayList<Character>();
-
-        return secuencia;
-    }
-
-
-
-
-
-
 
 
 
@@ -244,12 +233,37 @@ public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String
 ///--------------------------------------------------------------------------------------------------------//
 //----------------------------          DESCOMPRIMIR             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
-    
-    public  BufferedImage map(Cosas<char[], Arbol,Integer,Integer> cosas){
+
+    public BufferedImage createImage(int sizeX,int sizeY,Integer profundidad){
+        if(profundidad.equals(16)){
+            return new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_USHORT_565_RGB ,createGreyscaleModel(profundidad) );
+        }else{
+            if(profundidad.equals(8)){
+                return new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_BYTE_INDEXED,createGreyscaleModel(profundidad));
+            }else{
+               return new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_BYTE_BINARY,createGreyscaleModel(profundidad));
+            }
+        }
+    }
+    public  BufferedImage map(Cosas<char[], Arbol,Integer,Integer> cosas, Integer profundidad){
         int sizeX = cosas.getSizeX();
         int sizeY = cosas.getSizeY();
 
-        final BufferedImage res = new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_INT_RGB );
+
+        final BufferedImage res = createImage(sizeX,sizeY,profundidad); ; //=new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_INT_RGB);
+
+/*
+        if(profundidad.equals(16)){
+            res = new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_USHORT_565_RGB ,createGreyscaleModel(profundidad) );
+        }else{
+            if(profundidad.equals(8)){
+                res = new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_BYTE_INDEXED,createGreyscaleModel(profundidad));
+            }else{
+                res = new BufferedImage( sizeX, sizeY, BufferedImage.TYPE_BYTE_BINARY,createGreyscaleModel(profundidad));
+            }
+        }
+*/
+
         int index = 0;
 
         for(int x = 0; x < sizeX; x++)           //Recorremos la imagen
@@ -316,7 +330,7 @@ public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String
 
         // Only support these bitDepth(1, 2, 4) for now: Set the size.
         int size = 0;
-        if (bitDepth == 1 || bitDepth == 2 || bitDepth == 4) {
+        if (bitDepth == 1 || bitDepth == 2 || bitDepth == 4 || bitDepth ==8 || bitDepth==16) {
             size = (int) Math.pow(2, bitDepth);
         } else {
             //logger error
