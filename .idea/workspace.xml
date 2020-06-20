@@ -24,7 +24,29 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a07ea69a-6139-4b72-bfd1-bbe09185f43a" name="Default Changelist" comment="" />
+    <list default="true" id="a07ea69a-6139-4b72-bfd1-bbe09185f43a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Ejercicios/Ejercicio_1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Ejercicios/Ejercicio_2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Ejercicios/Ejercicio_4.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Ejercicios/getColor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpTeoria.jar" beforeDir="false" afterPath="$PROJECT_DIR$/TpTeoria.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/TpTeoria_jar2/TpTeoria.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/TpTeoria_jar2/TpTeoria.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TpTeoria/Arbol.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TpTeoria/ByteEncodingHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TpTeoria/Calculator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TpTeoria/Cosas.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TpTeoria/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TpTeoria/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TpTeoria/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TpTeoria/main/resourses/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Arbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Estructuras/Arbol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ByteEncodingHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Estructuras/ByteEncodingHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejercicios/Ejercicio_3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cosas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Estructuras/Cosas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resourses/META-INF/MANIFEST.MF" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +108,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1592612336605</updated>
-      <workItem from="1592612339855" duration="2623000" />
+      <workItem from="1592612339855" duration="9327000" />
     </task>
     <servers />
   </component>
@@ -105,33 +127,37 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="413" y="154" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1592613660961">
+    <state x="413" y="154" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1592615682553">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="154" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1592613660961" />
+    <state x="413" y="154" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1592615682553" />
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592621173518">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1592621173518" />
     <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1592612492995">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1592612492995" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1592614642499">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1592621975929">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1592614642499" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1592614642499">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1592621975929" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1592621975929">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1592614642499" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1592614642499">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1592621975929" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1592621975929">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1592614642499" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1592614642499">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1592621975929" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1592621975929">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1592614642499" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1592613717641">
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1592621975929" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1592615783642">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1592613717641" />
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1592615783642" />
   </component>
 </project>
