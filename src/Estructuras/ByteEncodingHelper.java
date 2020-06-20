@@ -68,6 +68,8 @@ public class ByteEncodingHelper {
             Ejercicio_3 ejercicio3 = new Ejercicio_3();
             //Calculator calculator = new Calculator();
 
+
+
             //Leo todos los bytes
             byte[] inputSequence = Files.readAllBytes(new File(inputFilepath).toPath());
 
@@ -102,6 +104,10 @@ public class ByteEncodingHelper {
                 double probabilidad = (double) traducirBytes(auxiliar,3)/(X*Y);
                 Arbol aux = new Arbol(color,probabilidad);
                 ejercicio3.inserTarOrdenado(frecuencias,aux);
+            }
+            System.out.println("FRENCUANCIAS DEL HASMAP 2");
+            for(int i = 0; i< frecuencias.size();i++){
+                System.out.println(frecuencias.get(i).getColor() +"  ");
             }
             Arbol raiz = ejercicio3.getArbolHuffman(frecuencias);
 

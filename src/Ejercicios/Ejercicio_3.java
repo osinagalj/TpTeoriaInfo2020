@@ -7,6 +7,7 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.*;
 import java.util.List;
 
@@ -16,9 +17,13 @@ import Estructuras.Arbol;
 import Estructuras.Cosas;
 import Estructuras.ByteEncodingHelper;
 
+
 public class Ejercicio_3 {
 
-
+    Writer wr ;
+    public Ejercicio_3(Writer wr){
+        this.wr = wr;
+    }
     public Ejercicio_3(){}
 
     public void inserTarOrdenado(Vector<Arbol> hojas, Arbol hoja) {
@@ -59,6 +64,8 @@ public class Ejercicio_3 {
         Iterator it = mp.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
+
+
             System.out.println(pair.getKey() + " = " + pair.getValue());
         }
     }
@@ -70,6 +77,9 @@ public class Ejercicio_3 {
             obtenerSecuencias(h,arbolito.getHijoDerecho(),secuencia+"0");
             obtenerSecuencias(h,arbolito.getHijoIzquierdo(),secuencia+"1");
         }
+
+
+
     }
 
     public void ordenarHojas(int[] distribucion, Vector<Arbol> hojas, int n){
@@ -222,8 +232,11 @@ public class Ejercicio_3 {
         for(int x = 0; x < sizeX; x++)           //Recorremos la imagen
             for(int y = 0; y < sizeY; y++){
                 int[] color = getColor(cosas.getContenido1(), cosas.getContenido2(), index);   //Obtenemos el color de esa posicion
+
                 index = color[0];
-                res.setRGB(x, y, (color[1]*256*256 + color[1] * 256 + color[1]));
+                Color c = new Color(color[1],color[1],color[1]);
+                res.setRGB(x, y, c.getRGB() );
+                //res.setRGB(x, y, (color[1]*256*256 + color[1] * 256 + color[1]));
             }
         return res;
     }

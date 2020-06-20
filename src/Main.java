@@ -12,6 +12,8 @@ import java.util.*;
 import Ejercicios.*;
 public class Main {
 
+    public static File statText = new File("src\\Consola\\Consola.txt");
+
     public static void main (String [ ] args) {
         try {
             //Cargando las Imagenes
@@ -28,8 +30,8 @@ public class Main {
             int n = h*w;
 
             //Consola
-            File statText = new File("src\\Consola\\Consola.txt");
-            FileOutputStream is = new FileOutputStream(statText);
+
+           FileOutputStream is = new FileOutputStream(statText);
             OutputStreamWriter osw = new OutputStreamWriter(is);
             Writer wr = new BufferedWriter(osw);
 
@@ -134,7 +136,7 @@ public class Main {
 //----------------------------          EJERCICIO 3             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
 
-            Ejercicio_3 ejercicio_3 = new Ejercicio_3();
+            Ejercicio_3 ejercicio_3 = new Ejercicio_3(wr);
             Vector<Arbol> hojas_WillOriginal = new Vector<Arbol>();
             Vector<Arbol> hojas_Willej2 = new Vector<Arbol>();
 
@@ -178,6 +180,8 @@ public class Main {
             //COMPRIMIR IMAGEN ORIGINAL
             //a
             //Comprimo la imagen
+            System.out.println("FRENCUANCIAS DEL HASMAP 1");
+            ejercicio_3.printMap(secuencias_original);
             ejercicio_3.comprimirImagen(pathWill_Original_comprimido,imgOriginal,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
             BufferedImage img = ejercicio_3.map(ByteEncodingHelper.DecodeSequence(pathWill_Original_comprimido));
@@ -219,9 +223,9 @@ public class Main {
             double[][] matrizCanal8 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal8);
             double[][] matrizCanal10 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal10);
 
-            ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal2));
-            ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal8));
-            ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal10));
+           // ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal2));
+           // ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal8));
+           // ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal10));
 
 
             // Cierro el archivo en donde guardo lo imprimido por consola
