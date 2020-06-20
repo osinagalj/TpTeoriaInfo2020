@@ -151,17 +151,8 @@ public class Main {
             //Obtengo las secuencias
             HashMap<Integer,String> secuencias_original = new HashMap<Integer, String>();
             ejercicio_3.obtenerSecuencias(secuencias_original,arbol_WillOriginal,"");
-
             HashMap<Integer,String> secuencias_will_ej2 = new HashMap<Integer,String>();
             ejercicio_3.obtenerSecuencias(secuencias_will_ej2,arbol_Willej2,"");
-
-/*
-            System.out.println("\n" + "Secuencias Original:");
-            calculator.printMap(secuencias_original);
-            System.out.println("\n" + "Secuencias Will_ej2:");
-            calculator.printMap(secuencias_will_ej2);
-            System.out.println();
-*/
 
             //Paths
             String pathWill_Original_comprimido = "src\\bin\\willOriginalComprimido.bin";
@@ -183,32 +174,29 @@ public class Main {
             System.out.println("FRENCUANCIAS DEL HASMAP 1");
             ejercicio_3.printMap(secuencias_original);
             Integer profundidad = ejercicio_3.getProfundidadBit(imgOriginal);
-            System.out.println("profundiad = " + profundidad);
             ejercicio_3.comprimirImagen(pathWill_Original_comprimido,imgOriginal,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
-            BufferedImage img = ejercicio_3.map(ByteEncodingHelper.DecodeSequence(pathWill_Original_comprimido),profundidad);
+            BufferedImage img = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_Original_comprimido),profundidad);
             ejercicio_3.savePNG( img, pathWill_Original_descomprimido );
 
             //b
             Integer profundidad2 = ejercicio_3.getProfundidadBit(will_1);
-            System.out.println("profundiad2 = " + profundidad2);
             ejercicio_3.comprimirImagen(pathWill_1_comprimido,will_1,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
-            BufferedImage img_descomprimida_will_1 = ejercicio_3.map(ByteEncodingHelper.DecodeSequence(pathWill_1_comprimido),profundidad2);
+            BufferedImage img_descomprimida_will_1 = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_1_comprimido),profundidad2);
             ejercicio_3.savePNG( img_descomprimida_will_1, pathWill_1_descomprimido );
 
             //c
             Integer profundidad3 = ejercicio_3.getProfundidadBit(will_ej2);
-            System.out.println("profundiad3 = " + profundidad3);
             ejercicio_3.comprimirImagen(pathWill_ej2_comprimido_Original,will_ej2,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
-            BufferedImage img_descomprimida_will_ej2_Orignal = ejercicio_3.map(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido_Original),profundidad3);
+            BufferedImage img_descomprimida_will_ej2_Orignal = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido_Original),profundidad3);
             ejercicio_3.savePNG( img_descomprimida_will_ej2_Orignal, pathWill_ej2_descomprimido_Original );
 
             //d
             ejercicio_3.comprimirImagen(pathWill_ej2_comprimido,will_ej2,secuencias_will_ej2,distribucionWill_ej2);
             //Descomprimo la imagen
-            BufferedImage img_descomprimida_will_ej2 = ejercicio_3.map(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido),profundidad3);
+            BufferedImage img_descomprimida_will_ej2 = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido),profundidad3);
             ejercicio_3.savePNG( img_descomprimida_will_ej2, pathWill_ej2_descomprimido );
 
 

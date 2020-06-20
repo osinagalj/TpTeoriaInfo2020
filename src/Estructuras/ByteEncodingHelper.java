@@ -1,7 +1,6 @@
 package Estructuras;
 
 import Ejercicios.Ejercicio_3;
-import Estructuras.Cosas;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,17 +61,12 @@ public class ByteEncodingHelper {
         return rta;
     }
 
-    public static Cosas<char[], Arbol,Integer,Integer> DecodeSequence(String inputFilepath) {
-        Cosas<char[], Arbol,Integer,Integer> cosas = new Cosas<char[], Arbol,Integer,Integer>();
+    public static Data<char[], Arbol,Integer,Integer> DecodeSequence(String inputFilepath) {
+        Data<char[], Arbol,Integer,Integer> data = new Data<char[], Arbol,Integer,Integer>();
         try {
             Ejercicio_3 ejercicio3 = new Ejercicio_3();
-            //Calculator calculator = new Calculator();
-
-
-
             //Leo todos los bytes
             byte[] inputSequence = Files.readAllBytes(new File(inputFilepath).toPath());
-
             Byte[] auxiliar = new Byte[3];
 
             for (int x = 0; x < 3; x++)
@@ -80,7 +74,6 @@ public class ByteEncodingHelper {
             int longitud = traducirBytes(auxiliar,3);  //3 bytes
 
             char[] secuenciaChar = new char[longitud];
-
 
             auxiliar[0] = inputSequence[3];
             int cantFrecuencias = traducirBytes(auxiliar,1);
@@ -92,7 +85,6 @@ public class ByteEncodingHelper {
             for (int x = 0; x < 3; x++)
                 auxiliar[x] = inputSequence[7+x];
             int Y = traducirBytes(auxiliar,3);
-
 
             Vector<Arbol> frecuencias = new Vector<Arbol>();
 
@@ -133,10 +125,10 @@ public class ByteEncodingHelper {
                     globalIndex++;
 
                     if (globalIndex == longitud) {
-                        cosas.setContenido1(secuenciaChar);
-                        cosas.setSizeX(X);
-                        cosas.setSizeY(Y);
-                        cosas.setContenido2(raiz);
+                        data.setContenido1(secuenciaChar);
+                        data.setSizeX(X);
+                        data.setSizeY(Y);
+                        data.setContenido2(raiz);
                     }
                 }
 
@@ -148,6 +140,6 @@ public class ByteEncodingHelper {
             e1.printStackTrace();
         }
 
-        return cosas;
+        return data;
     }
 }

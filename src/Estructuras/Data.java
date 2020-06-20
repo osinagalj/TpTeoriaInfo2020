@@ -1,11 +1,11 @@
 package Estructuras;
 
-public class Cosas<E,Y,J,K> {
+public class Data<E,Y,J,K> {
 
-    E contenido1;
-    Y contenido2;
-    J sizeX;
-    K sizeY;
+    private E contenido1;
+    private Y contenido2;
+    private J sizeX;
+    private K sizeY;
 
     public E getContenido1() {
         return contenido1;

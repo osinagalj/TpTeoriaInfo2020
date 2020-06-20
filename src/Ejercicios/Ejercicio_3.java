@@ -1,7 +1,6 @@
 package Ejercicios;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.IndexColorModel;
@@ -16,7 +15,7 @@ import java.util.List;
 import static Ejercicios.getColor.getGris;
 
 import Estructuras.Arbol;
-import Estructuras.Cosas;
+import Estructuras.Data;
 import Estructuras.ByteEncodingHelper;
 
 
@@ -65,16 +64,6 @@ public class Ejercicio_3 {
         return hojas.get(0);
     }
 
-    public static void printMap(Map mp) { //Muestra el contenido del HashMap
-        Iterator it = mp.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-
-
-            System.out.println(pair.getKey() + " = " + pair.getValue());
-        }
-    }
-
     public void obtenerSecuencias(HashMap<Integer,String> h, Arbol arbolito, String secuencia){
         if(arbolito.getHijoDerecho() == null) { //Con que uno sea null ya sabemos que es hoja
             h.put(arbolito.getColor(),secuencia);
@@ -82,9 +71,6 @@ public class Ejercicio_3 {
             obtenerSecuencias(h,arbolito.getHijoDerecho(),secuencia+"0");
             obtenerSecuencias(h,arbolito.getHijoIzquierdo(),secuencia+"1");
         }
-
-
-
     }
 
     public void ordenarHojas(int[] distribucion, Vector<Arbol> hojas, int n){
@@ -100,16 +86,13 @@ public class Ejercicio_3 {
     public char[] codificarSecuencia(BufferedImage img, HashMap<Integer,String> secuencias){ //Chequeado
 
         ArrayList<Character> secuenciaArray = new ArrayList<Character>();
-
         Integer color;
         String aux;
 
         for (int x = 0; x < img.getWidth(); x++) {
             for (int y = 0; y < img.getHeight(); y++) {
                 color = (int)getGris(img,x,y);
-                //System.out.println(color); //Capta bien el color
                 aux = secuencias.get(color);
-                //System.out.println(aux);  //Capta bien las secuencias
                 for (int k = 0; k < aux.length(); k++){
                     secuenciaArray.add(aux.charAt(k));
                 }
@@ -125,7 +108,6 @@ public class Ejercicio_3 {
     }
 
     public int getSimbolo(Arbol huffman, String secuencia, int pos){
-        //pos=0
         if((huffman.getHijoDerecho() == null) && (huffman.getHijoIzquierdo() == null)){
             return huffman.getColor();
         }else{
@@ -147,57 +129,49 @@ public class Ejercicio_3 {
 ///--------------------------------------------------------------------------------------------------------//
 //----------------------------          COMPRIMIR             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
-public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String> secuencias, int[] distribucion){
 
-    //SECUENCIA
-    char[] secuenciaChar = codificarSecuencia(img, secuencias) ; //Secuencia de chars
-    List<Byte> secuenciaByte = ByteEncodingHelper.EncodeSequence(secuenciaChar);  //Codificado a byte
-    byte[] secuenciaBits = this.ConvertByteListToPrimitives(secuenciaByte); //Binario
 
-    //LONGITUD SECUENCIA
-    char[] longitudChar = convertirNumeroChar(secuenciaChar.length,3);
-    List<Byte> longitudByte = ByteEncodingHelper.EncodeSequence(longitudChar);
-    byte[] longitudBit = this.ConvertByteListToPrimitives(longitudByte); //Añade un byte de mas en 0
+    public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String> secuencias, int[] distribucion) throws IOException {
 
-    //CANTIDAD FRECUENCIAS
-    int cantidadFrecuencias = 0;
-    for(int x = 0; x < distribucion.length; x++){
-        if (distribucion[x] != 0)
-            cantidadFrecuencias++;
-    }
-    char[] cantidadFrecuenciasChar = convertirNumeroChar(cantidadFrecuencias,1); //1 byte, como mucho 255 frecuencias
-    List<Byte> cantidadFrecuenciasByte = ByteEncodingHelper.EncodeSequence(cantidadFrecuenciasChar);
-    byte[] cantidadFrecuenciasBits = this.ConvertByteListToPrimitives(cantidadFrecuenciasByte);
-
-    //tamanio X
-    char[] XChar = convertirNumeroChar(img.getWidth(),3);
-    List<Byte> XByte = ByteEncodingHelper.EncodeSequence(XChar);
-    byte[] XBit = this.ConvertByteListToPrimitives(XByte);
-
-    //tamanio Y
-    char[] YChar = convertirNumeroChar(img.getHeight(),3);
-    List<Byte> YByte = ByteEncodingHelper.EncodeSequence(YChar);
-    byte[] YBit = this.ConvertByteListToPrimitives(YByte);
-
-    try{
         FileOutputStream fos = new FileOutputStream(path);
 
-        fos.write(longitudBit);                         //Longitud de secuencia         3 Bytes   0,1,2
-        fos.write(cantidadFrecuenciasBits);             //Cantidad de Frecuencias       1 Byte    3
+        //Secuencia de la imagen
+        char[] secuenciaChar = codificarSecuencia(img, secuencias) ;
+        List<Byte> secuenciaByte = ByteEncodingHelper.EncodeSequence(secuenciaChar);  //Codificado a byte
+        byte[] secuenciaBits = this.ConvertByteListToPrimitives(secuenciaByte); //Binario
 
-        fos.write(XBit);                                //Anchura                       3 Bytes   4,5,6
-        fos.write(YBit);                                //Altura                        3 Bytes   7,8,9
-
-        insertarFrecuencias(fos,distribucion);          //Todas las frecuencias:  Color 1 Byte    10,14
-        //                 Distribucion 3 Bytes   (11,12,13),(15,16,17)
-
-        fos.write(secuenciaBits);                       //Bytes restantes               n Bytes   18...
+        //WRITE IN FILE
+        //writeInFile(img.getColorModel(),1,fos);                          //Profundidad
+        writeInFile(secuenciaChar.length,3,fos);                    //Longitud de secuencia         3 Bytes   0,1,2
+        writeInFile(getFrecuenciasUtilizadas(distribucion),1,fos); //Cantidad de Frecuencias       1 Byte    3
+        writeInFile(img.getWidth(),3,fos);                         //Anchura   3 Bytes   4,5,6
+        writeInFile(img.getHeight(),3,fos);                        //Altura    3 Bytes   7,8,9
+        insertarFrecuencias(fos,distribucion);                          //Frecuencias
+        fos.write(secuenciaBits);                                       //Bytes restantes               n Bytes   18...
 
         fos.close();
-    }catch (IOException e) {
-        System.out.println(e.getMessage());
     }
-}
+
+    public void writeInFile(Object o, int bytes, FileOutputStream fos) throws IOException {
+        int numero  = (int) o;
+        char[] longitudChar  = convertirNumeroChar(numero,bytes);
+        List<Byte> longitudByte = ByteEncodingHelper.EncodeSequence(longitudChar);
+        byte[] longitudBit = this.ConvertByteListToPrimitives(longitudByte); //Añade un byte de mas en 0
+        fos.write(longitudBit);
+    }
+
+    public int getFrecuenciasUtilizadas(int[] distribucion){
+        int cantidadFrecuencias = 0;
+        for(int x = 0; x < distribucion.length; x++){
+            if (distribucion[x] != 0)
+                cantidadFrecuencias++;
+        }
+        return cantidadFrecuencias;
+    }
+    public Integer getProfundidadBit(BufferedImage img){
+        ColorModel color = img.getColorModel();
+        return color.getPixelSize();
+    }
 
     public byte[] ConvertByteListToPrimitives(List<Byte> input) {
         byte[] ret = new byte[input.size()];
@@ -207,32 +181,56 @@ public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String
 
         return ret;
     }
-    public void insertarFrecuencias(FileOutputStream fos, int[] distribuciones){
-        try{
-            char[] colorChar = new char[1];
-            char[] distribucionChar = new char[24];
+    public char[] convertirNumeroChar(int entrada,int n){   //Convierte un numero a n bytes
+        int aux = entrada;
+        char[] rta = new char[8*n];
+        for(int x = 0; x < rta.length; x++){
+            if (aux >= Math.pow(2,rta.length-1-x)){
+                rta[x] = '1';
+                aux = (int) (aux - Math.pow(2,23-x));
+            } else{ rta[x] = '0';}
+        }
+        return rta;
+    }
 
-            for(int i = 0;i<distribuciones.length;i++){
-                if(distribuciones[i]!=0){
-                    colorChar = convertirNumeroChar(i,1); //1 byte para almacenar el color (0 a 255)
-                    List<Byte> colorByte = ByteEncodingHelper.EncodeSequence(colorChar);  //Codificado a byte
-                    byte[] colorBits = this.ConvertByteListToPrimitives(colorByte); //Binario
+    public void insertarFrecuencias(FileOutputStream fos, int[] distribuciones) throws IOException {
+        char[] colorChar = new char[1];
+        char[] distribucionChar = new char[24];
 
-                    distribucionChar = convertirNumeroChar(distribuciones[i],3);
-                    List<Byte> distribucionByte = ByteEncodingHelper.EncodeSequence(distribucionChar);
-                    byte[] distribucionBits = this.ConvertByteListToPrimitives(distribucionByte);
+        for(int i = 0;i<distribuciones.length;i++){
+            if(distribuciones[i]!=0){
+                colorChar = convertirNumeroChar(i,1); //1 byte para almacenar el color (0 a 255)
+                List<Byte> colorByte = ByteEncodingHelper.EncodeSequence(colorChar);  //Codificado a byte
+                byte[] colorBits = this.ConvertByteListToPrimitives(colorByte); //Binario
 
-                    fos.write(colorBits);           //Escribo 1 bit con el color
-                    fos.write(distribucionBits);    //Escribo 3 bits con la distribucion
+                distribucionChar = convertirNumeroChar(distribuciones[i],3);
+                List<Byte> distribucionByte = ByteEncodingHelper.EncodeSequence(distribucionChar);
+                byte[] distribucionBits = this.ConvertByteListToPrimitives(distribucionByte);
+
+                fos.write(colorBits);           //Escribo 1 bit con el color
+                fos.write(distribucionBits);    //Escribo 3 bits con la distribucion
                 }
             }
-        }catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
     }
+
 ///--------------------------------------------------------------------------------------------------------//
 //----------------------------          DESCOMPRIMIR             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
+
+    public  BufferedImage descomprimirImagen(Data<char[], Arbol,Integer,Integer> data, Integer profundidad){
+        int sizeX = data.getSizeX();
+        int sizeY = data.getSizeY();
+        final BufferedImage res = createImage(sizeX,sizeY,profundidad);
+        int index = 0;
+
+        for(int x = 0; x < sizeX; x++)           //Recorremos la imagen
+            for(int y = 0; y < sizeY; y++){
+                int[] color = getColor(data.getContenido1(), data.getContenido2(), index);   //Obtenemos el color de esa posicion
+                index = color[0];
+                res.setRGB(x, y, (color[1]*256*256 + color[1] * 256 + color[1]));
+            }
+        return res;
+    }
 
     public BufferedImage createImage(int sizeX,int sizeY,Integer profundidad) {
 
@@ -246,23 +244,6 @@ public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String
         }
     }
 
-    public  BufferedImage map(Cosas<char[], Arbol,Integer,Integer> cosas, Integer profundidad){
-        int sizeX = cosas.getSizeX();
-        int sizeY = cosas.getSizeY();
-        final BufferedImage res = createImage(sizeX,sizeY,profundidad);
-        int index = 0;
-
-        for(int x = 0; x < sizeX; x++)           //Recorremos la imagen
-            for(int y = 0; y < sizeY; y++){
-                int[] color = getColor(cosas.getContenido1(), cosas.getContenido2(), index);   //Obtenemos el color de esa posicion
-
-                index = color[0];
-            //    Color c = new Color(color[1],color[1],color[1]);
-             //   res.setRGB(x, y, c.getRGB() );
-                res.setRGB(x, y, (color[1]*256*256 + color[1] * 256 + color[1]));
-            }
-        return res;
-    }
     public int[] getColor(char[] in, Arbol nodo, int index){  //Mura
         int[] rtrn = new int[2]; //En 0 el index, en 1 el color
         Arbol aux = nodo;
@@ -292,26 +273,6 @@ public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String
         }
     }
 
-
-
-    public char[] convertirNumeroChar(int entrada,int n){   //Convierte un numero a n bytes
-        int aux = entrada;
-        char[] rta = new char[8*n];
-        for(int x = 0; x < rta.length; x++){
-            if (aux >= Math.pow(2,rta.length-1-x)){
-                rta[x] = '1';
-                aux = (int) (aux - Math.pow(2,23-x));
-            } else{ rta[x] = '0';}
-        }
-        return rta;
-    }
-
-
-    public Integer getProfundidadBit(BufferedImage img){
-        //img es un BufferedImage
-        ColorModel color = img.getColorModel();
-        return color.getPixelSize();
-    }
     private static final IndexColorModel createGreyscaleModel(int bitDepth) {
 
         // Only support these bitDepth(1, 2, 4) for now: Set the size.
@@ -338,7 +299,9 @@ public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String
         return new IndexColorModel(bitDepth, size, r, g, b);
     }
 
-    ///--------------------------------------------------------------------------------------------------------//
+
+
+///--------------------------------------------------------------------------------------------------------//
 //----------------------------          PRINT             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
     public void printSequence(char[] sequence) {
@@ -346,6 +309,15 @@ public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String
             System.out.print(sequence[i]);
         }
         System.out.println();
+    }
+    public static void printMap(Map mp) { //Muestra el contenido del HashMap
+        Iterator it = mp.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+
+
+            System.out.println(pair.getKey() + " = " + pair.getValue());
+        }
     }
 
 }
