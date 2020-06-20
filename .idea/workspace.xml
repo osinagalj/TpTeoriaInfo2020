@@ -1,13 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="TpTeoria:jar2" />
+    </artifacts-to-build>
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff69c44d-9593-437b-a17b-e73dacae859f" name="Default Changelist" comment="" />
+    <list default="true" id="a07ea69a-6139-4b72-bfd1-bbe09185f43a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/TpTeoria_jar2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/commons_logging_api.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TpTeoria.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TpTeoria.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Cosas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/img/Will(Original).bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/img/Will_1.bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/img/Will_2.bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/img/Will_3.bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/img/Will_4.bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/img/Will_5.bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/img/Will_Canal10.bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/img/Will_Canal2.bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/img/Will_Canal8.bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/img/Will_ej2.bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resourses/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TpTeoriaInfo2020.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Librerias.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Librerias1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Librerias2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Librerias3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Librerias4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ProyectoTeoria.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ProyectoTeoria1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3erParcial/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3erParcial/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3erParcial/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3erParcial/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3erParcial/Resumen.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3erParcial/codigos.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3erParcial/out/production/codigos/Codigos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3erParcial/src/Codigos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Informe.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/.idea/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Arbol.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/ByteEncodingHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Calculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Cosas.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Histogramas/Will 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Histogramas/Will Original.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Histogramas/Will ej 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Librerias/commons-beanutils-1.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Librerias/commons-collections-2.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Librerias/commons-digester-1.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Librerias/commons-javaflow-20060411.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Librerias/commons-logging-1.0.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Librerias/commons-logging-api.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Librerias/jcommon-1.0.16.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Librerias/jfreechart-1.0.13.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/Pseudo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/TpTeoriaInfo2020.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/bin/will1_comprimido.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/bin/will1_descomprimido.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/bin/willOriginalComprimido.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/bin/willOriginalDescomprimido.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/bin/will_ej2_comprimido.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/bin/will_ej2_comprimido_Original.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/bin/will_ej2_descomprimido.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/bin/will_ej2_descomprimido_Original.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/img/Will(Original).bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/img/Will_1.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/img/Will_2.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/img/Will_3.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/img/Will_4.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/img/Will_5.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/img/Will_Canal10.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/img/Will_Canal2.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/img/Will_Canal8.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MURA TPE TEORIA/src/img/Will_ej2.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoTeoria.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pseudo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/libraries/Librerias.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Arbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Arbol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ByteEncodingHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ByteEncodingHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Calculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Histogramas/Will 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Histogramas/Will Original.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Histogramas/Will ej 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TpTeoriaInfo2020.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bin/will1_comprimido.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/will1_comprimido.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bin/will1_descomprimido.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/will1_descomprimido.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bin/willOriginalComprimido.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/willOriginalComprimido.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bin/willOriginalDescomprimido.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/willOriginalDescomprimido.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bin/will_ej2_comprimido.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/will_ej2_comprimido.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bin/will_ej2_comprimido_Original.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/will_ej2_comprimido_Original.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bin/will_ej2_descomprimido.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/will_ej2_descomprimido.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bin/will_ej2_descomprimido_Original.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/will_ej2_descomprimido_Original.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/.idea/libraries/Librerias.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/.idea/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Arbol.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/ByteEncodingHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Calculator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Histogramas/Will 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Histogramas/Will Original.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Histogramas/Will ej 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Librerias/commons-beanutils-1.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Librerias/commons-collections-2.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Librerias/commons-digester-1.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Librerias/commons-javaflow-20060411.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Librerias/commons-logging-1.0.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Librerias/commons-logging-api.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Librerias/jcommon-1.0.16.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Librerias/jfreechart-1.0.13.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/TpTeoriaInfo2020.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/bin/will1_comprimido.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/bin/will1_descomprimido.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/bin/willOriginalComprimido.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/bin/willOriginalDescomprimido.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/bin/will_ej2_comprimido.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/bin/will_ej2_comprimido_Original.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/bin/will_ej2_descomprimido.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/bin/will_ej2_descomprimido_Original.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/.idea/libraries/Librerias.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/.idea/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/Histogramas/Will 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/Histogramas/Will Original.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/Histogramas/Will ej 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/Librerias/commons-beanutils-1.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/Librerias/commons-collections-2.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/Librerias/commons-digester-1.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/Librerias/commons-javaflow-20060411.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/Librerias/commons-logging-1.0.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/Librerias/commons-logging-api.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/Librerias/jcommon-1.0.16.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/Librerias/jfreechart-1.0.13.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/TpTeoriaInfo2020.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/bin/will1_comprimido.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/bin/will1_descomprimido.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/bin/willOriginalComprimido.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/bin/willOriginalDescomprimido.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/bin/will_ej2_comprimido.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/bin/will_ej2_comprimido_Original.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/bin/will_ej2_descomprimido.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/TpTeoriaInfo2020/out/production/TpTeoriaInfo2020/bin/will_ej2_descomprimido_Original.bmp" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectId" id="1dKSudsL9PK8i8qTLZAVAXLZSR4" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1dYqNpPtutsBUzFrC5UD2H3C8z2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -15,6 +204,90 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Librerias/commons-beanutils-1.8.0.jar!/" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TpTeoria" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a07ea69a-6139-4b72-bfd1-bbe09185f43a" name="Default Changelist" comment="" />
+      <created>1592612336605</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592612336605</updated>
+      <workItem from="1592612339855" duration="2203000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="413" y="154" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1592613660961">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="154" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1592613660961" />
+    <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1592612492995">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1592612492995" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1592614510379">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1592614510379" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1592614510379">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1592614510379" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1592614510379">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1592614510379" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1592614510379">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1592614510379" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1592613717641">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1592613717641" />
   </component>
 </project>

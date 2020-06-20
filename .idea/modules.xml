@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/TpTeoriaInfo2020.iml" filepath="$PROJECT_DIR$/.idea/TpTeoriaInfo2020.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TpTeoria.iml" filepath="$PROJECT_DIR$/TpTeoria.iml" />
     </modules>
   </component>
 </project>

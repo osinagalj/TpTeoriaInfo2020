@@ -1,61 +1,36 @@
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+
+
 public class Arbol implements Comparable<Arbol>{
 
     private Arbol hijoIzquierdo = null;
     private Arbol hijoDerecho = null;
 
     private double probabilidad;
-    private int color = -1;
+    private Integer color;
+    private int nivel;
 
 
-
-    private int nivel = 0;
-
-    public Arbol(){
-
-    }
-    public Arbol( int color, double probabilidad){
+    public Arbol( Integer color, double probabilidad){ //Para crear hoja, hijos en null
         this.color = color;
         this.probabilidad = probabilidad;
+        nivel = 0;
     }
-    public Arbol( int color, double probabilidad,int nivel){
-        this.color = color;
-        this.probabilidad = probabilidad;
-        this.nivel = nivel;
 
-    }
-    public Arbol( Arbol hijoIzquierdo,Arbol hijoDerecho, int color, double probabilidad){
-        this.hijoDerecho = hijoDerecho;
-        this.hijoIzquierdo = hijoIzquierdo;
-        this.color = color;
-        this.probabilidad = probabilidad;
+    public Arbol(Arbol hijoIzquierdo,Arbol hijoDerecho){ //Para crear un padre
 
-        if(hijoDerecho.getNivel()> hijoIzquierdo.getNivel()){
-            this.setNivel(hijoDerecho.getNivel());
-        }else{
-            this.setNivel(hijoIzquierdo.getNivel());
-        }
-    }
-    public Arbol( Arbol hijoIzquierdo,Arbol hijoDerecho, double probabilidad){
-        this.hijoDerecho = hijoDerecho;
-        this.hijoIzquierdo = hijoIzquierdo;
-
-        this.probabilidad = probabilidad;
-        if(hijoDerecho.getNivel()> hijoIzquierdo.getNivel()){
-            this.setNivel(hijoDerecho.getNivel());
-        }else{
-            this.setNivel(hijoIzquierdo.getNivel());
-        }
-
-    }
-    public Arbol( Arbol hijoIzquierdo,Arbol hijoDerecho){
         this.hijoDerecho = hijoDerecho;
         this.hijoIzquierdo = hijoIzquierdo;
 
         this.probabilidad = hijoIzquierdo.getProbabilidad() + hijoDerecho.getProbabilidad();
-        if(hijoDerecho.getNivel()> hijoIzquierdo.getNivel()){
-            this.setNivel(hijoDerecho.getNivel());
+        if(hijoDerecho.getNivel() > hijoIzquierdo.getNivel()){
+            nivel = hijoDerecho.getNivel()+1;
         }else{
-            this.setNivel(hijoIzquierdo.getNivel());
+            nivel = hijoIzquierdo.getNivel()+1;
         }
 
     }
@@ -79,11 +54,11 @@ public class Arbol implements Comparable<Arbol>{
         return this.probabilidad;
     }
 
-    public int getColor() {
+    public Integer getColor() {
         return this.color;
     }
 
-    public void setColor(int color) {
+    public void setColor(Integer color) {
         this.color = color;
     }
 
@@ -114,4 +89,5 @@ public class Arbol implements Comparable<Arbol>{
     public void setNivel(int nivel) {
         this.nivel = nivel;
     }
+
 }
