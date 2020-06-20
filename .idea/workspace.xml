@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="TpTeoria:jar2" />
+      <artifact name="TpTeoria:jar" />
     </artifacts-to-build>
   </component>
   <component name="BranchesTreeState">
@@ -25,10 +25,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a07ea69a-6139-4b72-bfd1-bbe09185f43a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/TpTeoria_jar2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TpTeoria.jar" beforeDir="false" afterPath="$PROJECT_DIR$/TpTeoria.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/TpTeoria_jar2/TpTeoria.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TpTeoria/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TpTeoria/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ejercicios/Ejercicio_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejercicios/Ejercicio_3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Estructuras/ByteEncodingHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Estructuras/ByteEncodingHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ejercicios/Ejercicio_4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejercicios/Ejercicio_4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Histogramas/Will 1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Histogramas/Will 1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Histogramas/Will Original.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Histogramas/Will Original.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Histogramas/Will ej 2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Histogramas/Will ej 2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +71,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -94,6 +101,7 @@
       <updated>1592612336605</updated>
       <workItem from="1592612339855" duration="9327000" />
       <workItem from="1592623698868" duration="2736000" />
+      <workItem from="1592675079303" duration="11279000" />
     </task>
     <servers />
   </component>
@@ -113,37 +121,37 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="413" y="154" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1592615682553">
+    <state x="413" y="154" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1592677302090">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="154" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1592615682553" />
+    <state x="413" y="154" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1592677302090" />
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592621173518">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1592621173518" />
-    <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1592612492995">
+    <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1592676825687">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1592612492995" />
-    <state width="1323" height="472" key="GridCell.Tab.0.bottom" timestamp="1592626443584">
+    <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1592676825687" />
+    <state width="1323" height="472" key="GridCell.Tab.0.bottom" timestamp="1592686437424">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="472" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1592626443584" />
-    <state width="1323" height="472" key="GridCell.Tab.0.center" timestamp="1592626443583">
+    <state width="1323" height="472" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1592686437424" />
+    <state width="1323" height="472" key="GridCell.Tab.0.center" timestamp="1592686437424">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="472" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1592626443583" />
-    <state width="1323" height="472" key="GridCell.Tab.0.left" timestamp="1592626443583">
+    <state width="1323" height="472" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1592686437424" />
+    <state width="1323" height="472" key="GridCell.Tab.0.left" timestamp="1592686437424">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="472" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1592626443583" />
-    <state width="1323" height="472" key="GridCell.Tab.0.right" timestamp="1592626443584">
+    <state width="1323" height="472" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1592686437424" />
+    <state width="1323" height="472" key="GridCell.Tab.0.right" timestamp="1592686437424">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="472" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1592626443584" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1592615783642">
+    <state width="1323" height="472" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1592686437424" />
+    <state x="163" y="0" key="SettingsEditor" timestamp="1592677895334">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1592615783642" />
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1592677895334" />
   </component>
 </project>
