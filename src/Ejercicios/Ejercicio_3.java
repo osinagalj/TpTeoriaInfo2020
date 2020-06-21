@@ -141,13 +141,15 @@ public class Ejercicio_3 {
         byte[] secuenciaBits = this.ConvertByteListToPrimitives(secuenciaByte); //Binario
 
         //WRITE IN FILE
-        //writeInFile(img.getColorModel(),1,fos);                          //Profundidad
-        writeInFile(secuenciaChar.length,3,fos);                    //Longitud de secuencia         3 Bytes   0,1,2
-        writeInFile(getFrecuenciasUtilizadas(distribucion),1,fos); //Cantidad de Frecuencias       1 Byte    3
-        writeInFile(img.getWidth(),3,fos);                         //Anchura   3 Bytes   4,5,6
-        writeInFile(img.getHeight(),3,fos);                        //Altura    3 Bytes   7,8,9
-        insertarFrecuencias(fos,distribucion);                          //Frecuencias
-        fos.write(secuenciaBits);                                       //Bytes restantes               n Bytes   18...
+        writeInFile(getFrecuenciasUtilizadas(distribucion),1,fos); //REDUNDANCIA PARA QUE NO SE ROMPA, REEMPLAZA EL BYTE DE LA PROFUNDIDAD
+        //writeInFile(img.getColorModel(),1,fos);                               //Profundidad             1 Byte    0
+        writeInFile(secuenciaChar.length,3,fos);                        //Longitud de secuencia         3 Bytes   1,2,3
+        writeInFile(getFrecuenciasUtilizadas(distribucion),1,fos);      //Cantidad de Frecuencias       1 Byte    4
+        writeInFile(img.getWidth(),3,fos);                              //Anchura                       3 Bytes   5,6,7
+        writeInFile(img.getHeight(),3,fos);                             //Altura                        3 Bytes   8,9,10
+        insertarFrecuencias(fos,distribucion,getFrecuenciasUtilizadas(distribucion)); //Frecuencias           1 Byte Color 11; 15
+                                                                              //                              3 Byte frecuencia  12,13,14; 16,17,18
+        fos.write(secuenciaBits);                                            //Bytes restantes               n Bytes   19... 11+cant*4
 
         fos.close();
     }
@@ -156,7 +158,7 @@ public class Ejercicio_3 {
         int numero  = (int) o;
         char[] longitudChar  = convertirNumeroChar(numero,bytes);
         List<Byte> longitudByte = ByteEncodingHelper.EncodeSequence(longitudChar);
-        byte[] longitudBit = this.ConvertByteListToPrimitives(longitudByte); //Añade un byte de mas en 0
+        byte[] longitudBit = this.ConvertByteListToPrimitives(longitudByte);
         fos.write(longitudBit);
     }
 
@@ -187,19 +189,22 @@ public class Ejercicio_3 {
         for(int x = 0; x < rta.length; x++){
             if (aux >= Math.pow(2,rta.length-1-x)){
                 rta[x] = '1';
-                aux = (int) (aux - Math.pow(2,23-x));
+                aux = (int) (aux - Math.pow(2,rta.length-1-x));
             } else{ rta[x] = '0';}
         }
         return rta;
     }
 
-    public void insertarFrecuencias(FileOutputStream fos, int[] distribuciones) throws IOException {
+    public void insertarFrecuencias(FileOutputStream fos, int[] distribuciones,int cantidad) throws IOException {
         char[] colorChar = new char[1];
         char[] distribucionChar = new char[24];
+
+
 
         for(int i = 0;i<distribuciones.length;i++){
             if(distribuciones[i]!=0){
                 colorChar = convertirNumeroChar(i,1); //1 byte para almacenar el color (0 a 255)
+
                 List<Byte> colorByte = ByteEncodingHelper.EncodeSequence(colorChar);  //Codificado a byte
                 byte[] colorBits = this.ConvertByteListToPrimitives(colorByte); //Binario
 
@@ -217,7 +222,7 @@ public class Ejercicio_3 {
 //----------------------------          DESCOMPRIMIR             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
 
-    public  BufferedImage descomprimirImagen(Data<char[], Arbol,Integer,Integer> data, Integer profundidad){
+    public  BufferedImage descomprimirImagen(Data<char[], Arbol,Integer,Integer,Integer> data, Integer profundidad){
         int sizeX = data.getSizeX();
         int sizeY = data.getSizeY();
         final BufferedImage res = createImage(sizeX,sizeY,profundidad);

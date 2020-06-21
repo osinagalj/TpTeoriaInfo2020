@@ -31,7 +31,7 @@ public class Main {
 
             //Consola
 
-           FileOutputStream is = new FileOutputStream(statText);
+            FileOutputStream is = new FileOutputStream(statText);
             OutputStreamWriter osw = new OutputStreamWriter(is);
             Writer wr = new BufferedWriter(osw);
 
@@ -173,6 +173,7 @@ public class Main {
             //Comprimo la imagen
             System.out.println("FRENCUANCIAS DEL HASMAP 1");
             ejercicio_3.printMap(secuencias_original);
+
             Integer profundidad = ejercicio_3.getProfundidadBit(imgOriginal);
             ejercicio_3.comprimirImagen(pathWill_Original_comprimido,imgOriginal,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
@@ -213,11 +214,11 @@ public class Main {
             BufferedImage imgCanal8 = ImageIO.read(new File("src\\img\\Will_Canal8.bmp"));
             BufferedImage imgCanal10 = ImageIO.read(new File("src\\img\\Will_canal10.bmp"));
 
-            double[][] matrizCanal2 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal2);
+            //double[][] matrizCanal2 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal2);
            // double[][] matrizCanal8 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal8);
            // double[][] matrizCanal10 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal10);
 
-            ejercicio_4.mostrarMatriz(matrizCanal2);
+            //ejercicio_4.mostrarMatriz(matrizCanal2);
            // ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal8));
            // ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal10));
 

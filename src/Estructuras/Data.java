@@ -1,11 +1,12 @@
 package Estructuras;
 
-public class Data<E,Y,J,K> {
+public class Data<E,Y,J,K,L> {
 
     private E contenido1;
     private Y contenido2;
     private J sizeX;
     private K sizeY;
+    private L profundidad;
 
     public E getContenido1() {
         return contenido1;
@@ -37,5 +38,13 @@ public class Data<E,Y,J,K> {
 
     public void setSizeY(K sizeY) {
         this.sizeY = sizeY;
+    }
+
+    public L getProfundidad() {
+        return profundidad;
+    }
+
+    public void setProfundidad(L profundidad) {
+        this.profundidad = profundidad;
     }
 }

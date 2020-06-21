@@ -115,6 +115,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1592697826474">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1592697826474" />
     <state x="413" y="154" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1592677302090">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -127,26 +131,26 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1592621173518" />
-    <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1592676825687">
+    <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1592693420610">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1592676825687" />
-    <state width="1323" height="223" key="GridCell.Tab.0.bottom" timestamp="1592692775446">
+    <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1592693420610" />
+    <state width="1323" height="505" key="GridCell.Tab.0.bottom" timestamp="1592699960540">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1592692775446" />
-    <state width="1323" height="223" key="GridCell.Tab.0.center" timestamp="1592692775446">
+    <state width="1323" height="505" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1592699960540" />
+    <state width="1323" height="505" key="GridCell.Tab.0.center" timestamp="1592699960540">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1592692775446" />
-    <state width="1323" height="223" key="GridCell.Tab.0.left" timestamp="1592692775445">
+    <state width="1323" height="505" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1592699960540" />
+    <state width="1323" height="505" key="GridCell.Tab.0.left" timestamp="1592699960539">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1592692775445" />
-    <state width="1323" height="223" key="GridCell.Tab.0.right" timestamp="1592692775446">
+    <state width="1323" height="505" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1592699960539" />
+    <state width="1323" height="505" key="GridCell.Tab.0.right" timestamp="1592699960540">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="223" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1592692775446" />
+    <state width="1323" height="505" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1592699960540" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1592692775447">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -167,5 +171,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1592677895334" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1592695062550">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1592695062550" />
   </component>
 </project>
