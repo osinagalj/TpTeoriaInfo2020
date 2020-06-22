@@ -21,10 +21,8 @@ import Estructuras.ByteEncodingHelper;
 
 public class Ejercicio_3 {
 
-    Writer wr ;
-    public Ejercicio_3(Writer wr){
-        this.wr = wr;
-    }
+
+
     public Ejercicio_3(){}
 
 ///--------------------------------------------------------------------------------------------------------//
@@ -141,8 +139,8 @@ public class Ejercicio_3 {
         byte[] secuenciaBits = this.ConvertByteListToPrimitives(secuenciaByte); //Binario
 
         //WRITE IN FILE
-        writeInFile(getFrecuenciasUtilizadas(distribucion),1,fos); //REDUNDANCIA PARA QUE NO SE ROMPA, REEMPLAZA EL BYTE DE LA PROFUNDIDAD
-        //writeInFile(img.getColorModel(),1,fos);                               //Profundidad             1 Byte    0
+        // writeInFile(getProfundidadBit(img),1,fos);                         //Profundidad             1 Byte    0
+        writeInFile(getFrecuenciasUtilizadas(distribucion),1,fos);      //REDUNDANCIA PARA QUE NO SE ROMPA, REEMPLAZA EL BYTE DE LA PROFUNDIDAD
         writeInFile(secuenciaChar.length,3,fos);                        //Longitud de secuencia         3 Bytes   1,2,3
         writeInFile(getFrecuenciasUtilizadas(distribucion),1,fos);      //Cantidad de Frecuencias       1 Byte    4
         writeInFile(img.getWidth(),3,fos);                              //Anchura                       3 Bytes   5,6,7

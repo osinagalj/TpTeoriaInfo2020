@@ -1,6 +1,10 @@
 package Ejercicios;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import static Ejercicios.getColor.getGris;
 
@@ -43,10 +47,46 @@ public class Ejercicio_4 {
                 }
             }
         }
+        try{
+            crearCSV(rtrn,marginal);
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
         return rtrn;
     }
 
+
+    public void crearCSV(double[][] matriz,double[] marginal) throws FileNotFoundException {
+
+        String path = "src\\Salidas\\Ejercicio4\\a\\MatrizTransicion.csv";
+        PrintWriter pw = new PrintWriter(new File(path));
+        StringBuilder sb = new StringBuilder();
+        sb.append("x/y,");
+        // Primero cargamos todos los colores en la primer fila
+        for(int x = 0; x < matriz.length; x++){
+            if(marginal[x] != 0) {
+                sb.append(x);
+                sb.append(',');
+            }
+        }
+        for(int x = 0; x < matriz.length; x++){
+            if(marginal[x] != 0) {
+                sb.append('\n');
+                sb.append(x);                                       //color en Y
+                sb.append(',');
+                for (int y = 0; y < matriz[x].length; y++) {
+                    double number = matriz[x][y];
+                    if(marginal[y] != 0) {
+                        sb.append((double)Math.round(number * 1000d) / 1000d); // redondeamos a 3 decimales
+                        sb.append(',');                                        // separado por coma cada valor para poder abrir en un excel
+                    }
+                }
+            }
+        }
+        pw.write(sb.toString());
+        pw.close();
+    }
 
 
 

@@ -79,6 +79,7 @@ public class Ejercicio_2 {
         ChartFrame f = new ChartFrame("Histograma",jf);
         f.setSize(1200,600);
         f.setLocationRelativeTo(null);
-        ChartUtilities.saveChartAsPNG(new File("src\\Histogramas\\"+titulo+".png"), jf, 600, 300 );
+        //Histogram
+        ChartUtilities.saveChartAsPNG(new File("src\\Salidas\\Ejercicio2\\Histograma-"+titulo+".png"), jf, 600, 300 );
     }
 }

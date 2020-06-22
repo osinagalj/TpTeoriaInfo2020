@@ -2,17 +2,14 @@ import Ejercicios.Ejercicio_1;
 import Ejercicios.Ejercicio_2;
 import Estructuras.Arbol;
 import Estructuras.ByteEncodingHelper;
-
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.*;
-
 import Ejercicios.*;
+//import javafx.util.Pair;
+import Estructuras.Pair;
 public class Main {
-
-    public static File statText = new File("src\\Consola\\Consola.txt");
 
     public static void main (String [ ] args) {
         try {
@@ -29,12 +26,6 @@ public class Main {
             int w =  imgOriginal.getWidth();
             int n = h*w;
 
-            //Consola
-
-            FileOutputStream is = new FileOutputStream(statText);
-            OutputStreamWriter osw = new OutputStreamWriter(is);
-            Writer wr = new BufferedWriter(osw);
-
 
 
 //--------------------------------------------------------------------------------------------------------//
@@ -42,43 +33,35 @@ public class Main {
 //--------------------------------------------------------------------------------------------------------//
             Ejercicio_1 ejercicio1 = new Ejercicio_1();
 
-            Vector<Double> v1 = new Vector<Double>();
-            double[] v = new double[5];
-            wr.write("indices de correlacion: "+ "\n");
+            Vector<Pair> pares = new Vector<Pair>();
+
+            //calculo los indices de correlacion correspondientes
+            ejercicio1.addCorrelacion(imgOriginal,will_1,h,w,n,pares);
+            ejercicio1.addCorrelacion(imgOriginal,will_2,h,w,n,pares);
+            ejercicio1.addCorrelacion(imgOriginal,will_3,h,w,n,pares);
+            ejercicio1.addCorrelacion(imgOriginal,will_4,h,w,n,pares);
+            ejercicio1.addCorrelacion(imgOriginal,will_5,h,w,n,pares);
+
             System.out.println("indices de correlacion: ");
-            v[0] = ejercicio1.correlacion(imgOriginal,will_1,h,w,n);
-            v1.add(ejercicio1.correlacion(imgOriginal,will_1,h,w,n));
-
-            v[1] = ejercicio1.correlacion(imgOriginal,will_2,h,w,n);
-            v1.add(ejercicio1.correlacion(imgOriginal,will_2,h,w,n));
-
-            v[2] = ejercicio1.correlacion(imgOriginal,will_3,h,w,n);
-            v1.add(ejercicio1.correlacion(imgOriginal,will_3,h,w,n));
-
-            v[3] = ejercicio1.correlacion(imgOriginal,will_4,h,w,n);
-            v1.add(ejercicio1.correlacion(imgOriginal,will_4,h,w,n));
-
-            v[4] = ejercicio1.correlacion(imgOriginal,will_5,h,w,n);
-            v1.add(ejercicio1.correlacion(imgOriginal,will_5,h,w,n));
-
-
-            Collections.sort(v1);
-
-            for(int x = 5; x > 0; x--){
-                for (int y = 0; y < 5; y++){
-                    if (v1.get(x-1) == v[y]){ //
-                        wr.write("Original y Will_" + (y+1) + ": " + v1.get(x-1) + "\n" );
-                        System.out.println("Original y Will_" + (y+1) + ": " + v1.get(x-1));
-                    }
-                }
+            for(int i = 0; i< pares.size();i++){
+                System.out.println("Original y Will_" + (i+1) + ": " + pares.get(i).getCorrelacion());
             }
-            wr.write("\n");
-            System.out.println("\n");
+
+            //Ordeno las imagenes por indice de correlacion
+            Collections.sort(pares);
+
+            //Muestro en la salida el orden de las imagenes de mayor a menor segun su indice de correlacion con la imagen original
+            for(int i = 0; i< pares.size();i++){
+                Pair par = pares.get(i);
+                ejercicio1.deepCopy(par.getImg(),"src\\Salidas\\Ejercicio1\\orden"+(i+1)+".bmp");
+            }
 
 //--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 2             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
+
             Ejercicio_2 ejercicio2 = new Ejercicio_2();
+
             //Distribuciones
             int[] distribucionImagenOrignal = new int[256]; //Arreglar extensiones
             int[] distribucionWill_1 = new int[256];
@@ -93,34 +76,31 @@ public class Main {
             ejercicio2.media_desvio(will_ej2,distribucionWill_ej2,n,mediaYDesvioWill_ej2);
 
             //medias
-            System.out.println("media Original: " +mediaYDesvioOriginal[0]);        wr.write("media Original: " +mediaYDesvioOriginal[0]+"\n");
-            System.out.println("mediaWill_1: " +mediaYDesvioWill_1[0]);             wr.write("mediaWill_1: " +mediaYDesvioWill_1[0]+"\n");
-            System.out.println("media will ej 2: " +mediaYDesvioWill_ej2[0]);       wr.write("media will ej 2: " +mediaYDesvioWill_ej2[0]+"\n");
+            System.out.println("\nmedia Original: " +mediaYDesvioOriginal[0]);
+            System.out.println("mediaWill_1: " +mediaYDesvioWill_1[0]);
+            System.out.println("media will ej 2: " +mediaYDesvioWill_ej2[0]);
             //desvios
-            System.out.println("desvio Original: " +mediaYDesvioOriginal[1]);       wr.write("desvio Original: " +mediaYDesvioOriginal[1]+"\n");
-            System.out.println("desvioWill_1: " +mediaYDesvioWill_1[1]);            wr.write("desvioWill_1: " +mediaYDesvioWill_1[1]+"\n");
-            System.out.println("desvioWill_ej2: " +mediaYDesvioWill_ej2[1]);       wr.write("desvioWill_ej2: "+"\n");
+            System.out.println("desvio Original: " +mediaYDesvioOriginal[1]);
+            System.out.println("desvioWill_1: " +mediaYDesvioWill_1[1]);
+            System.out.println("desvioWill_ej2: " +mediaYDesvioWill_ej2[1]);
 
-            System.out.println("distribucion del original");                            wr.write("distribucion del original /n"+"\n");
+            System.out.println("distribucion del original");
             for(int i = 0; i<256; i++ ){
                 if(distribucionImagenOrignal[i] != 0){
-                    wr.write("x : "+ i +" fi: "+distribucionImagenOrignal[i]+ " P("+ i +") = "+  (double)distribucionImagenOrignal[i]/n+ "\n");
                     System.out.println("x : "+ i +" fi: "+distribucionImagenOrignal[i]+ " P("+ i +") = "+  (double)distribucionImagenOrignal[i]/n) ;
                 }
             }
             System.out.println(" distribucionWill_1  ");
-            wr.write("distribucionWill_1 "+"\n");
+
             for(int i = 0; i<256; i++ ){
                 if(distribucionWill_1[i] != 0){
-                    wr.write("x : "+ i +" fi: "+distribucionWill_1[i]+ " P("+ i +") = "+  (double)distribucionWill_1[i]/n+"\n");
                     System.out.println("x : "+ i +" fi: "+distribucionWill_1[i]+ " P("+ i +") = "+  (double)distribucionWill_1[i]/n) ;
                 }
             }
             System.out.println(" distribucionWill_ej2 ");
-            wr.write("distribucionWill_ej2  "+"\n");
+
             for(int i = 0; i<256; i++ ){
                 if(distribucionWill_ej2[i] != 0){
-                    wr.write("x : "+ i +" fi: "+distribucionWill_ej2[i]+ " P("+ i +") = "+  (double)distribucionWill_ej2[i]/n+"\n");
                     System.out.println("x : "+ i +" fi: "+distribucionWill_ej2[i]+ " P("+ i +") = "+  (double)distribucionWill_ej2[i]/n) ;
                 }
             }
@@ -136,7 +116,7 @@ public class Main {
 //----------------------------          EJERCICIO 3             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
 
-            Ejercicio_3 ejercicio_3 = new Ejercicio_3(wr);
+            Ejercicio_3 ejercicio_3 = new Ejercicio_3();
             Vector<Arbol> hojas_WillOriginal = new Vector<Arbol>();
             Vector<Arbol> hojas_Willej2 = new Vector<Arbol>();
 
@@ -154,26 +134,23 @@ public class Main {
             HashMap<Integer,String> secuencias_will_ej2 = new HashMap<Integer,String>();
             ejercicio_3.obtenerSecuencias(secuencias_will_ej2,arbol_Willej2,"");
 
-            //Paths
-            String pathWill_Original_comprimido = "src\\bin\\willOriginalComprimido.bin";
-            String pathWill_Original_descomprimido = "src\\bin\\willOriginalDescomprimido.bmp";
+            //Paths  "src\\Salidas\\Ejercicio1\\
+            String pathWill_Original_comprimido = "src\\Salidas\\Ejercicio3\\a\\willOriginalComprimido.bin";
+            String pathWill_Original_descomprimido = "src\\Salidas\\Ejercicio3\\a\\willOriginalDescomprimido.bmp";
 
-            String pathWill_1_comprimido = "src\\bin\\will1_comprimido.bin";
-            String pathWill_1_descomprimido = "src\\bin\\will1_descomprimido.bmp";
+            String pathWill_1_comprimido = "src\\Salidas\\Ejercicio3\\b\\will1_comprimido.bin";
+            String pathWill_1_descomprimido = "src\\Salidas\\Ejercicio3\\b\\will1_descomprimido.bmp";
 
-            String pathWill_ej2_comprimido = "src\\bin\\will_ej2_comprimido.bin";
-            String pathWill_ej2_descomprimido = "src\\bin\\will_ej2_descomprimido.bmp";
+            String pathWill_ej2_comprimido = "src\\Salidas\\Ejercicio3\\c\\will_ej2_comprimido.bin";
+            String pathWill_ej2_descomprimido = "src\\Salidas\\Ejercicio3\\c\\will_ej2_descomprimido.bmp";
 
-            String pathWill_ej2_comprimido_Original = "src\\bin\\will_ej2_comprimido_Original.bin";
-            String pathWill_ej2_descomprimido_Original = "src\\bin\\will_ej2_descomprimido_Original.bmp";
+            String pathWill_ej2_comprimido_Original = "src\\Salidas\\Ejercicio3\\d\\will_ej2_comprimido_Original.bin";
+            String pathWill_ej2_descomprimido_Original = "src\\Salidas\\Ejercicio3\\d\\will_ej2_descomprimido_Original.bmp";
 
 
             //COMPRIMIR IMAGEN ORIGINAL
             //a
             //Comprimo la imagen
-            System.out.println("FRENCUANCIAS DEL HASMAP 1");
-            ejercicio_3.printMap(secuencias_original);
-
             Integer profundidad = ejercicio_3.getProfundidadBit(imgOriginal);
             ejercicio_3.comprimirImagen(pathWill_Original_comprimido,imgOriginal,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
@@ -200,6 +177,30 @@ public class Main {
             BufferedImage img_descomprimida_will_ej2 = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido),profundidad3);
             ejercicio_3.savePNG( img_descomprimida_will_ej2, pathWill_ej2_descomprimido );
 
+            //e
+            File Original = new File("src\\img\\Will(Original).bmp");
+            //long tamanoOriginal=
+
+            File Will_original_comprimido = new File(pathWill_Original_comprimido);
+            File Will_1_comprimido = new File(pathWill_1_comprimido);
+            File will_ej2ComprimidoConOriginal =  new File(pathWill_ej2_comprimido_Original);
+            File will_ej2Comprimido = new File(pathWill_ej2_comprimido);
+
+            long tamanoOriginal= Original.length();
+            long tamanoOriginalComprimido= Will_original_comprimido.length();
+
+            System.out.println("\nTasa de compresion a)");
+            System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + tamanoOriginalComprimido + "   N = " +((double)Original.length()/(double)Will_original_comprimido.length()));
+
+            System.out.println("Tasa de compresion b)");
+            System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + tamanoOriginalComprimido + "   N = " +((double)Original.length()/(double)Will_1_comprimido.length()));
+
+
+            System.out.println("Tasa de compresion c)");
+            System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + tamanoOriginalComprimido + "   N = " +((double)Original.length()/(double)will_ej2ComprimidoConOriginal.length()));
+
+            System.out.println("Tasa de compresion d)");
+            System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + tamanoOriginalComprimido + "   N = " +((double)Original.length()/(double)will_ej2Comprimido.length()));
 
 
 //--------------------------------------------------------------------------------------------------------//
@@ -214,17 +215,17 @@ public class Main {
             BufferedImage imgCanal8 = ImageIO.read(new File("src\\img\\Will_Canal8.bmp"));
             BufferedImage imgCanal10 = ImageIO.read(new File("src\\img\\Will_canal10.bmp"));
 
-            //double[][] matrizCanal2 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal2);
+            double[][] matrizCanal2 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal2);
            // double[][] matrizCanal8 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal8);
            // double[][] matrizCanal10 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal10);
 
-            //ejercicio_4.mostrarMatriz(matrizCanal2);
+            ejercicio_4.mostrarMatriz(matrizCanal2);
            // ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal8));
            // ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal10));
 
 
-            // Cierro el archivo en donde guardo lo imprimido por consola
-            wr.close();
+
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

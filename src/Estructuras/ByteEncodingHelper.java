@@ -100,10 +100,7 @@ public class ByteEncodingHelper {
                 Arbol aux = new Arbol(color,probabilidad);
                 ejercicio3.inserTarOrdenado(frecuencias,aux);
             }
-            System.out.println("FRENCUANCIAS DEL HASMAP 2"); //??
-            for(int i = 0; i< frecuencias.size(); i++){
-                System.out.println(frecuencias.get(i).getColor() +"  ");
-            }
+
             Arbol raiz = ejercicio3.getArbolHuffman(frecuencias);
 
             int i = 11+4*cantFrecuencias;
