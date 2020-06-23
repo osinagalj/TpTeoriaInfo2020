@@ -128,7 +128,6 @@ public class Ejercicio_3 {
 //----------------------------          COMPRIMIR             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
 
-
     public void comprimirImagen(String path,BufferedImage img,HashMap<Integer,String> secuencias, int[] distribucion) throws IOException {
 
         FileOutputStream fos = new FileOutputStream(path);
@@ -139,7 +138,7 @@ public class Ejercicio_3 {
         byte[] secuenciaBits = this.ConvertByteListToPrimitives(secuenciaByte); //Binario
 
         //WRITE IN FILE
-        // writeInFile(getProfundidadBit(img),1,fos);                         //Profundidad             1 Byte    0
+        //writeInFile(getProfundidadBit(img),1,fos);                         //Profundidad             1 Byte    0
         writeInFile(getFrecuenciasUtilizadas(distribucion),1,fos);      //REDUNDANCIA PARA QUE NO SE ROMPA, REEMPLAZA EL BYTE DE LA PROFUNDIDAD
         writeInFile(secuenciaChar.length,3,fos);                        //Longitud de secuencia         3 Bytes   1,2,3
         writeInFile(getFrecuenciasUtilizadas(distribucion),1,fos);      //Cantidad de Frecuencias       1 Byte    4
@@ -197,8 +196,6 @@ public class Ejercicio_3 {
         char[] colorChar = new char[1];
         char[] distribucionChar = new char[24];
 
-
-
         for(int i = 0;i<distribuciones.length;i++){
             if(distribuciones[i]!=0){
                 colorChar = convertirNumeroChar(i,1); //1 byte para almacenar el color (0 a 255)
@@ -223,7 +220,9 @@ public class Ejercicio_3 {
     public  BufferedImage descomprimirImagen(Data<char[], Arbol,Integer,Integer,Integer> data, Integer profundidad){
         int sizeX = data.getSizeX();
         int sizeY = data.getSizeY();
-        final BufferedImage res = createImage(sizeX,sizeY,profundidad);
+        System.out.println("Profunidad = " + data.getProfundidad());
+
+        final BufferedImage res = createImage(sizeX,sizeY, profundidad);
         int index = 0;
 
         for(int x = 0; x < sizeX; x++)           //Recorremos la imagen
@@ -278,7 +277,6 @@ public class Ejercicio_3 {
 
     private static final IndexColorModel createGreyscaleModel(int bitDepth) {
 
-        // Only support these bitDepth(1, 2, 4) for now: Set the size.
         int size = 0;
         if (bitDepth == 1 || bitDepth == 2 || bitDepth == 4 || bitDepth ==8 || bitDepth==16) {
             size = (int) Math.pow(2, bitDepth);

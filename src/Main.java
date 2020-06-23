@@ -215,16 +215,32 @@ public class Main {
             BufferedImage imgCanal8 = ImageIO.read(new File("src\\img\\Will_Canal8.bmp"));
             BufferedImage imgCanal10 = ImageIO.read(new File("src\\img\\Will_canal10.bmp"));
 
-            double[][] matrizCanal2 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal2);
-           // double[][] matrizCanal8 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal8);
-           // double[][] matrizCanal10 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal10);
+            String pathCanal2 = "src\\Salidas\\Ejercicio4\\a\\MatrizTransicionC2.csv";
+            String pathFaCanal2 = "src\\Salidas\\Ejercicio4\\a\\MatrizAcumuladaC2.csv";
+            String pathCanal8 = "src\\Salidas\\Ejercicio4\\a\\MatrizTransicionC8.csv";
+            String pathCanal10 = "src\\Salidas\\Ejercicio4\\a\\MatrizTransicionC10.csv";
+            String pathFaCanal8 = "src\\Salidas\\Ejercicio4\\a\\MatrizAcumuladaC8.csv";
+            String pathFaCanal10 = "src\\Salidas\\Ejercicio4\\a\\MatrizAcumuladaC10.csv";
+
+            double[] marginalC2 = new double[256];
+            double[] marginalC8 = new double[256];
+            double[] marginalC10 = new double[256];
+
+            double[][] matrizCanal2 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal2,pathCanal2,pathFaCanal2,marginalC2);
+            double[][] matrizCanal8 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal8,pathCanal8,pathFaCanal8,marginalC8);
+            double[][] matrizCanal10 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal10,pathCanal10,pathFaCanal10,marginalC10);
+
+            ejercicio_4.crearCSV(matrizCanal2,marginalC2,pathCanal2);
+            ejercicio_4.crearCSV(matrizCanal8,marginalC2,pathCanal8);
+            ejercicio_4.crearCSV(matrizCanal10,marginalC2,pathCanal10);
 
             ejercicio_4.mostrarMatriz(matrizCanal2);
            // ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal8));
            // ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal10));
 
 
-
+            //b
+            ejercicio_4.calcularMatrizAcumulada(matrizCanal2);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
