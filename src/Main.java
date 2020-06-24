@@ -22,9 +22,10 @@ public class Main {
             BufferedImage will_5 = ImageIO.read(new File("src\\img\\Will_5.bmp")); //media 187
             BufferedImage will_ej2 = ImageIO.read(new File("src\\img\\Will_ej2.bmp"));
 
-            int h =  imgOriginal.getHeight();
-            int w =  imgOriginal.getWidth();
-            int n = h*w;
+            int h = imgOriginal.getHeight();
+            int w = imgOriginal.getWidth();
+            int n = h * w;
+
 
 
 
@@ -72,37 +73,37 @@ public class Main {
             double[] mediaYDesvioWill_1 = new double[2];
             double[] mediaYDesvioWill_ej2 = new double[2];
             //Obteniendo
-            ejercicio2.media_desvio(imgOriginal,distribucionImagenOrignal,n,mediaYDesvioOriginal);
-            ejercicio2.media_desvio(will_1,distribucionWill_1,n,mediaYDesvioWill_1);
-            ejercicio2.media_desvio(will_ej2,distribucionWill_ej2,n,mediaYDesvioWill_ej2);
+            ejercicio2.media_desvio(imgOriginal, distribucionImagenOrignal, n, mediaYDesvioOriginal);
+            ejercicio2.media_desvio(will_1, distribucionWill_1, n, mediaYDesvioWill_1);
+            ejercicio2.media_desvio(will_ej2, distribucionWill_ej2, n, mediaYDesvioWill_ej2);
 
             //medias
-            System.out.println("\nmedia Original: " +mediaYDesvioOriginal[0]);
-            System.out.println("mediaWill_1: " +mediaYDesvioWill_1[0]);
-            System.out.println("media will ej 2: " +mediaYDesvioWill_ej2[0]);
+            System.out.println("\nmedia Original: " + mediaYDesvioOriginal[0]);
+            System.out.println("mediaWill_1: " + mediaYDesvioWill_1[0]);
+            System.out.println("media will ej 2: " + mediaYDesvioWill_ej2[0]);
             //desvios
-            System.out.println("desvio Original: " +mediaYDesvioOriginal[1]);
-            System.out.println("desvioWill_1: " +mediaYDesvioWill_1[1]);
-            System.out.println("desvioWill_ej2: " +mediaYDesvioWill_ej2[1]);
+            System.out.println("desvio Original: " + mediaYDesvioOriginal[1]);
+            System.out.println("desvioWill_1: " + mediaYDesvioWill_1[1]);
+            System.out.println("desvioWill_ej2: " + mediaYDesvioWill_ej2[1]);
 
             System.out.println("distribucion del original");
-            for(int i = 0; i<256; i++ ){
-                if(distribucionImagenOrignal[i] != 0){
-                    System.out.println("x : "+ i +" fi: "+distribucionImagenOrignal[i]+ " P("+ i +") = "+  (double)distribucionImagenOrignal[i]/n) ;
+            for (int i = 0; i < 256; i++) {
+                if (distribucionImagenOrignal[i] != 0) {
+                    System.out.println("x : " + i + " fi: " + distribucionImagenOrignal[i] + " P(" + i + ") = " + (double) distribucionImagenOrignal[i] / n);
                 }
             }
             System.out.println(" distribucionWill_1  ");
 
-            for(int i = 0; i<256; i++ ){
-                if(distribucionWill_1[i] != 0){
-                    System.out.println("x : "+ i +" fi: "+distribucionWill_1[i]+ " P("+ i +") = "+  (double)distribucionWill_1[i]/n) ;
+            for (int i = 0; i < 256; i++) {
+                if (distribucionWill_1[i] != 0) {
+                    System.out.println("x : " + i + " fi: " + distribucionWill_1[i] + " P(" + i + ") = " + (double) distribucionWill_1[i] / n);
                 }
             }
             System.out.println(" distribucionWill_ej2 ");
 
-            for(int i = 0; i<256; i++ ){
-                if(distribucionWill_ej2[i] != 0){
-                    System.out.println("x : "+ i +" fi: "+distribucionWill_ej2[i]+ " P("+ i +") = "+  (double)distribucionWill_ej2[i]/n) ;
+            for (int i = 0; i < 256; i++) {
+                if (distribucionWill_ej2[i] != 0) {
+                    System.out.println("x : " + i + " fi: " + distribucionWill_ej2[i] + " P(" + i + ") = " + (double) distribucionWill_ej2[i] / n);
                 }
             }
 
@@ -244,21 +245,13 @@ public class Main {
 
             //b
 
-            //Ruido Analitico C2
-            int[] distribucionC2 = new int[256];
-            ejercicio2.media_desvio(imgCanal2,distribucionC2,n,new double[2]);
-            double ruidoAnaliticoC2 = ejercicio_4.getRuidoAnalitico(matrizCanal2,distribucionC2, n);
-            System.out.println("RUIDO C2 ANALITICO DE MRDA = "+ruidoAnaliticoC2 );
-            //Ruido Analitico C8
-            int[] distribucionC8 = new int[256];
-            ejercicio2.media_desvio(imgCanal8,distribucionC8,n,new double[2]);
-            double ruidoAnaliticoC8 = ejercicio_4.getRuidoAnalitico(matrizCanal8,distribucionC8, n);
-            System.out.println("RUIDO C8 ANALITICO DE MRDA = "+ruidoAnaliticoC8 );
-            //Ruido Analitico C8
-            int[] distribucionC10 = new int[256];
-            ejercicio2.media_desvio(imgCanal10,distribucionC10,n,new double[2]);
-            double ruidoAnaliticoC10 = ejercicio_4.getRuidoAnalitico(matrizCanal10,distribucionC10, n);
-            System.out.println("RUIDO C10 ANALITICO DE MRDA = "+ruidoAnaliticoC10 );
+            //Ruidos Analiticos
+            double ruidoAnaliticoC2 = ejercicio_4.getRuidoAnalitico(matrizCanal2,distribucionImagenOrignal, n);
+            System.out.println("Ruido Analitico C2 = "+ruidoAnaliticoC2 );
+            double ruidoAnaliticoC8 = ejercicio_4.getRuidoAnalitico(matrizCanal8,distribucionImagenOrignal, n);
+            System.out.println("Ruido Analitico C8 = "+ruidoAnaliticoC8 );
+            double ruidoAnaliticoC10 = ejercicio_4.getRuidoAnalitico(matrizCanal10,distribucionImagenOrignal, n);
+            System.out.println("Ruido Analitico C10 = "+ruidoAnaliticoC10 );
 
             //ACUMULADAS
             double[][] matrizCanal2Fa  = ejercicio_4.calcularMatrizAcumulada(matrizCanal2);
@@ -276,8 +269,8 @@ public class Main {
                 Canal 10: 2.5783626805467987
              */
             double[] originalFa = ejercicio_4.getProbabilidadesAcumuladas(distribucionImagenOrignal,n); //Acumuladas del original
-            double[] historial = ejercicio_4.simulacionComputacional(originalFa,matrizCanal2Fa,9000,3.643027393902264);
-            ejercicio_4.generarGraficoLineas(historial,3.643027393902264);
+            double[] historial = ejercicio_4.simulacionComputacional(originalFa,matrizCanal2Fa,9000,ruidoAnaliticoC2);
+            ejercicio_4.generarGraficoLineas(historial,ruidoAnaliticoC2);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

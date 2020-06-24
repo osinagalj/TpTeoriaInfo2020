@@ -32,11 +32,10 @@ import static Ejercicios.getColor.getGris;
 public class Ejercicio_4 {
 
     private double epsilon = 0.00000001d;
-    private final int Maximo = 8000;
+    private final int Maximo = 80;
 //-------------------------------------------------------------------------------------------------------//
 //--------------------------------------    A     -------------------------------------------------------//
 //-------------------------------------------------------------------------------------------------------//
-
 
 public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,double[] marginal){
     double[][] rtrn = new double[256][256];
@@ -65,7 +64,6 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
             }
         }
     }
-   // marginal2 = marginal;
     return rtrn;
 }
     public void crearCSV(double[][] matriz,double[] marginal,String path) throws FileNotFoundException {
@@ -170,20 +168,13 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
         }
         return originalFa;
     }
-
-    public double actualizarColumnaRuido(double[][] M_prob,int S_emitido, double ocurrenciaSimbolo,int emisiones){
-        //calcula el ruido de la columna afectada por la emision
-        double probabilidad = (double) ocurrenciaSimbolo/emisiones;
-        double ruido = getRuidoColumna(M_prob,S_emitido)/ocurrenciaSimbolo;
-        return ruido;
-    }
     public double getRuidoColumna(double[][] matriz, int i){
         double ruidoColumna = 0;
         for(int y = 0; y < matriz.length; y++){
             double numeber = matriz[y][i];
             if(numeber != 0) {
                 double log= getLog_2(numeber);
-                ruidoColumna = ruidoColumna + (double)log*numeber;
+                ruidoColumna = ruidoColumna + log*numeber;
             }
         }
         return ruidoColumna;
@@ -194,25 +185,32 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
         double ruido = 0;
         for(int x = 0; x < distribucion.length; x++){
             if(distribucion[x] != 0){
-                //System.out.println("x= "+x);
                 double ruidoColumna = getRuidoColumna(matriz,x);
-               // System.out.println("rudico Columna =  " + ruidoColumna);
                 ruido = ruido + (ruidoColumna * ((double)distribucion[x]/n));
-
-
-               // System.out.println("rudico Total =  " + ruido);
-
             }
-
-
         }
         return ruido;
     }
-    public double getRuido(double[] ocurrenciaSimbolos, double[] ruidoColumnas, int muestras){
+    public double actualizarColumnaRuido(double[][] M_prob,int S_emitido, int ocurrenciaSimbolo){
+        //calcula el ruido de la columna afectada por la emision
+
+        double ruidoColumna = 0;
+        for(int y = 0; y < M_prob.length; y++){
+            double numeber = M_prob[y][S_emitido]/ocurrenciaSimbolo;
+            if(numeber != 0) {
+                double log= getLog_2(numeber);
+                ruidoColumna = ruidoColumna + log*numeber;
+            }
+        }
+        return(ruidoColumna);
+
+    }
+
+    public double getRuido(int[] ocurrenciaSimbolos, double[] ruidoColumnas, int muestras){
         //hace esta formula Sum(p(x) * p(y/x) ) los dos son de simulacion
         double ruido = 0;
         for(int i = 0; i<ocurrenciaSimbolos.length;i++){
-            ruido = ruido + (ocurrenciaSimbolos[i]/muestras) * ruidoColumnas[i];
+            ruido = ruido + (double)(ocurrenciaSimbolos[i]/muestras) * ruidoColumnas[i];
         }
         return ruido;
     }
@@ -220,10 +218,10 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
         int emisiones = 0;
         double ruido_actual= 0;
         double ruido_viejo = -1;
-        double[] ocurrenciaSimbolos = new double[256];
+        int[] ocurrenciaSimbolos = new int[256]; //simulacion
+        double[][] M_prob_muestro = new double[256][256]; //simulacion
         double[] ruidoColumnas = new double[256];
         double[] historialRuido = new double[Maximo]; // no uso un vector de double porque llega un momento en donde se estaciona el valor del ruido y es mucho mas costoso O(n) contra un O(1)
-        double[][] M_prob_muestro = new double[256][256];
 
         while (!this.Converge(ruido_actual, ruido_viejo) || emisiones < MIN_MUESTRAS) {
             //Simulacion
@@ -235,9 +233,12 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
             ruido_viejo = ruido_actual;
             ocurrenciaSimbolos[S_emitido]++;
             M_prob_muestro[S_salida][S_emitido]++;
-            ruidoColumnas[S_emitido]= actualizarColumnaRuido(M_prob_muestro,S_emitido,ocurrenciaSimbolos[S_emitido],emisiones);
+            ruidoColumnas[S_emitido]= actualizarColumnaRuido(M_prob_muestro,S_emitido,ocurrenciaSimbolos[S_emitido]);
             //actualizo el ruido
+            System.out.println("ruido = " +ruido_actual );
+            //ruido_actual =  getRuidoAnalitico(M_prob_muestro,ocurrenciaSimbolos,emisiones);
             ruido_actual = getRuido(ocurrenciaSimbolos,ruidoColumnas,emisiones);
+            //Historial de ruidos
             if(emisiones < (Maximo-2)){
                 historialRuido[emisiones] = ruido_actual;        // guardo el ruido
             }
