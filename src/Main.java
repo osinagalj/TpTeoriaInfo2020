@@ -31,6 +31,7 @@ public class Main {
 //--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 1             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
+        /*
             Ejercicio_1 ejercicio1 = new Ejercicio_1();
 
             Vector<Pair> pares = new Vector<Pair>();
@@ -55,7 +56,7 @@ public class Main {
                 Pair par = pares.get(i);
                 ejercicio1.deepCopy(par.getImg(),"src\\Salidas\\Ejercicio1\\orden"+(i+1)+".bmp");
             }
-
+*/
 //--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 2             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
@@ -63,7 +64,7 @@ public class Main {
             Ejercicio_2 ejercicio2 = new Ejercicio_2();
 
             //Distribuciones
-            int[] distribucionImagenOrignal = new int[256]; //Arreglar extensiones
+            int[] distribucionImagenOrignal = new int[256];
             int[] distribucionWill_1 = new int[256];
             int[] distribucionWill_ej2 = new int[256];
             //Medias y Desvios
@@ -105,17 +106,17 @@ public class Main {
                 }
             }
 
-
+/*
             //CREANDO LOS HISTOGRAMAS
             ejercicio2.generarHistograma(distribucionWill_ej2,"Will ej 2");
             ejercicio2.generarHistograma(distribucionWill_1,"Will 1");
             ejercicio2.generarHistograma(distribucionImagenOrignal,"Will Original");
-
+*/
 
 ///--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 3             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
-
+/*
             Ejercicio_3 ejercicio_3 = new Ejercicio_3();
             Vector<Arbol> hojas_WillOriginal = new Vector<Arbol>();
             Vector<Arbol> hojas_Willej2 = new Vector<Arbol>();
@@ -201,13 +202,14 @@ public class Main {
 
             System.out.println("Tasa de compresion d)");
             System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + tamanoOriginalComprimido + "   N = " +((double)Original.length()/(double)will_ej2Comprimido.length()));
-
+*/
 
 //--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 4             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
 
             Ejercicio_4 ejercicio_4 = new Ejercicio_4();
+
             //Siempre usamos "imgOriginal", ya que es la que se pasa por cada canal
 
             //Cargando las Imagenes de canales
@@ -221,27 +223,46 @@ public class Main {
             String pathCanal10 = "src\\Salidas\\Ejercicio4\\a\\MatrizTransicionC10.csv";
             String pathFaCanal8 = "src\\Salidas\\Ejercicio4\\a\\MatrizAcumuladaC8.csv";
             String pathFaCanal10 = "src\\Salidas\\Ejercicio4\\a\\MatrizAcumuladaC10.csv";
+            String pathOriginal = "src\\Salidas\\Ejercicio4\\a\\MatrizAcumuladaC10.csv";
+            String pathFaOriginal = "src\\Salidas\\Ejercicio4\\a\\MatrizAcumuladaC10.csv";
 
             double[] marginalC2 = new double[256];
             double[] marginalC8 = new double[256];
             double[] marginalC10 = new double[256];
 
-            double[][] matrizCanal2 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal2,pathCanal2,pathFaCanal2,marginalC2);
-            double[][] matrizCanal8 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal8,pathCanal8,pathFaCanal8,marginalC8);
-            double[][] matrizCanal10 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal10,pathCanal10,pathFaCanal10,marginalC10);
+            double[][] matrizCanal2 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal2,marginalC2);
+            double[][] matrizCanal8 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal8,marginalC8);
+            double[][] matrizCanal10 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal10,marginalC10);
 
             ejercicio_4.crearCSV(matrizCanal2,marginalC2,pathCanal2);
             ejercicio_4.crearCSV(matrizCanal8,marginalC2,pathCanal8);
             ejercicio_4.crearCSV(matrizCanal10,marginalC2,pathCanal10);
 
-            ejercicio_4.mostrarMatriz(matrizCanal2);
-           // ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal8));
-           // ejercicio_4.mostrarMatriz(ejercicio_4.calcularMatriz(imgOriginal,imgCanal10));
+            System.out.println("IMPRIMIENDO MATRIZ ");
+            ejercicio_4.mostrarMatriz2(matrizCanal2);
 
 
             //b
-            ejercicio_4.calcularMatrizAcumulada(matrizCanal2);
+            double[][] matrizCanal2Fa  = ejercicio_4.calcularMatrizAcumulada(matrizCanal2);
+            double[][] matrizCanal8Fa  = ejercicio_4.calcularMatrizAcumulada(matrizCanal8);
+            double[][] matrizCanal10Fa  = ejercicio_4.calcularMatrizAcumulada(matrizCanal10);
 
+            System.out.println("IMPRIMIENDO MATRIZ ACUMULADA ");
+            ejercicio_4.mostrarMatriz2(matrizCanal2Fa);
+            System.out.println("termino ");
+            /*
+            Ruido analitico:
+                Canal 2: 3.643027393902264
+                Canal 8: 3.790633817046591
+                Canal 10: 2.4658405430026074
+            Ruido simulacion:
+                Canal 2: 3.6211454222442567
+                Canal 8: 3.797488008381553
+                Canal 10: 2.5783626805467987
+             */
+            double[] originalFa = ejercicio_4.getProbabilidadesAcumuladas(distribucionImagenOrignal,n); //Acumuladas del original
+            double[] historial = ejercicio_4.simulacionComputacional(originalFa,matrizCanal2Fa,9000,3.643027393902264);
+            ejercicio_4.generarGraficoLineas(historial,3.643027393902264);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
