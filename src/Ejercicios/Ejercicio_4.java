@@ -297,8 +297,8 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
 
         ChartPanel chartPanel = new ChartPanel(jfreechart, false);
         frame.setContentPane(chartPanel);
-        frame.setVisible(true);
-        //ChartUtilities.saveChartAsPNG(new File("src\\Salidas\\Ejercicio4\\GraficoEvolucionError.png"), jfreechart, 600, 300 );
+        //frame.setVisible(true);
+        ChartUtilities.saveChartAsPNG(new File("src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"GraficoEvolucionError.png"), jfreechart, 600, 300 );
     }
 
 

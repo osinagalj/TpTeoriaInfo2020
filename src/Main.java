@@ -14,13 +14,13 @@ public class Main {
     public static void main (String [ ] args) {
         try {
             //Cargando las Imagenes
-            BufferedImage imgOriginal = ImageIO.read(new File("src\\img\\Will(Original).bmp"));//media 189  "src\\img\\Will(Original).bmp"
-            BufferedImage will_1 = ImageIO.read(new File("src\\img\\Will_1.bmp")); //media 192
-            BufferedImage will_2 = ImageIO.read(new File("src\\img\\Will_2.bmp")); //media 189
-            BufferedImage will_3 = ImageIO.read(new File("src\\img\\Will_3.bmp")); //media 185
-            BufferedImage will_4 = ImageIO.read(new File("src\\img\\Will_4.bmp")); //media 191
-            BufferedImage will_5 = ImageIO.read(new File("src\\img\\Will_5.bmp")); //media 187
-            BufferedImage will_ej2 = ImageIO.read(new File("src\\img\\Will_ej2.bmp"));
+            BufferedImage imgOriginal = ImageIO.read(new File("src" + File.separator + "img" + File.separator + "Will(Original).bmp"));//media 189
+            BufferedImage will_1 = ImageIO.read(new File("src" + File.separator + "img" + File.separator + "Will_1.bmp")); //media 192
+            BufferedImage will_2 = ImageIO.read(new File("src" + File.separator + "img" + File.separator + "Will_2.bmp")); //media 189
+            BufferedImage will_3 = ImageIO.read(new File("src" + File.separator + "img" + File.separator + "Will_3.bmp")); //media 185
+            BufferedImage will_4 = ImageIO.read(new File("src" + File.separator + "img" + File.separator + "Will_4.bmp")); //media 191
+            BufferedImage will_5 = ImageIO.read(new File("src" + File.separator + "img" + File.separator + "Will_5.bmp")); //media 187
+            BufferedImage will_ej2 = ImageIO.read(new File("src" + File.separator + "img" + File.separator + "Will_ej2.bmp"));
 
             int h = imgOriginal.getHeight();
             int w = imgOriginal.getWidth();
@@ -32,7 +32,7 @@ public class Main {
 //--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 1             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
-        /*
+
             Ejercicio_1 ejercicio1 = new Ejercicio_1();
 
             Vector<Pair> pares = new Vector<Pair>();
@@ -55,9 +55,10 @@ public class Main {
             //Muestro en la salida el orden de las imagenes de mayor a menor segun su indice de correlacion con la imagen original
             for(int i = 0; i< pares.size();i++){
                 Pair par = pares.get(i);
-                ejercicio1.deepCopy(par.getImg(),"src\\Salidas\\Ejercicio1\\orden"+(i+1)+".bmp");
+                ejercicio1.deepCopy(par.getImg(),"src"+ File.separator +"Salidas"+ File.separator +"Ejercicio1"+File.separator+"orden"+(i+1)+".bmp");
             }
-*/
+
+
 //--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 2             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
@@ -76,9 +77,10 @@ public class Main {
             ejercicio2.media_desvio(imgOriginal, distribucionImagenOrignal, n, mediaYDesvioOriginal);
             ejercicio2.media_desvio(will_1, distribucionWill_1, n, mediaYDesvioWill_1);
             ejercicio2.media_desvio(will_ej2, distribucionWill_ej2, n, mediaYDesvioWill_ej2);
+            System.out.println();
 
             //medias
-            System.out.println("\nmedia Original: " + mediaYDesvioOriginal[0]);
+            System.out.println("media Original: " + mediaYDesvioOriginal[0]);
             System.out.println("mediaWill_1: " + mediaYDesvioWill_1[0]);
             System.out.println("media will ej 2: " + mediaYDesvioWill_ej2[0]);
             //desvios
@@ -117,7 +119,7 @@ public class Main {
 ///--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 3             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
-/*
+
             Ejercicio_3 ejercicio_3 = new Ejercicio_3();
             Vector<Arbol> hojas_WillOriginal = new Vector<Arbol>();
             Vector<Arbol> hojas_Willej2 = new Vector<Arbol>();
@@ -136,18 +138,18 @@ public class Main {
             HashMap<Integer,String> secuencias_will_ej2 = new HashMap<Integer,String>();
             ejercicio_3.obtenerSecuencias(secuencias_will_ej2,arbol_Willej2,"");
 
-            //Paths  "src\\Salidas\\Ejercicio1\\
-            String pathWill_Original_comprimido = "src\\Salidas\\Ejercicio3\\a\\willOriginalComprimido.bin";
-            String pathWill_Original_descomprimido = "src\\Salidas\\Ejercicio3\\a\\willOriginalDescomprimido.bmp";
+            //Paths
+            String pathWill_Original_comprimido = "src"+File.separator+"Salidas"+File.separator+"Ejercicio3"+File.separator+"a"+File.separator+"+willOriginalComprimido.bin";
+            String pathWill_Original_descomprimido = "src"+File.separator+"Salidas"+File.separator+"Ejercicio3"+File.separator+"a"+File.separator+"willOriginalDescomprimido.bmp";
 
-            String pathWill_1_comprimido = "src\\Salidas\\Ejercicio3\\b\\will1_comprimido.bin";
-            String pathWill_1_descomprimido = "src\\Salidas\\Ejercicio3\\b\\will1_descomprimido.bmp";
+            String pathWill_1_comprimido = "src"+File.separator+"Salidas"+File.separator+"Ejercicio3"+File.separator+"b"+File.separator+"will1_comprimido.bin";
+            String pathWill_1_descomprimido = "src"+File.separator+"Salidas"+File.separator+"Ejercicio3"+File.separator+"b"+File.separator+"will1_descomprimido.bmp";
 
-            String pathWill_ej2_comprimido = "src\\Salidas\\Ejercicio3\\c\\will_ej2_comprimido.bin";
-            String pathWill_ej2_descomprimido = "src\\Salidas\\Ejercicio3\\c\\will_ej2_descomprimido.bmp";
+            String pathWill_ej2_comprimido = "src"+File.separator+"Salidas"+File.separator+"Ejercicio3"+File.separator+"c"+File.separator+"will_ej2_comprimido.bin";
+            String pathWill_ej2_descomprimido = "src"+File.separator+"Salidas"+File.separator+"Ejercicio3"+File.separator+"c"+File.separator+"will_ej2_descomprimido.bmp";
 
-            String pathWill_ej2_comprimido_Original = "src\\Salidas\\Ejercicio3\\d\\will_ej2_comprimido_Original.bin";
-            String pathWill_ej2_descomprimido_Original = "src\\Salidas\\Ejercicio3\\d\\will_ej2_descomprimido_Original.bmp";
+            String pathWill_ej2_comprimido_Original = "src"+File.separator+"Salidas"+File.separator+"Ejercicio3"+File.separator+"d"+File.separator+"will_ej2_comprimido_Original.bin";
+            String pathWill_ej2_descomprimido_Original = "src"+File.separator+"Salidas"+File.separator+"Ejercicio3"+File.separator+"d"+File.separator+"will_ej2_descomprimido_Original.bmp";
 
 
             //COMPRIMIR IMAGEN ORIGINAL
@@ -180,7 +182,7 @@ public class Main {
             ejercicio_3.savePNG( img_descomprimida_will_ej2, pathWill_ej2_descomprimido );
 
             //e
-            File Original = new File("src\\img\\Will(Original).bmp");
+            File Original = new File("src"+File.separator+"img"+File.separator+"Will(Original).bmp");
             //long tamanoOriginal=
 
             File Will_original_comprimido = new File(pathWill_Original_comprimido);
@@ -190,8 +192,8 @@ public class Main {
 
             long tamanoOriginal= Original.length();
             long tamanoOriginalComprimido= Will_original_comprimido.length();
-
-            System.out.println("\nTasa de compresion a)");
+            System.out.println();
+            System.out.println("Tasa de compresion a)");
             System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + tamanoOriginalComprimido + "   N = " +((double)Original.length()/(double)Will_original_comprimido.length()));
 
             System.out.println("Tasa de compresion b)");
@@ -203,7 +205,7 @@ public class Main {
 
             System.out.println("Tasa de compresion d)");
             System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + tamanoOriginalComprimido + "   N = " +((double)Original.length()/(double)will_ej2Comprimido.length()));
-*/
+
 
 //--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 4             ------------------------------------------//
@@ -214,18 +216,16 @@ public class Main {
             //Siempre usamos "imgOriginal", ya que es la que se pasa por cada canal
 
             //Cargando las Imagenes de canales
-            BufferedImage imgCanal2 = ImageIO.read(new File("src\\img\\Will_Canal2.bmp"));
-            BufferedImage imgCanal8 = ImageIO.read(new File("src\\img\\Will_Canal8.bmp"));
-            BufferedImage imgCanal10 = ImageIO.read(new File("src\\img\\Will_canal10.bmp"));
+            BufferedImage imgCanal2 = ImageIO.read(new File("src"+File.separator+"img"+File.separator+"Will_Canal2.bmp"));
+            BufferedImage imgCanal8 = ImageIO.read(new File("src"+File.separator+"img"+File.separator+"Will_Canal8.bmp"));
+            BufferedImage imgCanal10 = ImageIO.read(new File("src"+File.separator+"img"+File.separator+"Will_canal10.bmp"));
 
-            String pathCanal2 = "src\\Salidas\\Ejercicio4\\a\\MatrizTransicionC2.csv";
-            String pathFaCanal2 = "src\\Salidas\\Ejercicio4\\a\\MatrizAcumuladaC2.csv";
-            String pathCanal8 = "src\\Salidas\\Ejercicio4\\a\\MatrizTransicionC8.csv";
-            String pathCanal10 = "src\\Salidas\\Ejercicio4\\a\\MatrizTransicionC10.csv";
-            String pathFaCanal8 = "src\\Salidas\\Ejercicio4\\a\\MatrizAcumuladaC8.csv";
-            String pathFaCanal10 = "src\\Salidas\\Ejercicio4\\a\\MatrizAcumuladaC10.csv";
-            String pathOriginal = "src\\Salidas\\Ejercicio4\\a\\MatrizAcumuladaC10.csv";
-            String pathFaOriginal = "src\\Salidas\\Ejercicio4\\a\\MatrizAcumuladaC10.csv";
+            String pathCanal2 = "src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"a"+File.separator+"MatrizTransicionC2.csv";
+            String pathFaCanal2 = "src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"a"+File.separator+"MatrizAcumuladaC2.csv";
+            String pathCanal8 ="src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"a"+File.separator+"MatrizTransicionC8.csv";
+            String pathCanal10 = "src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"a"+File.separator+"MatrizTransicionC10.csv";
+            String pathFaCanal8 = "src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"a"+File.separator+"MatrizAcumuladaC8.csv";
+            String pathFaCanal10 = "src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"a"+File.separator+"MatrizAcumuladaC10.csv";
 
             double[] marginalC2 = new double[256];
             double[] marginalC8 = new double[256];

@@ -27,8 +27,24 @@
     <list default="true" id="a07ea69a-6139-4b72-bfd1-bbe09185f43a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TpTeoria/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TpTeoria/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ejercicios/Ejercicio_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejercicios/Ejercicio_2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ejercicios/Ejercicio_4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ejercicios/Ejercicio_4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio3/a/willOriginalComprimido.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio3/a/willOriginalDescomprimido.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio3/b/will1_comprimido.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio3/b/will1_descomprimido.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio3/c/will_ej2_comprimido.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio3/c/will_ej2_descomprimido.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio3/d/will_ej2_comprimido_Original.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio3/d/will_ej2_descomprimido_Original.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio4/GraficoEvolucionError.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio4/a/MatrizAcumuladaC10.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio4/a/MatrizAcumuladaC2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio4/a/MatrizTransicionC10.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio4/a/MatrizTransicionC2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio4/a/MatrizTransicionC8.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Salidas/Ejercicio4/kaka.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +128,8 @@
       <workItem from="1592851558062" duration="14345000" />
       <workItem from="1592933878405" duration="10715000" />
       <workItem from="1592955026108" duration="24791000" />
-      <workItem from="1593010716037" duration="3798000" />
+      <workItem from="1593010716037" duration="5439000" />
+      <workItem from="1593018615742" duration="2023000" />
     </task>
     <servers />
   </component>
@@ -156,22 +173,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1592858768114" />
-    <state width="1323" height="319" key="GridCell.Tab.0.bottom" timestamp="1593014525385">
+    <state width="1323" height="319" key="GridCell.Tab.0.bottom" timestamp="1593020645385">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1593014525385" />
-    <state width="1323" height="319" key="GridCell.Tab.0.center" timestamp="1593014525385">
+    <state width="1323" height="319" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1593020645385" />
+    <state width="1323" height="319" key="GridCell.Tab.0.center" timestamp="1593020645383">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="319" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1593014525385" />
-    <state width="1323" height="319" key="GridCell.Tab.0.left" timestamp="1593014525385">
+    <state width="1323" height="319" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1593020645383" />
+    <state width="1323" height="319" key="GridCell.Tab.0.left" timestamp="1593020645383">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="319" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1593014525385" />
-    <state width="1323" height="319" key="GridCell.Tab.0.right" timestamp="1593014525385">
+    <state width="1323" height="319" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1593020645383" />
+    <state width="1323" height="319" key="GridCell.Tab.0.right" timestamp="1593020645383">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="319" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1593014525385" />
+    <state width="1323" height="319" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1593020645383" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1592983038122">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

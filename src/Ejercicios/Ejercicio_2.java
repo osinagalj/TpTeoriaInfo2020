@@ -80,6 +80,6 @@ public class Ejercicio_2 {
         f.setSize(1200,600);
         f.setLocationRelativeTo(null);
         //Histogram
-        ChartUtilities.saveChartAsPNG(new File("src\\Salidas\\Ejercicio2\\Histograma-"+titulo+".png"), jf, 600, 300 );
+        ChartUtilities.saveChartAsPNG(new File("src"+File.separator+"Salidas"+File.separator+"Ejercicio2"+File.separator+"Histograma-"+titulo+".png"), jf, 600, 300 );
     }
 }
