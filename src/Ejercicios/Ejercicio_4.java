@@ -32,7 +32,7 @@ import static Ejercicios.getColor.getGris;
 public class Ejercicio_4 {
 
     private double epsilon = 0.00000001d;
-    private final int Maximo = 80;
+    private final int Maximo = 8000;
 //-------------------------------------------------------------------------------------------------------//
 //--------------------------------------    A     -------------------------------------------------------//
 //-------------------------------------------------------------------------------------------------------//
@@ -220,6 +220,7 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
         }
         return ruido;
     }
+
     public double[] simulacionComputacional(double[] OriginalFa,double[][] CanalFa,int MIN_MUESTRAS,double ruidoAnalitico) {
         int emisiones = 0;
         double ruido_actual= 0;
@@ -303,8 +304,8 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
 
         ChartPanel chartPanel = new ChartPanel(jfreechart, false);
         frame.setContentPane(chartPanel);
-        //frame.setVisible(true);
-        ChartUtilities.saveChartAsPNG(new File("src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"GraficoEvolucionError.png"), jfreechart, 600, 300 );
+        frame.setVisible(true);
+        //ChartUtilities.saveChartAsPNG(new File("src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"GraficoEvolucionError.png"), jfreechart, 600, 300 );
     }
 
 
