@@ -155,30 +155,27 @@ public class Main {
             //COMPRIMIR IMAGEN ORIGINAL
             //a
             //Comprimo la imagen
-            Integer profundidad = ejercicio_3.getProfundidadBit(imgOriginal);
             ejercicio_3.comprimirImagen(pathWill_Original_comprimido,imgOriginal,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
-            BufferedImage img = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_Original_comprimido),profundidad);
+            BufferedImage img = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_Original_comprimido));
             ejercicio_3.savePNG( img, pathWill_Original_descomprimido );
 
             //b
-            Integer profundidad2 = ejercicio_3.getProfundidadBit(will_1);
             ejercicio_3.comprimirImagen(pathWill_1_comprimido,will_1,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
-            BufferedImage img_descomprimida_will_1 = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_1_comprimido),profundidad2);
+            BufferedImage img_descomprimida_will_1 = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_1_comprimido));
             ejercicio_3.savePNG( img_descomprimida_will_1, pathWill_1_descomprimido );
 
             //c
-            Integer profundidad3 = ejercicio_3.getProfundidadBit(will_ej2);
             ejercicio_3.comprimirImagen(pathWill_ej2_comprimido_Original,will_ej2,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
-            BufferedImage img_descomprimida_will_ej2_Orignal = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido_Original),profundidad3);
+            BufferedImage img_descomprimida_will_ej2_Orignal = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido_Original));
             ejercicio_3.savePNG( img_descomprimida_will_ej2_Orignal, pathWill_ej2_descomprimido_Original );
 
             //d
             ejercicio_3.comprimirImagen(pathWill_ej2_comprimido,will_ej2,secuencias_will_ej2,distribucionWill_ej2);
             //Descomprimo la imagen
-            BufferedImage img_descomprimida_will_ej2 = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido),profundidad3);
+            BufferedImage img_descomprimida_will_ej2 = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido));
             ejercicio_3.savePNG( img_descomprimida_will_ej2, pathWill_ej2_descomprimido );
 
             //e
@@ -230,6 +227,10 @@ public class Main {
             double[] marginalC2 = new double[256];
             double[] marginalC8 = new double[256];
             double[] marginalC10 = new double[256];
+
+            ejercicio_4.inicializarMarginal(marginalC2);
+            ejercicio_4.inicializarMarginal(marginalC8);
+            ejercicio_4.inicializarMarginal(marginalC10);
 
             double[][] matrizCanal2 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal2,marginalC2);
             double[][] matrizCanal8 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal8,marginalC8);

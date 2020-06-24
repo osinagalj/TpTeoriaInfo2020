@@ -37,9 +37,14 @@ public class Ejercicio_4 {
 //--------------------------------------    A     -------------------------------------------------------//
 //-------------------------------------------------------------------------------------------------------//
 
+    public void inicializarMarginal(double[] marginal){
+        for(int x = 0; x < marginal.length; x++)
+            marginal[x] = 0;
+    }
+
 public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,double[] marginal){
     double[][] rtrn = new double[256][256];
-    //double[] marginal = new double[256];
+
     //Inicializamos en 0
     for (int x=0; x < rtrn.length; x++) {
         for (int y=0; y < rtrn[x].length; y++) {
@@ -66,6 +71,7 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
     }
     return rtrn;
 }
+
     public void crearCSV(double[][] matriz,double[] marginal,String path) throws FileNotFoundException {
 
         PrintWriter pw = new PrintWriter(new File(path));

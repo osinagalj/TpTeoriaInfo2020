@@ -138,8 +138,7 @@ public class Ejercicio_3 {
         byte[] secuenciaBits = this.ConvertByteListToPrimitives(secuenciaByte); //Binario
 
         //WRITE IN FILE
-        //writeInFile(getProfundidadBit(img),1,fos);                         //Profundidad             1 Byte    0
-        writeInFile(getFrecuenciasUtilizadas(distribucion),1,fos);      //REDUNDANCIA PARA QUE NO SE ROMPA, REEMPLAZA EL BYTE DE LA PROFUNDIDAD
+        writeInFile(getProfundidadBit(img),1,fos);                      //Profundidad             1 Byte    0
         writeInFile(secuenciaChar.length,3,fos);                        //Longitud de secuencia         3 Bytes   1,2,3
         writeInFile(getFrecuenciasUtilizadas(distribucion),1,fos);      //Cantidad de Frecuencias       1 Byte    4
         writeInFile(img.getWidth(),3,fos);                              //Anchura                       3 Bytes   5,6,7
@@ -217,12 +216,11 @@ public class Ejercicio_3 {
 //----------------------------          DESCOMPRIMIR             ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
 
-    public  BufferedImage descomprimirImagen(Data<char[], Arbol,Integer,Integer,Integer> data, Integer profundidad){
+    public  BufferedImage descomprimirImagen(Data<char[], Arbol,Integer,Integer,Integer> data){
         int sizeX = data.getSizeX();
         int sizeY = data.getSizeY();
-        System.out.println("Profunidad = " + data.getProfundidad());
 
-        final BufferedImage res = createImage(sizeX,sizeY, profundidad);
+        final BufferedImage res = createImage(sizeX,sizeY, data.getProfundidad());
         int index = 0;
 
         for(int x = 0; x < sizeX; x++)           //Recorremos la imagen
