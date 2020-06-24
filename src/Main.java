@@ -239,17 +239,32 @@ public class Main {
             ejercicio_4.crearCSV(matrizCanal10,marginalC2,pathCanal10);
 
             System.out.println("IMPRIMIENDO MATRIZ ");
-            ejercicio_4.mostrarMatriz2(matrizCanal2);
+           ejercicio_4.mostrarMatriz2(matrizCanal2);
 
 
             //b
+
+            //Ruido Analitico C2
+            int[] distribucionC2 = new int[256];
+            ejercicio2.media_desvio(imgCanal2,distribucionC2,n,new double[2]);
+            double ruidoAnaliticoC2 = ejercicio_4.getRuidoAnalitico(matrizCanal2,distribucionC2, n);
+            System.out.println("RUIDO C2 ANALITICO DE MRDA = "+ruidoAnaliticoC2 );
+            //Ruido Analitico C8
+            int[] distribucionC8 = new int[256];
+            ejercicio2.media_desvio(imgCanal8,distribucionC8,n,new double[2]);
+            double ruidoAnaliticoC8 = ejercicio_4.getRuidoAnalitico(matrizCanal8,distribucionC8, n);
+            System.out.println("RUIDO C8 ANALITICO DE MRDA = "+ruidoAnaliticoC8 );
+            //Ruido Analitico C8
+            int[] distribucionC10 = new int[256];
+            ejercicio2.media_desvio(imgCanal10,distribucionC10,n,new double[2]);
+            double ruidoAnaliticoC10 = ejercicio_4.getRuidoAnalitico(matrizCanal10,distribucionC10, n);
+            System.out.println("RUIDO C10 ANALITICO DE MRDA = "+ruidoAnaliticoC10 );
+
+            //ACUMULADAS
             double[][] matrizCanal2Fa  = ejercicio_4.calcularMatrizAcumulada(matrizCanal2);
             double[][] matrizCanal8Fa  = ejercicio_4.calcularMatrizAcumulada(matrizCanal8);
             double[][] matrizCanal10Fa  = ejercicio_4.calcularMatrizAcumulada(matrizCanal10);
 
-            System.out.println("IMPRIMIENDO MATRIZ ACUMULADA ");
-            ejercicio_4.mostrarMatriz2(matrizCanal2Fa);
-            System.out.println("termino ");
             /*
             Ruido analitico:
                 Canal 2: 3.643027393902264

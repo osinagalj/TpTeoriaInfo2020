@@ -31,7 +31,7 @@ public class Ejercicio_2 {
         for (int x = 0; x < img.getWidth(); x++) {
             for (int y = 0; y < img.getHeight(); y++) {
                 Xi= (int)getGris(img,x,y);
-                distribuciones[Xi] += 1;
+                distribuciones[Xi] ++;
                 suma+= Xi;
                 sumaXiCuadrado += Math.pow(Xi,2);
             }
