@@ -9,8 +9,9 @@ import java.util.*;
 import Ejercicios.*;
 //import javafx.util.Pair;
 import Estructuras.Pair;
-public class Main {
 
+public class Main {
+    private static final int MIN_MUESTRAS = 1000;
     public static void main (String [ ] args) {
         try {
             //Cargando las Imagenes
@@ -25,8 +26,6 @@ public class Main {
             int h = imgOriginal.getHeight();
             int w = imgOriginal.getWidth();
             int n = h * w;
-
-
 
 
 //--------------------------------------------------------------------------------------------------------//
@@ -109,12 +108,12 @@ public class Main {
                 }
             }
 
-/*
+
             //CREANDO LOS HISTOGRAMAS
             ejercicio2.generarHistograma(distribucionWill_ej2,"Will ej 2");
             ejercicio2.generarHistograma(distribucionWill_1,"Will 1");
             ejercicio2.generarHistograma(distribucionImagenOrignal,"Will Original");
-*/
+
 
 ///--------------------------------------------------------------------------------------------------------//
 //----------------------------          EJERCICIO 3             ------------------------------------------//
@@ -180,8 +179,7 @@ public class Main {
 
             //e
             File Original = new File("src"+File.separator+"img"+File.separator+"Will(Original).bmp");
-            //long tamanoOriginal=
-
+            //como todas las imagenes tienen el mismo tamaño, utilizamos la longitud de la original como orignal de todas las imagenes
             File Will_original_comprimido = new File(pathWill_Original_comprimido);
             File Will_1_comprimido = new File(pathWill_1_comprimido);
             File will_ej2ComprimidoConOriginal =  new File(pathWill_ej2_comprimido_Original);
@@ -191,17 +189,17 @@ public class Main {
             long tamanoOriginalComprimido= Will_original_comprimido.length();
             System.out.println();
             System.out.println("Tasa de compresion a)");
-            System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + tamanoOriginalComprimido + "   N = " +((double)Original.length()/(double)Will_original_comprimido.length()));
+            System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " +  tamanoOriginalComprimido+ "   N = " +((double)Original.length()/(double)Will_original_comprimido.length()));
 
             System.out.println("Tasa de compresion b)");
-            System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + tamanoOriginalComprimido + "   N = " +((double)Original.length()/(double)Will_1_comprimido.length()));
+            System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " +  Will_1_comprimido.length()+ "   N = " +((double)Original.length()/(double)Will_1_comprimido.length()));
 
 
             System.out.println("Tasa de compresion c)");
-            System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + tamanoOriginalComprimido + "   N = " +((double)Original.length()/(double)will_ej2ComprimidoConOriginal.length()));
+            System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + will_ej2ComprimidoConOriginal.length() + "   N = " +((double)Original.length()/(double)will_ej2ComprimidoConOriginal.length()));
 
             System.out.println("Tasa de compresion d)");
-            System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + tamanoOriginalComprimido + "   N = " +((double)Original.length()/(double)will_ej2Comprimido.length()));
+            System.out.println("Tamaño Original = "+ tamanoOriginal + "   Tamaño Comprimido = " + will_ej2Comprimido.length() + "   N = " +((double)Original.length()/(double)will_ej2Comprimido.length()));
 
 
 //--------------------------------------------------------------------------------------------------------//
@@ -218,11 +216,8 @@ public class Main {
             BufferedImage imgCanal10 = ImageIO.read(new File("src"+File.separator+"img"+File.separator+"Will_canal10.bmp"));
 
             String pathCanal2 = "src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"a"+File.separator+"MatrizTransicionC2.csv";
-            String pathFaCanal2 = "src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"a"+File.separator+"MatrizAcumuladaC2.csv";
             String pathCanal8 ="src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"a"+File.separator+"MatrizTransicionC8.csv";
             String pathCanal10 = "src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"a"+File.separator+"MatrizTransicionC10.csv";
-            String pathFaCanal8 = "src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"a"+File.separator+"MatrizAcumuladaC8.csv";
-            String pathFaCanal10 = "src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"a"+File.separator+"MatrizAcumuladaC10.csv";
 
             double[] marginalC2 = new double[256];
             double[] marginalC8 = new double[256];
@@ -236,13 +231,10 @@ public class Main {
             double[][] matrizCanal8 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal8,marginalC8);
             double[][] matrizCanal10 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal10,marginalC10);
 
+            //Guardamos las matrices en un archivo csv
             ejercicio_4.crearCSV(matrizCanal2,marginalC2,pathCanal2);
             ejercicio_4.crearCSV(matrizCanal8,marginalC2,pathCanal8);
             ejercicio_4.crearCSV(matrizCanal10,marginalC2,pathCanal10);
-
-            System.out.println("IMPRIMIENDO MATRIZ ");
-           ejercicio_4.mostrarMatriz2(matrizCanal2);
-
 
             //b
 
@@ -259,19 +251,32 @@ public class Main {
             double[][] matrizCanal8Fa  = ejercicio_4.calcularMatrizAcumulada(matrizCanal8);
             double[][] matrizCanal10Fa  = ejercicio_4.calcularMatrizAcumulada(matrizCanal10);
 
-            /*
-            Ruido analitico:
-                Canal 2: 3.643027393902264
-                Canal 8: 3.790633817046591
-                Canal 10: 2.4658405430026074
-            Ruido simulacion:
-                Canal 2: 3.6211454222442567
-                Canal 8: 3.797488008381553
-                Canal 10: 2.5783626805467987
-             */
+
             double[] originalFa = ejercicio_4.getProbabilidadesAcumuladas(distribucionImagenOrignal,n); //Acumuladas del original
-            double[] historial = ejercicio_4.simulacionComputacional(originalFa,matrizCanal2Fa,9000,ruidoAnaliticoC2);
-            ejercicio_4.generarGraficoLineas(historial,ruidoAnaliticoC2);
+
+            double[] historialRuidoC2 = new double[MIN_MUESTRAS];
+            double[] historialRuidoC8 = new double[MIN_MUESTRAS];
+            double[] historialRuidoC10 = new double[MIN_MUESTRAS];
+
+            double[] historialC2 = ejercicio_4.simulacionComputacional(originalFa,matrizCanal2Fa,MIN_MUESTRAS,historialRuidoC2);
+            double[] historialC8 = ejercicio_4.simulacionComputacional(originalFa,matrizCanal8Fa,MIN_MUESTRAS,historialRuidoC8);
+            double[] historialC10 = ejercicio_4.simulacionComputacional(originalFa,matrizCanal10Fa,MIN_MUESTRAS,historialRuidoC10);
+
+            System.out.println("Ruido por muestreo C2 = "+historialRuidoC2[historialC2.length-1]);
+            System.out.println("Ruido por muestreo C8 = "+historialRuidoC8[historialC8.length-1]);
+            System.out.println("Ruido por muestreo C10 = "+historialRuidoC10[historialC10.length-1]);
+
+            //Grafico de la convergencia de
+            ejercicio_4.generarGraficoLineas(historialC2,ruidoAnaliticoC2,"Convergencia del Error C2",false,"Error");
+            ejercicio_4.generarGraficoLineas(historialC8,ruidoAnaliticoC8,"Convergencia del Error C8",false,"Error");
+            ejercicio_4.generarGraficoLineas(historialC10,ruidoAnaliticoC10,"Convergencia del Error C10",false,"Error");
+
+            //Graficos de la convergencia del ruido
+            ejercicio_4.generarGraficoLineas(historialRuidoC2,ruidoAnaliticoC2,"Convergencia del Ruido C2",true,"Ruido");
+            ejercicio_4.generarGraficoLineas(historialRuidoC8,ruidoAnaliticoC8,"Convergencia del Ruido C8",true,"Ruido");
+            ejercicio_4.generarGraficoLineas(historialRuidoC10,ruidoAnaliticoC10,"Convergencia del Ruido C10",true,"Ruido");
+
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

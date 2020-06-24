@@ -26,13 +26,14 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Vector;
 
+
 import static Ejercicios.getColor.getGris;
 
 
 public class Ejercicio_4 {
 
     private double epsilon = 0.00000001d;
-    private final int Maximo = 8000;
+
 //-------------------------------------------------------------------------------------------------------//
 //--------------------------------------    A     -------------------------------------------------------//
 //-------------------------------------------------------------------------------------------------------//
@@ -106,6 +107,7 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
 //-------------------------------------------------------------------------------------------------------//
 
     public double[][] copyMatriz(double[][] matriz){
+        //copia una matriz dada por parametro y retorna la copia
         double[][] rtrn = new double[matriz.length][matriz[0].length];
         for(int x = 0; x < matriz.length; x++){
             for(int y = 0; y < matriz[x].length; y++){
@@ -116,7 +118,7 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
 
     }
     public double[][] calcularMatrizAcumulada(double[][] matriz){
-
+        //Calula la matriz acumulada por columnas
         double[][] Fa = copyMatriz(matriz);
         double sumnaAcumulada = 0;
         for(int x = 0; x < matriz.length; x++){
@@ -134,10 +136,12 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
     }
 
     private boolean Converge(double probAnterior, double probActual) {
+        //retorna true si la dif de probabilidades es menor a un epsion
         return (Math.abs(probActual-probAnterior) < this.epsilon);
     }
 
     private int SimboloEmitido(double[] OriginalFa) {
+        //simula la extraccion de un simbolo de entrada usando las probabilidades acumuladas
         double prob = (double) Math.random();
         for (int i = 0; i < OriginalFa.length; i++) {
             if (prob < OriginalFa[i]) {
@@ -148,7 +152,7 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
     }
 
     public int SimboloSalida(double[][] CanalFa,int S_emitido) {
-
+        //simula la extraccion de un simbolo de salida Y dada una entrada X (S_Emitido)
         double prob = (double) Math.random();
         for (int i = 0; i < CanalFa.length; i++) {
            // System.out.println("prob en x = " + i + " y =" +S_emitido + "value = "+ CanalFa[i][S_emitido]);
@@ -160,12 +164,12 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
     }
 
     public double getLog_2(double probabilidad){
+        // calcula logaritmo en base 2 de un valor pasado por parametro
         return (-1* Math.log10(probabilidad)/Math.log10(2));
     }
 
-
-
     public double[] getProbabilidadesAcumuladas(int[] original,int n){
+        // obtiene el vector de probabilidades acumuladas de un vector, a cada celda le suma el valor acumulado del anterior
         double[] originalFa = new double[original.length];
         double acumulada = 0;
         for(int i = 0; i< original.length ; i ++){  // se podria hacer sin la variable acumulada, utilizando los indices
@@ -175,6 +179,7 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
         return originalFa;
     }
     public double getRuidoColumna(double[][] matriz, int i){
+        //obtiene la entropia de una columna
         double ruidoColumna = 0;
         for(int y = 0; y < matriz.length; y++){
             double numeber = matriz[y][i];
@@ -188,6 +193,7 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
 
 
     public double getRuidoAnalitico(double[][] matriz,int[] distribucion,int n){
+        // calcula el ruido de una matriz, primero obteniendo la entropia de cada columna con una funcion y luego a esa entropia la multiplica por la probabilidad del simbolo asociada
         double ruido = 0;
         for(int x = 0; x < distribucion.length; x++){
             if(distribucion[x] != 0){
@@ -221,18 +227,20 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
         return ruido;
     }
 
-    public double[] simulacionComputacional(double[] OriginalFa,double[][] CanalFa,int MIN_MUESTRAS,double ruidoAnalitico) {
+    public double[] simulacionComputacional(double[] OriginalFa,double[][] CanalFa,int MIN_MUESTRAS,double[] historialRuido) {
+        //Realizamos una simulacion Montecarlo para generar el ruido de los canales por muestreo computacional.
+        //inicializacion de variables
         int emisiones = 0;
         double ruido_actual= 0;
         double ruido_viejo = -1;
         int[] ocurrenciaSimbolos = new int[256]; //simulacion
         double[][] M_prob_muestro = new double[256][256]; //simulacion
         double[] ruidoColumnas = new double[256];
-        double[] historialRuido = new double[Maximo]; // no uso un vector de double porque llega un momento en donde se estaciona el valor del ruido y es mucho mas costoso O(n) contra un O(1)
+        double[] historialError = new double[MIN_MUESTRAS];
 
+        //iteraciones
         while (!this.Converge(ruido_actual, ruido_viejo) || emisiones < MIN_MUESTRAS) {
             //Simulacion
-            //System.out.println("ruido = " + ruido_actual);
             int S_emitido = this.SimboloEmitido(OriginalFa);
             int S_salida = this.SimboloSalida(CanalFa,S_emitido);
             //Actualizacion
@@ -242,72 +250,66 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
             M_prob_muestro[S_salida][S_emitido]++;
             ruidoColumnas[S_emitido]= actualizarColumnaRuido(M_prob_muestro,S_emitido,ocurrenciaSimbolos[S_emitido]);
             //actualizo el ruido
-            System.out.println("ruido = " +ruido_actual );
-            //ruido_actual =  getRuidoAnalitico(M_prob_muestro,ocurrenciaSimbolos,emisiones);
             ruido_actual = getRuido(ocurrenciaSimbolos,ruidoColumnas,emisiones);
             //Historial de ruidos
-            if(emisiones < (Maximo-2)){
-                historialRuido[emisiones] = ruido_actual;        // guardo el ruido
+            if(emisiones < (MIN_MUESTRAS)){
+                historialRuido[emisiones] = ruido_actual;//guardo el ruido
+                historialError[emisiones] = ruido_actual-ruido_viejo;
             }
-
         }
-        historialRuido[Maximo-1] = ruidoAnalitico;
-        return historialRuido;
+
+        return historialError;
     }
 
 
 
 //Generar el grafico
-    private XYDataset xyDataset(double[] historialRuido, double ruidoAnalitico) {
+    private XYDataset xyDataset(double[] historialRuido, double ruidoAnalitico, boolean analitico) {
         //se declaran las series y se llenan los datos
         XYSeries error_analitico = new XYSeries("Error Analitico");
         XYSeries error_Muestrepo = new XYSeries("Error por Muestreo");
-
-        error_analitico.add( 0, ruidoAnalitico);
-        error_analitico.add( historialRuido.length, ruidoAnalitico);  //Constante
+        XYSeriesCollection xyseriescollection =  new XYSeriesCollection();
+        if(analitico){
+            error_analitico.add( 0, ruidoAnalitico);
+            error_analitico.add( historialRuido.length, ruidoAnalitico);  //Constante
+            xyseriescollection.addSeries( error_analitico );
+        }
         //Ruido por muestreoComputacional
         for(int i = 0; i<historialRuido.length;i++){
             error_Muestrepo.add( i, historialRuido[i]);
         }
-
-        XYSeriesCollection xyseriescollection =  new XYSeriesCollection();
-        xyseriescollection.addSeries( error_analitico );
         xyseriescollection.addSeries( error_Muestrepo );
 
         return xyseriescollection;
     }
 
-    public void generarGraficoLineas(double[] historialRuido, double ruidoAnalitico) throws IOException {
+    public void generarGraficoLineas(double[] historialRuido, double ruidoAnalitico,String titulo,boolean analitico,String columnay) throws IOException {
         JFrame frame = new JFrame("Ejercicio 4b");
         frame.setSize(500, 370);
-        //se declara el grafico XY Lineal
-        //double[] historialRuido = new double[]{0.5,0.6,0.8,2.3};
-        XYDataset xydataset = xyDataset(historialRuido,ruidoAnalitico);
+
+        XYDataset xydataset = xyDataset(historialRuido,ruidoAnalitico,analitico);
         JFreeChart jfreechart = ChartFactory.createXYLineChart(
-                "Convergencia del Ruido" ,
-                "Muestras", "Error",
+                titulo ,
+                "Muestras", columnay,
                 xydataset,
                 PlotOrientation.VERTICAL,
                 true, true, false);
 
         //personalización del grafico
         XYPlot xyplot = (XYPlot) jfreechart.getPlot();
-        xyplot.setBackgroundPaint( Color.white );
-        //xyplot.setDomainGridlinePaint( Color.BLACK );
-        // xyplot.setRangeGridlinePaint( Color.BLACK );
-        // -> Pinta Shapes en los puntos dados por el XYDataset
+        jfreechart.setBackgroundPaint(new Color(238, 238, 238) );
+        xyplot.setBackgroundPaint( new Color(238, 238, 238) );
         XYLineAndShapeRenderer xylineandshaperenderer = (XYLineAndShapeRenderer) xyplot.getRenderer();
-        //--> muestra los valores de cada punto XY
-
         xylineandshaperenderer.setBaseLinesVisible(true);
         xylineandshaperenderer.setBaseItemLabelsVisible(true);
 
         ChartPanel chartPanel = new ChartPanel(jfreechart, false);
         frame.setContentPane(chartPanel);
-        frame.setVisible(true);
-        //ChartUtilities.saveChartAsPNG(new File("src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"GraficoEvolucionError.png"), jfreechart, 600, 300 );
-    }
+        //frame.setVisible(true);
+        String pathGraficoCanal2 = "src"+File.separator+"Salidas"+File.separator+"Ejercicio4"+File.separator+"b"+File.separator+ titulo+".png";
 
+        ChartUtilities.saveChartAsPNG(new File(pathGraficoCanal2), jfreechart, 600, 300 );
+    }
 
 //-------------------------------------------------------------------------------------------------------//
 //--------------------------------------    Print     ---------------------------------------------------//
