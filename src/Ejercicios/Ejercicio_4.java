@@ -216,7 +216,7 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
         //hace esta formula Sum(p(x) * p(y/x) ) los dos son de simulacion
         double ruido = 0;
         for(int i = 0; i<ocurrenciaSimbolos.length;i++){
-            ruido = ruido + (double)(ocurrenciaSimbolos[i]/muestras) * ruidoColumnas[i];
+            ruido = ruido + ((double)ocurrenciaSimbolos[i]/muestras) * ruidoColumnas[i];
         }
         return ruido;
     }
