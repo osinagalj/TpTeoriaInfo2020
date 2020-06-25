@@ -44,6 +44,7 @@ public class Ejercicio_4 {
     }
 
 public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,double[] marginal){
+        //Calculamos la matriz condicional
     double[][] rtrn = new double[256][256];
 
     //Inicializamos en 0
@@ -53,7 +54,7 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
         }
     }
 
-    //Sumamos 1 cada vez que aparece aparece x un x/y
+    //Sumamos 1 cada vez que aparece aparece un x/y
     for (int x=0; x < entrada.getWidth(); x++) {
         for (int y=0; y < entrada.getHeight(); y++) {
             int in = getGris(entrada,x,y);   //get color entrada en x,y
@@ -74,7 +75,7 @@ public double[][] calcularMatriz(BufferedImage entrada, BufferedImage salida,dou
 }
 
     public void crearCSV(double[][] matriz,double[] marginal,String path) throws FileNotFoundException {
-
+        //Crea el .CSV para las matrices obtenidas
         PrintWriter pw = new PrintWriter(new File(path));
         StringBuilder sb = new StringBuilder();
         sb.append("Y/X,");

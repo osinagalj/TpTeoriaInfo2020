@@ -25,6 +25,7 @@ public class Ejercicio_2 {
 
 
     public void media_desvio(BufferedImage img, int[] distribuciones, int n, double [] parametros){
+        //Calculamos la media y el desvio para la imagen
         double suma = 0;
         double sumaXiCuadrado = 0;
         int Xi;
@@ -43,7 +44,7 @@ public class Ejercicio_2 {
     }
 
     public void generarHistograma(int[]distribuciones,String titulo) throws IOException {
-
+        //Generamos los histogramas de las distribuciones prsentes en la imagen
         DefaultCategoryDataset ds = new DefaultCategoryDataset();
         CategoryAxis categoryAxis = new CategoryAxis("Tonalidades");
         categoryAxis.setCategoryMargin(.1);

@@ -23,9 +23,9 @@ public class Main {
             BufferedImage will_5 = ImageIO.read(new File("src" + File.separator + "img" + File.separator + "Will_5.bmp")); //media 187
             BufferedImage will_ej2 = ImageIO.read(new File("src" + File.separator + "img" + File.separator + "Will_ej2.bmp"));
 
-            int h = imgOriginal.getHeight();
-            int w = imgOriginal.getWidth();
-            int n = h * w;
+            int h = imgOriginal.getHeight(); //Height, altura
+            int w = imgOriginal.getWidth();  //Width,  anchura
+            int n = h * w;                   //n = cantidad de pixeles de una imagen
 
 
 //--------------------------------------------------------------------------------------------------------//
@@ -36,7 +36,7 @@ public class Main {
 
             Vector<Pair> pares = new Vector<Pair>();
 
-            //calculo los indices de correlacion correspondientes
+            //calculamos los indices de correlacion correspondientes
             ejercicio1.addCorrelacion(imgOriginal,will_1,h,w,n,pares);
             ejercicio1.addCorrelacion(imgOriginal,will_2,h,w,n,pares);
             ejercicio1.addCorrelacion(imgOriginal,will_3,h,w,n,pares);
@@ -87,20 +87,20 @@ public class Main {
             System.out.println("desvioWill_1: " + mediaYDesvioWill_1[1]);
             System.out.println("desvioWill_ej2: " + mediaYDesvioWill_ej2[1]);
 
-            System.out.println("distribucion del original");
+            System.out.println("\n"+"distribucion del original:");
             for (int i = 0; i < 256; i++) {
                 if (distribucionImagenOrignal[i] != 0) {
                     System.out.println("x : " + i + " fi: " + distribucionImagenOrignal[i] + " P(" + i + ") = " + (double) distribucionImagenOrignal[i] / n);
                 }
             }
-            System.out.println(" distribucionWill_1  ");
+            System.out.println("\n" + "distribucionWill_1:  ");
 
             for (int i = 0; i < 256; i++) {
                 if (distribucionWill_1[i] != 0) {
                     System.out.println("x : " + i + " fi: " + distribucionWill_1[i] + " P(" + i + ") = " + (double) distribucionWill_1[i] / n);
                 }
             }
-            System.out.println(" distribucionWill_ej2 ");
+            System.out.println("\n" +" distribucionWill_ej2: ");
 
             for (int i = 0; i < 256; i++) {
                 if (distribucionWill_ej2[i] != 0) {
@@ -151,27 +151,29 @@ public class Main {
             String pathWill_ej2_descomprimido_Original = "src"+File.separator+"Salidas"+File.separator+"Ejercicio3"+File.separator+"d"+File.separator+"will_ej2_descomprimido_Original.bmp";
 
 
-            //COMPRIMIR IMAGEN ORIGINAL
             //a
-            //Comprimo la imagen
+            //comprimir
             ejercicio_3.comprimirImagen(pathWill_Original_comprimido,imgOriginal,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
             BufferedImage img = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_Original_comprimido));
             ejercicio_3.savePNG( img, pathWill_Original_descomprimido );
 
             //b
+            //comprimir
             ejercicio_3.comprimirImagen(pathWill_1_comprimido,will_1,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
             BufferedImage img_descomprimida_will_1 = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_1_comprimido));
             ejercicio_3.savePNG( img_descomprimida_will_1, pathWill_1_descomprimido );
 
             //c
+            //comprimir
             ejercicio_3.comprimirImagen(pathWill_ej2_comprimido_Original,will_ej2,secuencias_original,distribucionImagenOrignal);
             //Descomprimo la imagen
             BufferedImage img_descomprimida_will_ej2_Orignal = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido_Original));
             ejercicio_3.savePNG( img_descomprimida_will_ej2_Orignal, pathWill_ej2_descomprimido_Original );
 
             //d
+            //comprimir
             ejercicio_3.comprimirImagen(pathWill_ej2_comprimido,will_ej2,secuencias_will_ej2,distribucionWill_ej2);
             //Descomprimo la imagen
             BufferedImage img_descomprimida_will_ej2 = ejercicio_3.descomprimirImagen(ByteEncodingHelper.DecodeSequence(pathWill_ej2_comprimido));
@@ -227,6 +229,7 @@ public class Main {
             ejercicio_4.inicializarMarginal(marginalC8);
             ejercicio_4.inicializarMarginal(marginalC10);
 
+            //Calculamos las matrices condicionales de cada canal
             double[][] matrizCanal2 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal2,marginalC2);
             double[][] matrizCanal8 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal8,marginalC8);
             double[][] matrizCanal10 = ejercicio_4.calcularMatriz(imgOriginal,imgCanal10,marginalC10);
@@ -246,18 +249,19 @@ public class Main {
             double ruidoAnaliticoC10 = ejercicio_4.getRuidoAnalitico(matrizCanal10,distribucionImagenOrignal, n);
             System.out.println("Ruido Analitico C10 = "+ruidoAnaliticoC10 );
 
-            //ACUMULADAS
+            // calculamos las matrices acumuladas
             double[][] matrizCanal2Fa  = ejercicio_4.calcularMatrizAcumulada(matrizCanal2);
             double[][] matrizCanal8Fa  = ejercicio_4.calcularMatrizAcumulada(matrizCanal8);
             double[][] matrizCanal10Fa  = ejercicio_4.calcularMatrizAcumulada(matrizCanal10);
 
-
-            double[] originalFa = ejercicio_4.getProbabilidadesAcumuladas(distribucionImagenOrignal,n); //Acumuladas del original
+            //Acumuladas del original
+            double[] originalFa = ejercicio_4.getProbabilidadesAcumuladas(distribucionImagenOrignal,n);
 
             double[] historialRuidoC2 = new double[MIN_MUESTRAS];
             double[] historialRuidoC8 = new double[MIN_MUESTRAS];
             double[] historialRuidoC10 = new double[MIN_MUESTRAS];
 
+            //Calculamos los ruidos por simulacion
             double[] historialC2 = ejercicio_4.simulacionComputacional(originalFa,matrizCanal2Fa,MIN_MUESTRAS,historialRuidoC2);
             double[] historialC8 = ejercicio_4.simulacionComputacional(originalFa,matrizCanal8Fa,MIN_MUESTRAS,historialRuidoC8);
             double[] historialC10 = ejercicio_4.simulacionComputacional(originalFa,matrizCanal10Fa,MIN_MUESTRAS,historialRuidoC10);
@@ -266,7 +270,7 @@ public class Main {
             System.out.println("Ruido por muestreo C8 = "+historialRuidoC8[historialC8.length-1]);
             System.out.println("Ruido por muestreo C10 = "+historialRuidoC10[historialC10.length-1]);
 
-            //Grafico de la convergencia de
+            //Grafico de la convergencia del error
             ejercicio_4.generarGraficoLineas(historialC2,ruidoAnaliticoC2,"Convergencia del Error C2",false,"Error");
             ejercicio_4.generarGraficoLineas(historialC8,ruidoAnaliticoC8,"Convergencia del Error C8",false,"Error");
             ejercicio_4.generarGraficoLineas(historialC10,ruidoAnaliticoC10,"Convergencia del Error C10",false,"Error");

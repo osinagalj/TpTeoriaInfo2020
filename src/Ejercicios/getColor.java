@@ -3,7 +3,7 @@ package Ejercicios;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class getColor {
+public class getColor {  //Nos devuelve un integer con el color para cierto pixel en la posicion x y
     public getColor(){};
     public static int getGris(BufferedImage imgOriginal, int x, int y){
         // obtiene el color de un pixel en la posicion (x,y) de una BufferedImage.

@@ -1,6 +1,7 @@
 package Estructuras;
 
 import java.awt.image.BufferedImage;
+    //Estrucutra auxialiar para guardar en orden las imagenes con respecto a sus correlaciones (Ej 1)
 
 public class Pair implements Comparable<Pair>{
     private BufferedImage img;

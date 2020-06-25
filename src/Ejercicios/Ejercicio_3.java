@@ -29,7 +29,6 @@ public class Ejercicio_3 {
 //----------------------------          ARBOL DE HUFFMAN         ------------------------------------------//
 //--------------------------------------------------------------------------------------------------------//
     public void inserTarOrdenado(Vector<Arbol> hojas, Arbol hoja) {
-
         int i = 0; //Para recorrer el vector
 
         while (i < hojas.size()) {
@@ -39,18 +38,18 @@ public class Ejercicio_3 {
             } else {
                 if ((hoja.getProbabilidad() == hojas.get(i).getProbabilidad()) && (hoja.getNivel() >= hojas.get(i).getNivel())) { //Si son iguales ordeno por nivel
                     hojas.add(i, hoja);
-                    return;           //Si son iguales primero quiero que este el de mayor nivel
+                    return;           //Si son iguales primero quiero que este el de mayor nivel, para que tenga siempre la misma forma
                 }
                 i++; //Para que avance
             }
         }
-        hojas.add(hoja); //Si llego aca es porque nunca se incerto => probabilidad mas grande, va al final
+        hojas.add(hoja); //Si llega aca es porque nunca se inserto => probabilidad mas grande, va al final
     }
 
     public Arbol getArbolHuffman(Vector<Arbol> hojas){
         //Hijo derecho   = mayor probabilidad
         //Hijo Izquierdo = menor probabilidad
-        while (hojas.size() > 1){
+        while (hojas.size() > 1){ //Sacamos dos del vector, y creamos uno nuevo, hasta que tenga 1 solo nodo
             Arbol izq = hojas.get(0);
             Arbol der = hojas.get(1);
             hojas.remove(0);
@@ -63,6 +62,8 @@ public class Ejercicio_3 {
     }
 
     public void obtenerSecuencias(HashMap<Integer,String> h, Arbol arbolito, String secuencia){
+        //Recorremos el arbol obteniendo las secuencias para cada simbolo de entrada
+
         if(arbolito.getHijoDerecho() == null) { //Con que uno sea null ya sabemos que es hoja
             h.put(arbolito.getColor(),secuencia);
         }else{                                  //Si no es hoja, recorremos para ambos lados
@@ -81,23 +82,23 @@ public class Ejercicio_3 {
         Collections.sort(hojas);
     }
 
-    public char[] codificarSecuencia(BufferedImage img, HashMap<Integer,String> secuencias){ //Chequeado
-
+    public char[] codificarSecuencia(BufferedImage img, HashMap<Integer,String> secuencias){
+        //A partir de una imagen y el hash asociado a cada pixel-secuencia nos devuelve una cadena de char de 0 o 1
         ArrayList<Character> secuenciaArray = new ArrayList<Character>();
         Integer color;
         String aux;
 
         for (int x = 0; x < img.getWidth(); x++) {
-            for (int y = 0; y < img.getHeight(); y++) {
-                color = (int)getGris(img,x,y);
-                aux = secuencias.get(color);
-                for (int k = 0; k < aux.length(); k++){
+            for (int y = 0; y < img.getHeight(); y++) {  //Para cada pixel
+                color = (int)getGris(img,x,y);           //Obtenemos el color
+                aux = secuencias.get(color);            //obtenemos el integer que lo representa
+                for (int k = 0; k < aux.length(); k++){  //partimos el string como una secuencia de char
                     secuenciaArray.add(aux.charAt(k));
                 }
             }
         }
 
-        char[] secuenciaChar = new char[secuenciaArray.size()];
+        char[] secuenciaChar = new char[secuenciaArray.size()]; //Ahora que sabemos la cantidad de char que generamos lo pasamos a un arreglo
         for (int x = 0; x < secuenciaChar.length; x++){
             secuenciaChar[x] = secuenciaArray.get(x);
         }
@@ -106,11 +107,13 @@ public class Ejercicio_3 {
     }
 
     public int getSimbolo(Arbol huffman, String secuencia, int pos){
+        //recorremos el arbol buscando el simbolo en base a una secuencia
+
         if((huffman.getHijoDerecho() == null) && (huffman.getHijoIzquierdo() == null)){
-            return huffman.getColor();
-        }else{
+            return huffman.getColor();  //Si es hoja lo encontraste
+        }else{                          //Si no debes buscarlo en sus hijos
             if(secuencia.length()> pos){
-                String s = "1";
+                String s = "1";                 //esto es para igualar abajo, podria ser un char, pero nos tiro un error y quedo asi
                 if(secuencia.charAt(pos) == s.charAt(0)){
                     return getSimbolo(huffman.getHijoIzquierdo(),secuencia,pos+1);
                 }else{
@@ -150,15 +153,16 @@ public class Ejercicio_3 {
         fos.close();
     }
 
-    public void writeInFile(Object o, int bytes, FileOutputStream fos) throws IOException {
+    public void writeInFile(Object o, int cant, FileOutputStream fos) throws IOException {
         int numero  = (int) o;
-        char[] longitudChar  = convertirNumeroChar(numero,bytes);
+        char[] longitudChar  = convertirNumeroChar(numero,cant);
         List<Byte> longitudByte = ByteEncodingHelper.EncodeSequence(longitudChar);
         byte[] longitudBit = this.ConvertByteListToPrimitives(longitudByte);
         fos.write(longitudBit);
+        //Escribe en fos una cantidad de bytes = "cant"
     }
 
-    public int getFrecuenciasUtilizadas(int[] distribucion){
+    public int getFrecuenciasUtilizadas(int[] distribucion){ //obitenene la cantidad de frecuencias que trae la imagen
         int cantidadFrecuencias = 0;
         for(int x = 0; x < distribucion.length; x++){
             if (distribucion[x] != 0)
@@ -166,7 +170,7 @@ public class Ejercicio_3 {
         }
         return cantidadFrecuencias;
     }
-    public Integer getProfundidadBit(BufferedImage img){
+    public Integer getProfundidadBit(BufferedImage img){ //Devuelve la profundidad de la imagen
         ColorModel color = img.getColorModel();
         return color.getPixelSize();
     }
@@ -179,7 +183,8 @@ public class Ejercicio_3 {
 
         return ret;
     }
-    public char[] convertirNumeroChar(int entrada,int n){   //Convierte un numero a n bytes
+
+    public char[] convertirNumeroChar(int entrada,int n){   //Convierte un numero entrada a n bytes
         int aux = entrada;
         char[] rta = new char[8*n];
         for(int x = 0; x < rta.length; x++){
@@ -192,6 +197,7 @@ public class Ejercicio_3 {
     }
 
     public void insertarFrecuencias(FileOutputStream fos, int[] distribuciones,int cantidad) throws IOException {
+        //Inserta los colores con su probabilidada de ocurrencia
         char[] colorChar = new char[1];
         char[] distribucionChar = new char[24];
 
@@ -221,9 +227,9 @@ public class Ejercicio_3 {
         int sizeY = data.getSizeY();
 
         final BufferedImage res = createImage(sizeX,sizeY, data.getProfundidad());
-        int index = 0;
+        int index = 0;          //Creamos la imagen
 
-        for(int x = 0; x < sizeX; x++)           //Recorremos la imagen
+        for(int x = 0; x < sizeX; x++)           //La recorremos
             for(int y = 0; y < sizeY; y++){
                 int[] color = getColor(data.getContenido1(), data.getContenido2(), index);   //Obtenemos el color de esa posicion
                 index = color[0];
@@ -244,7 +250,7 @@ public class Ejercicio_3 {
         }
     }
 
-    public int[] getColor(char[] in, Arbol nodo, int index){  //Mura
+    public int[] getColor(char[] in, Arbol nodo, int index){  //Conseguimos el color en el arbol
         int[] rtrn = new int[2]; //En 0 el index, en 1 el color
         Arbol aux = nodo;
 
@@ -263,6 +269,7 @@ public class Ejercicio_3 {
     }
 
     public  void savePNG( final BufferedImage bi, final String path ){
+        //Guardamos la imagen en formato bmp
         try {
             RenderedImage rendImage = bi;
             ImageIO.write(rendImage, "bmp", new File(path));

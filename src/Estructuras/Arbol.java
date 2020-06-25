@@ -2,7 +2,7 @@ package Estructuras;
 
 
 public class Arbol implements Comparable<Arbol>{
-
+        //Estructura utilizada para el arbol de Huffman
     private Arbol hijoIzquierdo = null;
     private Arbol hijoDerecho = null;
 

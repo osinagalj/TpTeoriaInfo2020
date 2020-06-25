@@ -44,6 +44,7 @@ public class ByteEncodingHelper {
     }
 
     public static int traducirBytes(byte[] bytes, int cantidad){
+        //Traduce a un numero una secuencia de cierta cantidad de bytes
         int rta = 0;
         byte mask = (byte) (1 << (bufferLength - 1)); // mask: 10000000
         byte aux;
@@ -62,6 +63,7 @@ public class ByteEncodingHelper {
     }
 
     public static Data<char[], Arbol,Integer,Integer,Integer> DecodeSequence(String inputFilepath) {
+        //decodifica el string a un conjunto de cosas necesarias para la reconstruccion de la imagen
         Data<char[], Arbol,Integer,Integer,Integer> data = new Data<char[], Arbol,Integer,Integer,Integer>();
         try {
             Ejercicio_3 ejercicio3 = new Ejercicio_3();
@@ -69,27 +71,27 @@ public class ByteEncodingHelper {
             byte[] inputSequence = Files.readAllBytes(new File(inputFilepath).toPath());
             byte[] auxiliar = new byte[3];
 
-            auxiliar[0] = inputSequence[0];
+            auxiliar[0] = inputSequence[0];                     //Extramos la profundidad
             int profundidad = traducirBytes(auxiliar,1);
 
             for (int x = 1; x < 4; x++)
                 auxiliar[x-1] = inputSequence[x];
-            int longitud = traducirBytes(auxiliar,3);  //3 bytes
+            int longitud = traducirBytes(auxiliar,3);  //La longitud de la secuencia
 
             char[] secuenciaChar = new char[longitud];
 
-            auxiliar[0] = inputSequence[4];
+            auxiliar[0] = inputSequence[4];                     //la cantidad de frecuencias
             int cantFrecuencias = traducirBytes(auxiliar,1);
 
             for (int x = 0; x < 3; x++)
                 auxiliar[x] = inputSequence[5+x];
-            int X = traducirBytes(auxiliar,3);
+            int X = traducirBytes(auxiliar,3);          //Anchura
 
             for (int x = 0; x < 3; x++)
-                auxiliar[x] = inputSequence[8+x];
+                auxiliar[x] = inputSequence[8+x];               //Altura
             int Y = traducirBytes(auxiliar,3);
 
-            Vector<Arbol> frecuencias = new Vector<Arbol>();
+            Vector<Arbol> frecuencias = new Vector<Arbol>();        //Frecuencias color-distribucion
 
             for(int x = 0; x<cantFrecuencias; x++ ){
                 auxiliar[0] = inputSequence[11+x*4];              //Primero el color
@@ -101,9 +103,9 @@ public class ByteEncodingHelper {
                 ejercicio3.inserTarOrdenado(frecuencias,aux);
             }
 
-            Arbol raiz = ejercicio3.getArbolHuffman(frecuencias);
+            Arbol raiz = ejercicio3.getArbolHuffman(frecuencias);  //Generamos el arbol de Huffman
 
-            int i = 11+4*cantFrecuencias;
+            int i = 11+4*cantFrecuencias;                   //Decodificamos el resto de la secuencia
             int globalIndex = 0;
             byte mask = (byte) (1 << (bufferLength - 1)); // mask: 10000000
             int bufferPos = 0;

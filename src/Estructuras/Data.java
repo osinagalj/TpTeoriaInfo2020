@@ -1,6 +1,7 @@
 package Estructuras;
 
 public class Data<E,Y,J,K,L> {
+    //Estructura auxiliar para que el decode devuelva los datos necesarios para la recontrusccion de la imagen
 
     private E contenido1;
     private Y contenido2;

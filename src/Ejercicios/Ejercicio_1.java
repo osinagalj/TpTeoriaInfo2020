@@ -22,6 +22,7 @@ public class Ejercicio_1 {
     }
 
     public double correlacion(BufferedImage imgA,BufferedImage imgB, int h, int w,int n){
+        //Calculamos el factor de correlacion entre la imgA y la imgB
         double Xi,Yi,sumatoriaXiYi = 0, sumaXi= 0,sumaYi = 0,sumaXiCuadrado=0,sumaYiCuadrado=0;
         for (int x = 0; x < w; x++) {
             for (int y = 0; y < h; y++) {
@@ -42,7 +43,6 @@ public class Ejercicio_1 {
     }
 
     public BufferedImage deepCopy(BufferedImage bi,String saveAs) throws IOException {
-        //String saveAs = "copy.jpg";
         ColorModel cm = bi.getColorModel();
         boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
         WritableRaster raster = bi.copyData(null);
